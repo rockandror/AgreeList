@@ -27,6 +27,7 @@ class Individual < ActiveRecord::Base
       user = twitter_client.user(twitter)
       self.name = user.name if twitter != "gmc"
       self.description = user.description
+      self.followers_count = user.followers_count
       url = user.profile_image_url_https(:original)
       self.picture = open(url)
     end
