@@ -4,16 +4,19 @@
     %h5= "Learn what the world thinks on things that matter to you" unless current_user
     %br
     - if current_user
-      %span{id: "statement"} Location is important for a startup
-      %br
-      %br
-      = link_to "Agree", "/statement", class: "btn btn-primary"
-      = link_to "Disagree", "/statement", class: "btn btn-primary"
-      %br
-      %br
-      = link_to "Skip", "#", id: "skip"
-      |
-      = link_to "New", "/statement"
+      #quick_questions{class: @statements_to_vote.size == 0 ? "hide" : ""}
+        %span{id: "statement"} Location is important for a startup
+        %br
+        %br
+        = link_to "Agree", "#", class: "btn btn-primary", id: "quick_agree"
+        = link_to "Disagree", "#", class: "btn btn-primary", id: "quick_disagree"
+        %br
+        %br
+        = link_to "Skip", "#", id: "skip"
+        |
+        = link_to "New", "/statement"
+      #new_statement{class: @statements_to_vote.size == 0 ? "" : "hide"}
+        = link_to "New Advice", "/statement", class: "btn btn-primary"
     - else
       = link_to image_tag("twitter-login.png"), "/auth/twitter"
 

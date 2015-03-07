@@ -22,4 +22,14 @@ $(document).ready(function() {
     statements_to_vote.push(current_statement);
     $("#statement").text(statements_to_vote[0][1]);
   });
+
+  $("#quick_agree").off("click").on("click", function(e){
+    statements_to_vote.splice(0, 1);
+    if(statements_to_vote.length == 0){
+      $("#quick_questions").hide();
+      $("#new_statement").removeClass("hide");
+    }else{
+      $("#statement").text(statements_to_vote[0][1]);
+    }
+  });
 });
