@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   end
 
   def home
+    @statements_to_vote = (Statement.tagged_with("entrepreneurship") - current_user.statements).map{|s| [s.id, s.content]}
     if Rails.env == "test"
       @statements, @individuals = [], []
       9.times do

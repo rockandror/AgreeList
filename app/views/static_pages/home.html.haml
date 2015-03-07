@@ -1,10 +1,19 @@
 .jumbotron
   .text-center
     %h1 Advice for entrepreneurs
-    %h5 Learn what the world thinks on things that matter to you
+    %h5= "Learn what the world thinks on things that matter to you" unless current_user
     %br
     - if current_user
-      = link_to "New question", "/statement", class: "btn btn-primary"
+      %span{id: "statement"} Location is important for a startup
+      %br
+      %br
+      = link_to "Agree", "/statement", class: "btn btn-primary"
+      = link_to "Disagree", "/statement", class: "btn btn-primary"
+      %br
+      %br
+      = link_to "Skip", "#", id: "skip"
+      |
+      = link_to "New", "/statement"
     - else
       = link_to image_tag("twitter-login.png"), "/auth/twitter"
 
@@ -28,3 +37,5 @@
     .row
       - 3.times do |i|
         = render partial: "row", locals: { statement: @statements[i + 6], individual: @individuals[i + 6] }
+:javascript
+  var statements_to_vote = #{@statements_to_vote};

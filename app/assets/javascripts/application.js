@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(document).ready(function() {
+  $("#skip").off("click").on("click", function(e){
+    current_statement = statements_to_vote[0]
+    statements_to_vote.splice(0, 1);
+    statements_to_vote.push(current_statement);
+    $("#statement").text(statements_to_vote[0][1]);
+  });
+});
