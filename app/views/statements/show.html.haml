@@ -13,13 +13,14 @@
       %br
       .jumbotron
         = render partial: "add_supporter"
-  %h3 Other statements
-  .row
-    .col-md-6
-      - @related_statements[0..2].each do |related|
-        = link_to related.content, related
-        %br
-    .col-md-6
-      - @related_statements[3..5].each do |related|
-        = link_to related.content, related
-        %br
+  - unless Rails.env == "test"
+    %h3 Other statements
+    .row
+      .col-md-6
+        - @related_statements[0..2].each do |related|
+          = link_to related.content, related
+          %br
+      .col-md-6
+        - @related_statements[3..5].each do |related|
+          = link_to related.content, related
+          %br

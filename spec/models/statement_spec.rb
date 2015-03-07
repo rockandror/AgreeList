@@ -9,7 +9,7 @@ describe Statement do
   it { should respond_to(:individuals) }
 
   it "should destroy associated agreements" do
-    statement.agreements.create(individual_id: 1, url: "http://...")
+    statement.agreements.create(individual: individual, url: "http://...")
     agreements = statement.agreements.dup
     statement.destroy
     agreements.each do |a|

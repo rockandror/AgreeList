@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :statements_to_vote, only: :home
   def join
     @individual = current_user
   end
@@ -7,24 +8,32 @@ class StaticPagesController < ApplicationController
   end
 
   def home
-    @statements_to_vote = (Statement.tagged_with("entrepreneurship") - current_user.statements).map{|s| [s.id, s.content]}
     if Rails.env == "test"
-      @statements, @individuals = [], []
-      9.times do
-        @statements << Statement.first
-        @individuals << Individual.first
-      end
+      test_home
     else
       @statements = urls.map{ |s| Statement.find_by_hashed_id(s.split("-").last) }
       @individuals = twitters.map{ |t| Individual.find_by_twitter(t) }
     end
-    @statement = Statement.new if current_user
   end
 
   def contact
   end
 
   private
+
+  def statements_to_vote
+    if current_user
+      @statements_to_vote = (Statement.tagged_with("entrepreneurship") - current_user.statements).map{|s| [s.id, s.content]}
+    end
+  end
+
+  def test_home
+    @statements, @individuals = [], []
+    9.times do
+      @statements << Statement.first
+      @individuals << Individual.first
+    end
+  end
 
   def urls
     %w(http://www.agreelist.com/s/launch-early-get-feedback-and-start-iterating-kibothy610sj
