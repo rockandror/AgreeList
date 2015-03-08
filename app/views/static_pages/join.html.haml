@@ -5,8 +5,13 @@
       .form-group
         .col-sm-2
         .col-sm-8
-        = f.text_field :email, placeholder: "your@email.com", size: 30
-        = hidden_field :back, params[:back]
-      = f.submit "Next", class: "btn btn-primary"
-      or
-      = link_to "skip", params[:back] ? Statement.find_by_hashed_id(params[:back]) : "/"
+          = f.text_field :email, placeholder: "your@email.com", size: 30
+          %br
+          %br
+          = hidden_field :back, params[:back]
+          = f.submit "Next", class: "btn btn-primary"
+          or
+          = link_to "skip", params[:back] ? Statement.find_by_hashed_id(params[:back]) : "/"
+        .col-sm-2
+        %br
+        %br
