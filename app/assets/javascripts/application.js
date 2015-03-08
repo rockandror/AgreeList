@@ -41,6 +41,9 @@ function AddSupporter(agreement_or_disagreement) {
     }else{
       $("#statement").text(statements_to_vote[0][1]);
     }
+    if(statements_to_vote.length == 1){
+      $("#quick_skip").hide();
+    }
     $.ajax({
       type: 'post',
       url: "/add_supporter",
