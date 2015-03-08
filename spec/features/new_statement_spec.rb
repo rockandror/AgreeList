@@ -2,6 +2,10 @@ require 'spec_helper'
 
 feature 'statement' do
   before do
+    9.times do
+      create(:individual)
+      create(:statement)
+    end
     login
     visit "/statement"
   end
