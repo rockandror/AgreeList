@@ -1,7 +1,15 @@
 .col-md-4
-  .home_pic
-    %a{class: "pull-left", href: "/#{individual.twitter}"}
-      = image_tag(individual.picture.url(:thumb), class: "picture")
-  .home_txt
-    %h4.media-heading= link_to individual.name, profile_path(individual)
-    = link_to statement.content, statement_path(statement)
+  - if current_user
+    .home_pic
+      %a{class: "pull-left", href: "/#{individual.twitter}"}
+        = image_tag(individual.picture.url(:thumb), class: "picture")
+    .home_txt
+      %h4.media-heading= link_to individual.name, profile_path(individual)
+      = link_to statement.content, statement_path(statement)
+  - else
+    .home_pic
+      .pull-left
+        = image_tag(individual.picture.url(:thumb), class: "picture")
+    .home_txt
+      %h4.media-heading= individual.name
+      = statement.content
