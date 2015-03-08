@@ -24,6 +24,16 @@ $(document).ready(function() {
   });
 
   $("#quick_agree").off("click").on("click", function(e){
+    AddSupporter("agreement");
+  });
+
+  $("#quick_disagree").off("click").on("click", function(e){
+    AddSupporter("disagreement");
+  });
+});
+
+function AddSupporter(agreement_or_disagreement) {
+    current_statement = statements_to_vote[0][0];
     statements_to_vote.splice(0, 1);
     if(statements_to_vote.length == 0){
       $("#quick_questions").hide();
@@ -31,5 +41,19 @@ $(document).ready(function() {
     }else{
       $("#statement").text(statements_to_vote[0][1]);
     }
-  });
-});
+    $.ajax({
+      type: 'post',
+      url: "/add_supporter",
+      dataType: "application/x-www-form-urlencoded;charset=utf-8",
+      data: {
+        add: agreement_or_disagreement,
+        statement_id: current_statement
+      },
+      success: function(request){
+      },
+      error: function(data){
+      }
+    });
+
+
+}

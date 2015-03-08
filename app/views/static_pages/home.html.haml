@@ -5,7 +5,7 @@
     %br
     - if current_user
       #quick_questions{class: @statements_to_vote.size == 0 ? "hide" : ""}
-        %span{id: "statement"} Location is important for a startup
+        %span{id: "statement"}= @statements_to_vote.try(:[], 0).try(:[], 1)
         %br
         %br
         = link_to "Agree", "#", class: "btn btn-primary", id: "quick_agree"
