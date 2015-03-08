@@ -42,7 +42,7 @@ class StaticPagesController < ApplicationController
        http://www.agreelist.com/s/entrepreneurs-should-have-a-sense-of-purpose-0u5gaxuav1w8
        http://www.agreelist.com/s/seek-out-negative-feedback-5brqzh7xaj5b
        http://www.agreelist.com/s/a-single-founder-in-a-startup-is-a-mistake-5udqtimqiicb
-       http://www.agreelist.com/s/location-is-important-for-a-startup-zfrtumvrwtyd
+       http://www.agreelist.com/s/consider-crowdfunding-to-fund-your-startup-1cp4tkljelvw
        http://www.agreelist.com/s/stay-self-funded-as-long-as-possible-73rbrkrvztwb
        http://www.agreelist.com/s/don-t-go-all-in-with-your-business-re3xkpjeunfp
        http://www.agreelist.com/s/go-with-your-gut-rx54xxorby6y
@@ -51,6 +51,6 @@ class StaticPagesController < ApplicationController
   end
 
   def twitters
-    %w(reidhoffman edyson elonmusk paulg petercohan gmc tferriss richardbranson dilbert_daily)
+    %w(reidhoffman edyson elonmusk paulg adrianhon gmc tferriss richardbranson dilbert_daily)
   end
 end
