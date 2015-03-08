@@ -12,6 +12,7 @@ FactoryGirl.define do
   factory :individual do
     name { Faker::Name.name }
     twitter { Faker::Internet.user_name }
+    followers_count { 5 }
   end
 
   factory :agreement do

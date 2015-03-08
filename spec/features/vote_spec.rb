@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'disagree' do
   before do
-    statement = Statement.create(content: "aaa")
+    statement = create(:statement)
     login
     visit statement_path(statement)
   end

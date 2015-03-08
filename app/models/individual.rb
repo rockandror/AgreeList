@@ -10,6 +10,7 @@ class Individual < ActiveRecord::Base
   validates :twitter, :presence => true
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
+  before_create :update_followers_count
   before_save :update_profile_from_twitter
 
   def self.create_with_omniauth(auth)
@@ -62,6 +63,10 @@ class Individual < ActiveRecord::Base
   end
 
   private
+
+  def update_followers_count
+    self.followers_count = 0 if self.followers_count.nil?
+  end
 
   def agreement(statement)
     Agreement.where(statement_id: statement.id).where(individual_id: self.id)

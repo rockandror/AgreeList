@@ -8,12 +8,12 @@ class Statement < ActiveRecord::Base
   before_create :generate_hashed_id, :set_entrepreneurship_tag
 
   def agreements_in_favor
-    agreements.select{ |a| a.extent == 100 }
+    agreements.select{ |a| a.extent == 100 }.sort_by{ |a| -a.individual.followers_count }
   end
   alias_method :supporters, :agreements_in_favor
 
   def agreements_against
-    agreements.select{ |a| a.extent == 0 }
+    agreements.select{ |a| a.extent == 0 }.sort_by { |a| -a.individual.followers_count }
   end
   alias_method :detractors, :agreements_against
 
