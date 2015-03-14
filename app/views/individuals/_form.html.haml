@@ -16,14 +16,14 @@
         = f.text_field :name, class: "form-control"
     .row
       .col-sm-2
-        = f.label :description
-      .col-sm-8
-        = f.text_field :description, class: "form-control"
-    .row
-      .col-sm-2
         = f.label :twitter
       .col-sm-8
         = f.text_field :twitter, class: "form-control"
+    .row
+      .col-sm-2
+        = f.label :twitter_description
+      .col-sm-8
+        = @individual.description
     .row
       .col-sm-2
         = f.label :email
