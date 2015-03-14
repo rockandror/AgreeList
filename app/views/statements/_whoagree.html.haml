@@ -12,7 +12,7 @@
             - if agreement.url.present? && agreement.url != "http://"
               = link_to "source", agreement.url
         #br
-        = individual.description
+        = individual.bio.present? ? individual.bio : individual.description
         - if admin?
           = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
           |

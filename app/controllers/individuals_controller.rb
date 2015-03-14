@@ -12,8 +12,8 @@ class IndividualsController < ApplicationController
   end
 
   def update
-    if @individual.update_attributes(params.require(:individual).permit(:name, :twitter, :email))
-      redirect_to root_path, notice: 'Successfully updated.'
+    if @individual.update_attributes(params.require(:individual).permit(:name, :twitter, :email, :bio))
+      redirect_to(params[:back_url].present? ? params[:back_url] : root_path, notice: 'Successfully updated.')
     else
       render action: "edit"
     end

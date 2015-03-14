@@ -16,18 +16,24 @@
         = f.text_field :name, class: "form-control"
     .row
       .col-sm-2
-        = f.label :description
-      .col-sm-8
-        = f.text_field :description, class: "form-control"
-    .row
-      .col-sm-2
         = f.label :twitter
       .col-sm-8
         = f.text_field :twitter, class: "form-control"
     .row
       .col-sm-2
+        = f.label :twitter_description
+      .col-sm-8
+        = @individual.description
+    .row
+      .col-sm-2
+        = f.label :bio
+      .col-sm-8
+        = f.text_field :bio, class: "form-control"
+    .row
+      .col-sm-2
         = f.label :email
       .col-sm-8
         = f.text_field :email, class: "form-control"
+    = hidden_field_tag :back_url, params[:back_url]
     .text-center
       = f.submit "Continue", class: "btn btn-primary"
