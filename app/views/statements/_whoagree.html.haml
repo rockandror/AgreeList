@@ -2,14 +2,19 @@
   - agreements.each do |agreement|
     - individual = agreement.individual
     .media
-      %a{href: "/#{individual.twitter}"}
-        = image_tag(individual.picture.url(:thumb), class: "picture")
+      .media-left
+        %a{href: "/#{individual.twitter}"}
+          = image_tag(individual.picture.url(:thumb), class: "picture media-object")
       .media-body
-        = link_to(individual.name || individual.twitter, profile_path(individual))
+        %h4.media-heading
+          = link_to(individual.name || individual.twitter, profile_path(individual))
+          %span.source
+            - if agreement.url.present? && agreement.url != "http://"
+              = link_to "source", agreement.url
         #br
-        - if agreement.url.present? && agreement.url != "http://"
-          = link_to agreement.short_url, agreement.url
-        - else
-          %br
-    = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" }) if admin?
+        = individual.description
+        - if admin?
+          = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
+          |
+          = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
     #br
