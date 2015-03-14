@@ -1,6 +1,12 @@
 .container
-  %h1= @individual.name
-  = image_tag @individual.picture.url(:square)
+  .media
+    .media-left
+      = image_tag @individual.picture.url(:square)
+    .media-body
+      %h1.media-heading
+        = @individual.name
+      %br
+      = @individual.bio.present? ? @individual.bio : @individual.description
   = link_to("Edit", edit_individual_path) if admin?
   %br
 
