@@ -1,0 +1,33 @@
+= form_for(@individual) do |f|
+  - if @individual.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@individual.errors.count, "error")
+        prohibited this individual from being saved:
+      %ul
+      - @individual.errors.full_messages.each do |msg|
+        %li= msg
+
+  .form-group
+    .row
+      .col-sm-2
+        = f.label :name
+      .col-sm-8
+        = f.text_field :name, class: "form-control"
+    .row
+      .col-sm-2
+        = f.label :description
+      .col-sm-8
+        = f.text_field :description, class: "form-control"
+    .row
+      .col-sm-2
+        = f.label :twitter
+      .col-sm-8
+        = f.text_field :twitter, class: "form-control"
+    .row
+      .col-sm-2
+        = f.label :email
+      .col-sm-8
+        = f.text_field :email, class: "form-control"
+    .text-center
+      = f.submit "Continue", class: "btn btn-primary"
