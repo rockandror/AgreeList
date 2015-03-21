@@ -12,6 +12,7 @@
   %br
   = text_field_tag(:source, "", class: "form-control", placeholder: "http:// where it's clear that he/she agrees/disagrees")
   = hidden_field_tag(:statement_id, @statement.id)
+  %br
   - if signed_in?
     = submit_tag("Add", class: "btn btn-primary")
   - else
