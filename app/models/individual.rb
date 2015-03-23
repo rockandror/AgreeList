@@ -26,7 +26,8 @@ class Individual < ActiveRecord::Base
   def update_profile_from_twitter
     if Rails.env == "production" && twitter.present?
       user = twitter_client.user(twitter)
-      self.name = user.name unless %w(gmc jesusencinar arrola jaime_estevez gusbox).include?(twitter)
+      self.name = user.name if self.name.blank?
+      # self.name = user.name unless %w(gmc jesusencinar arrola jaime_estevez gusbox martaesteve).include?(twitter)
       self.description = user.description
       self.followers_count = user.followers_count
       url = user.profile_image_url_https(:original)
