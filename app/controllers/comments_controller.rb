@@ -28,6 +28,6 @@ class CommentsController < ApplicationController
   end
 
   def twitter_username
-    @twitter_username ||= params[:twitter].gsub("@", "")
+    @twitter_username ||= params[:twitter].present? ? params[:twitter].gsub("@", "") : current_user.twitter
   end
 end

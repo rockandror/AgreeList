@@ -30,6 +30,11 @@ $(document).ready(function() {
   $("#quick_disagree").off("click").on("click", function(e){
     AddSupporter("disagreement");
   });
+
+  $("#quote").off("click").on("click", function(e){
+    $("#quote_fields").removeClass("hidden")
+    $("#quote_link").hide();
+  });
 });
 
 function AddSupporter(agreement_or_disagreement) {
@@ -57,6 +62,4 @@ function AddSupporter(agreement_or_disagreement) {
       error: function(data){
       }
     });
-
-
 }
