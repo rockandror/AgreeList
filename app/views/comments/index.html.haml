@@ -1,0 +1,15 @@
+- if @comments.size > 0
+  #ol
+    - @comments.each do |comment|
+      - individual = comment.individual
+      .media
+        .media-left
+          %a{href: "/#{individual.twitter}"}
+            = image_tag(individual.picture.url(:thumb), class: "picture media-object")
+        .media-body
+          %h4.media-heading
+            = link_to(individual.name || individual.twitter, profile_path(individual))
+          #br
+          = comment.text
+      #br
+  %br

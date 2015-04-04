@@ -58,6 +58,8 @@ class StatementsController < ApplicationController
     @related_statements = Statement.where.not(id: @statement.id).tagged_with("entrepreneurship").limit(6)
 
     @comment = Comment.new
+    @comments = @statement.comments.order(:created_at)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @statement }
