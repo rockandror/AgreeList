@@ -10,7 +10,7 @@ feature 'comment' do
     visit statement_path(statement)
   end
 
-  scenario 'show comment' do
+  scenario 'new' do
     fill_in "comment_text", with: "Maybe not recommended but mistake sounds too extreme"
     click_button "Send"
     expect(page).to have_text("Your comment has been created")
