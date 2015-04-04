@@ -20,8 +20,7 @@
         = render partial: "add_supporter"
   %h3 Comments:
   = render template: "comments/index"
-  .jumbotron
-    = render template: "comments/new"
+  = render template: "comments/new"
   - unless Rails.env == "test"
     %h3 Other statements
     .row
