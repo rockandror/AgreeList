@@ -34,6 +34,8 @@ $(document).ready(function() {
   $("#quote").off("click").on("click", function(e){
     $("#quote_fields").removeClass("hidden")
     $("#quote_link").hide();
+    e.stopPropagation();
+    e.preventDefault();
   });
 });
 
