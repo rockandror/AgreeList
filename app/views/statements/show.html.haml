@@ -3,13 +3,13 @@
   .row
     .col-md-6
       = render partial: "add_me", locals: { agree: true }
-      %br
-      %br
-      = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
     .col-md-6
       = render partial: "add_me", locals: { agree: false }
-      %br
-      %br
+  %br
+  .row
+    .col-md-6
+      = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
+    .col-md-6
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   .textcenter
