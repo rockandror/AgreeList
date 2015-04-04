@@ -10,7 +10,6 @@ feature 'disagree' do
   scenario 'adds someone who disagrees' do
     choose 'add_disagreement'
     fill_in 'new_supporter', with: 'Superman'
-    fill_in 'source', with: 'http://'
 
     click_button "Add"
     expect(Agreement.last.disagree?).to eq(true)

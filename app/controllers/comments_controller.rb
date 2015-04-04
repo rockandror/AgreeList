@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
       statement_id: params[:statement_id],
       source: params[:source])
     if @comment.save
+      LogMailer.log_email("@#{current_user.twitter} has commented as @#{twitter_username} on #{statement.content}").deliver
       redirect_to statement_path(statement), notice: "Your comment has been created."
     else
       redirect_to statement_path(statement), notice: "There was an error. Please try again later and be sure that the user @#{twitter_username} exists on Twitter."
@@ -23,7 +24,7 @@ class CommentsController < ApplicationController
   end
 
   def statement
-    Statement.find(params[:statement_id])
+    @statement ||= Statement.find(params[:statement_id])
   end
 
   def twitter_username
