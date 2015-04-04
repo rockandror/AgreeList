@@ -1,0 +1,10 @@
+= form_for(@comment, :method => "post") do |f|
+  = f.text_area(:text, class: "form-control", placeholder: "Leave a comment...")
+  = hidden_field_tag(:statement_id, @statement.id)
+  = hidden_field_tag(:individual_id, current_user.try(:id))
+  %br
+  - if signed_in?
+    = f.submit("Send", class: "btn btn-primary")
+  - else
+    = link_to "Send", "", class: "btn btn-primary", onclick: "alert('Sign in required.')"
+
