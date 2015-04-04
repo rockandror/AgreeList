@@ -5,6 +5,7 @@ Al::Application.routes.draw do
       post 'create_and_agree'
     end
   end
+  resources :comments, only: :create
   get '/statement' => 'statements#new_and_agree'
   post '/save_email' => 'individuals#save_email'
   resources :individuals, only: [:edit, :update, :destroy]

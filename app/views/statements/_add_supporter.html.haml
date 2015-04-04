@@ -1,4 +1,3 @@
-%h3 Do you know someone else who agree/disagree? Add them now:
 = form_tag("/add_supporter", :method => "post") do
   = text_field_tag(:new_supporter,"", class: "form-control", placeholder: "@twitter_username")
   %br
