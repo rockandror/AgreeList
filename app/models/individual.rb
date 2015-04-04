@@ -6,6 +6,7 @@ class Individual < ActiveRecord::Base
   }
   has_many :agreements, dependent: :destroy
   has_many :statements, :through => :agreements
+  has_many :comments
 
   validates :twitter, :presence => true
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
@@ -19,7 +20,7 @@ class Individual < ActiveRecord::Base
       user.uid = auth["uid"]
       user.twitter = auth["info"]["nickname"].downcase
       user.name = auth["info"]["name"]
-      user.followers_count = auth["extra"]["raw_info"]["followers_count"]
+      user.followers_count = auth["extra"]["raw_info"]["followers_count"] unless Rails.env == "test"
     end
   end
 

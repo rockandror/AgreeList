@@ -1,6 +1,12 @@
 require 'faker'
 
 FactoryGirl.define do
+  factory :comment do
+    text "MyText"
+    individual_id 1
+    statement_id 1
+  end
+
   factory :email do
     email "MyString"
   end
