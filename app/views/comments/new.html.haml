@@ -1,7 +1,12 @@
 = form_for(@comment, :method => "post") do |f|
   = f.text_area(:text, class: "form-control", placeholder: "Leave a comment...")
+  Author:
+  = text_field_tag(:twitter, "@#{current_user.try(:twitter)}", class: "form-control", placeholder: "@twitter_username")
+  If you are not the author, please provide a source:
+  = text_field_tag(:source, "", class: "form-control", placeholder: "http://... where the comment comes from")
+
   = hidden_field_tag(:statement_id, @statement.id)
-  = hidden_field_tag(:individual_id, current_user.try(:id))
+  = hidden_field_tag(:user_id, current_user.try(:id))
   %br
   - if signed_in?
     = f.submit("Send", class: "btn btn-primary")

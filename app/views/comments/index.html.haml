@@ -9,6 +9,9 @@
         .media-body
           %h4.media-heading
             = link_to(individual.name || individual.twitter, profile_path(individual))
+            %span.source
+              - if comment.source.present?
+                = link_to "source", comment.source
           #br
           = comment.text
       #br
