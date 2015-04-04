@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       source: params[:source])
     if @comment.save
       LogMailer.log_email("@#{current_user.twitter} has commented as @#{twitter_username} on #{statement.content}").deliver
-      redirect_to statement_path(statement), notice: "Your comment has been created."
+      redirect_to "/s/#{statement.to_param}#comments", notice: "Your comment has been created."
     else
       redirect_to statement_path(statement), notice: "There was an error. Please try again later and be sure that the user @#{twitter_username} exists on Twitter."
     end
