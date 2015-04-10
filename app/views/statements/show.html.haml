@@ -2,14 +2,12 @@
   %h1= @statement.content
   .row
     .col-md-6
-      = render partial: "add_me", locals: { agree: true }
-      %br
-      %br
+      .add_me
+        = render partial: "add_me", locals: { agree: true }
       = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
     .col-md-6
-      = render partial: "add_me", locals: { agree: false }
-      %br
-      %br
+      .add_me
+        = render partial: "add_me", locals: { agree: false }
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   .textcenter
