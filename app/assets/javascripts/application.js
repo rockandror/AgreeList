@@ -78,7 +78,7 @@ function prependStatement(statement, agreement_or_disagreement){
     disagree = statement[4] + 1;
   }
   var total = agree + disagree;
-  var percentaje = Math.round(agree * 100 / total);
-  $('#voted_questions').prepend("<br>" + "<a href=\"" + url + "\">" + statement[1] + "</a> " + percentaje.toString() + "% agree");
+  var percentage = Math.round(agree * 100 / total);
+  $('#voted_questions').prepend("<br>" + "<a href=\"" + url + "\">" + statement[1] + "</a> " + percentage.toString() + "% agree");
 
 }
