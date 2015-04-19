@@ -12,9 +12,10 @@
         = link_to "Disagree", "#", class: "btn btn-primary", id: "quick_disagree"
         %br
         %br
-        %span{id: "quick_skip"}
-          = link_to "Skip", "#", id: "skip"
-          |
+        - if @statements_to_vote.size > 1
+          %span{id: "quick_skip"}
+            = link_to "Skip", "#", id: "skip"
+            |
         = link_to "New", "/statement"
       #new_statement{class: @statements_to_vote.size == 0 ? "" : "hide"}
         = link_to "New Advice", "/statement", class: "btn btn-primary"
