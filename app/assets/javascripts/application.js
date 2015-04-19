@@ -41,18 +41,7 @@ $(document).ready(function() {
 
 function addSupporter(agreement_or_disagreement) {
     current_statement = statements_to_vote[0][0];
-    var url = statements_to_vote[0][2];
-    var agree, disagree;
-    if(agreement_or_disagreement == "agreement"){
-      agree = statements_to_vote[0][3] + 1;
-      disagree = statements_to_vote[0][4];
-    }else{
-      agree = statements_to_vote[0][3];
-      disagree = statements_to_vote[0][4] + 1;
-    }
-    var total = agree + disagree;
-    var percentaje = Math.round(agree * 100 / total);
-    $('#voted_questions').prepend("<br>" + "<a href=\"" + url + "\">" + statements_to_vote[0][1] + "</a> " + percentaje.toString() + "% agree");
+    prependStatement(statements_to_vote[0], agreement_or_disagreement);
     statements_to_vote.splice(0, 1);
     if(statements_to_vote.length == 0){
       $("#quick_questions").hide();
@@ -76,4 +65,20 @@ function addSupporter(agreement_or_disagreement) {
       error: function(data){
       }
     });
+}
+
+function prependStatement(statement, agreement_or_disagreement){
+  var url = statement[2];
+  var agree, disagree;
+  if(agreement_or_disagreement == "agreement"){
+    agree = statement[3] + 1;
+    disagree = statement[4];
+  }else{
+    agree = statement[3];
+    disagree = statement[4] + 1;
+  }
+  var total = agree + disagree;
+  var percentaje = Math.round(agree * 100 / total);
+  $('#voted_questions').prepend("<br>" + "<a href=\"" + url + "\">" + statement[1] + "</a> " + percentaje.toString() + "% agree");
+
 }

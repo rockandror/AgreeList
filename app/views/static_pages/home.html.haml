@@ -19,6 +19,7 @@
         = link_to "New", "/statement"
       #voted_questions
       #new_statement{class: @statements_to_vote.size == 0 ? "" : "hide"}
+        %br
         = link_to "New Advice", "/statement", class: "btn btn-primary"
     - else
       = link_to image_tag("twitter-login.png"), "/auth/twitter"
