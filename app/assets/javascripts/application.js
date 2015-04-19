@@ -41,7 +41,18 @@ $(document).ready(function() {
 
 function addSupporter(agreement_or_disagreement) {
     current_statement = statements_to_vote[0][0];
-    $('#voted_questions').prepend("<br>" + "<a href=\"" + statements_to_vote[0][2] + "\">" + statements_to_vote[0][1] + "</a>");
+    var url = statements_to_vote[0][2];
+    var agree, disagree;
+    if(agreement_or_disagreement == "agreement"){
+      agree = statements_to_vote[0][3] + 1;
+      disagree = statements_to_vote[0][4];
+    }else{
+      agree = statements_to_vote[0][3];
+      disagree = statements_to_vote[0][4] + 1;
+    }
+    var total = agree + disagree;
+    var percentaje = Math.round(agree * 100 / total);
+    $('#voted_questions').prepend("<br>" + "<a href=\"" + url + "\">" + statements_to_vote[0][1] + "</a> " + percentaje.toString() + "% agree");
     statements_to_vote.splice(0, 1);
     if(statements_to_vote.length == 0){
       $("#quick_questions").hide();

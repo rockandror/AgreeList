@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
 
   def statements_to_vote
     if current_user
-      @statements_to_vote = (Statement.tagged_with("entrepreneurship") - current_user.statements).sort_by{|s| s[:created_at]}.map{|s| [s.id, s.content, s.hashed_id]}
+      @statements_to_vote = (Statement.tagged_with("entrepreneurship") - current_user.statements).sort_by{|s| s[:created_at]}.map{|s| [s.id, s.content, statement_path(s), s.agree_counter, s.disagree_counter]}
     else
       @statements_to_vote = []
     end

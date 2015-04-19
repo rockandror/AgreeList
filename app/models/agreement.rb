@@ -6,7 +6,7 @@ class Agreement < ActiveRecord::Base
   belongs_to :individual
 
   before_create :generate_hashed_id
-  after_create :rm_opposite_agreement
+  after_create :rm_opposite_agreement, :update_counters
   #after_save :update_entrepreneurship_statements_count
   #after_destroy :update_entrepreneurship_statements_count
 
@@ -27,6 +27,15 @@ class Agreement < ActiveRecord::Base
   end
 
   private
+
+  def update_counters
+    if agree?
+      statement.agree_counter = statement.agree_counter + 1
+    else
+      statement.disagree_counter = statement.disagree_counter + 1
+    end
+    statement.save
+  end
 
   def rm_opposite_agreement
     agreement = Agreement.where(statement: statement, individual: individual, extent: opposite_extent).first
