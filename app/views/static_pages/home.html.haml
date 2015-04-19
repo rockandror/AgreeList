@@ -17,6 +17,7 @@
             = link_to "Skip", "#", id: "skip"
             |
         = link_to "New", "/statement"
+      #voted_questions
       #new_statement{class: @statements_to_vote.size == 0 ? "" : "hide"}
         = link_to "New Advice", "/statement", class: "btn btn-primary"
     - else

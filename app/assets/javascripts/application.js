@@ -24,11 +24,11 @@ $(document).ready(function() {
   });
 
   $("#quick_agree").off("click").on("click", function(e){
-    AddSupporter("agreement");
+    addSupporter("agreement");
   });
 
   $("#quick_disagree").off("click").on("click", function(e){
-    AddSupporter("disagreement");
+    addSupporter("disagreement");
   });
 
   $("#quote").off("click").on("click", function(e){
@@ -39,8 +39,9 @@ $(document).ready(function() {
   });
 });
 
-function AddSupporter(agreement_or_disagreement) {
+function addSupporter(agreement_or_disagreement) {
     current_statement = statements_to_vote[0][0];
+    $('#voted_questions').prepend("<br>" + "<a href=\"" + statements_to_vote[0][2] + "\">" + statements_to_vote[0][1] + "</a>");
     statements_to_vote.splice(0, 1);
     if(statements_to_vote.length == 0){
       $("#quick_questions").hide();
