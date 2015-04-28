@@ -18,7 +18,7 @@
   - else
     - @agrees.each do |a|
       = link_to a.content, statement_path(a)
-      = "(#{a.supporters.size} people agree vs #{a.detractors.size} people disagree)"
+      = "#{percentage(a)}% agree"
       %br
   %br
 
@@ -29,7 +29,7 @@
   - else
     - @disagrees.each do |a|
       = link_to a.content, statement_path(a)
-      = "(#{a.supporters.size} people agree vs #{a.detractors.size} people disagree)"
+      = "#{percentage(a)}% agree"
       %br
   .jumbotron
     = form_tag("/s/create_and_agree", class: "form-horizontal") do |f|
