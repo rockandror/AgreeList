@@ -9,6 +9,7 @@ gem "haml-rails"
 gem 'pry'
 
 gem 'omniauth-twitter'
+gem 'rack-attack'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
