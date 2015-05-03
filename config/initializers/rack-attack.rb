@@ -7,7 +7,8 @@ class Rack::Attack
       /buttons-for-your-website\.com/,
       /darodar\.com/,
       /Get-Free-Traffic-Now\.com/,
-      /theguardlan.com/
+      /theguardlan\.com/,
+      /best-seo-offer\.com/
     ]
     spammers.find { |spammer| request.referer =~ spammer }
   end
