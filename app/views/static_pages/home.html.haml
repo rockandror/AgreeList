@@ -44,5 +44,13 @@
     .row
       - 3.times do |i|
         = render partial: "row", locals: { statement: @statements[i + 6], individual: @individuals[i + 6] }
+%section
+  .container
+    %h2
+      A friend tells you: I'm afraid that someone steals my idea.
+    %h2
+      Now you can tell her that
+      = link_to "100% of people", "/s/tell-your-idea-rmxoeiqhjsla"
+      on AgreeList think that the feedback, connections, sales opportunities outweigh the possibility that someone steals it.
 :javascript
   var statements_to_vote = #{@statements_to_vote};
