@@ -1,7 +1,6 @@
 .jumbotron
   .text-center
-    %h1 Advice for entrepreneurs
-    %h5= "Learn what the world thinks on things that matter to you" unless current_user
+    %h1 Get 10 best practices for entrepreneurs every month by email
     %br
     - if current_user
       #quick_questions{class: @statements_to_vote.size == 0 ? "hide" : ""}
@@ -27,11 +26,11 @@
 %section#info
   .container
     .col-md-4
-      %h3 1. Give your advice
+      %h3 1. Agree/disagree by email and we'll add them to the site.
     .col-md-4
-      %h3 2. Entrepreneurs get your insights
+      %h3 2. Find well-known entrepreneurs who agree
     .col-md-4
-      %h3 3. Others tell you if they agree!
+      %h3 3. Get stats. How many people agree? Who they are? Why?
 
 #statements
   .container
