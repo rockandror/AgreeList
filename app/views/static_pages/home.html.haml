@@ -1,6 +1,7 @@
 .jumbotron
   .text-center
-    %h1 Get 10 best practices for entrepreneurs every month by email
+    %h1 Advice for entrepreneurs
+    %h5= "Learn what the world thinks on things that matter to you" unless current_user
     %br
     - if current_user
       #quick_questions{class: @statements_to_vote.size == 0 ? "hide" : ""}
@@ -26,11 +27,11 @@
 %section#info
   .container
     .col-md-4
-      %h3 1. Agree/disagree by email and we'll add them to the site.
+      %h3 1. Give your advice
     .col-md-4
-      %h3 2. Find well-known entrepreneurs who agree
+      %h3 2. Entrepreneurs get your insights
     .col-md-4
-      %h3 3. Get stats. How many people agree? Who they are? Why?
+      %h3 3. Others tell you if they agree!
 
 #statements
   .container
@@ -45,11 +46,10 @@
         = render partial: "row", locals: { statement: @statements[i + 6], individual: @individuals[i + 6] }
 %section
   .container
-    %h2
-      A friend tells you: I'm afraid that someone steals my idea.
-    %h2
-      Now you can tell her that
-      = link_to "100% of people", "/s/tell-your-idea-rmxoeiqhjsla"
+    %h3 A friend tells you: I'm afraid that someone steals my idea.
+    %h3
+      Now you can say:
+      = link_to "100% of people", "/s/tell-your-idea-the-feedback-connections-sales-opportunities-outweigh-the-possibility-that-someone-steals-your-idea-rmxoeiqhjsla"
       on AgreeList think that the feedback, connections, sales opportunities outweigh the possibility that someone steals it.
 :javascript
   var statements_to_vote = #{@statements_to_vote};
