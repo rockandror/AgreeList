@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :statements_to_vote, only: :home
+  before_action :statements_to_vote, only: :advice_for_entrepreneurs
   def join
     @individual = current_user
   end
@@ -8,6 +8,9 @@ class StaticPagesController < ApplicationController
   end
 
   def home
+  end
+
+  def advice_for_entrepreneurs
     if Rails.env == "test"
       test_home
     else
