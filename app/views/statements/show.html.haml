@@ -19,8 +19,8 @@
     %h3 Comments:
     = render template: "comments/index"
     = render template: "comments/new"
-  - unless Rails.env == "test"
-    %h3 Other statements
+  - unless Rails.env == "test" || @related_statements.size < 6
+    %h3 Other questions
     .row
       .col-md-6
         - @related_statements[0..2].each do |related|

@@ -68,7 +68,7 @@ class StatementsController < ApplicationController
   def show
     @agreements_in_favor = @statement.agreements_in_favor
     @agreements_against = @statement.agreements_against
-    @related_statements = Statement.where.not(id: @statement.id).tagged_with("entrepreneurship").limit(6)
+    @related_statements = Statement.where.not(id: @statement.id).tagged_with(@statement.tags.first).limit(6)
 
     @comment = Comment.new
     @comments = @statement.comments.order(:created_at)
