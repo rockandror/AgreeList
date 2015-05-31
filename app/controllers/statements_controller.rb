@@ -1,5 +1,5 @@
 class StatementsController < ApplicationController
-  before_action :login_required, only: [:add_supporter, :create, :create_and_agree]
+  before_action :login_required, only: [:create, :create_and_agree]
   before_action :admin_required, only: [:edit, :update, :destroy, :index]
   before_action :find_statement, only: [:show, :destroy, :update, :edit]
 
@@ -24,19 +24,32 @@ class StatementsController < ApplicationController
   end
 
   def add_supporter
-    if params[:new_supporter]
-      individual = Individual.find_or_create(params[:new_supporter].gsub("@", ""))
-    else
-      individual = current_user
+    if params[:email].present?
+      if current_user
+        if current_user.email.blank?
+          current_user.email = params[:email].strip
+          current_user.save
+          user = current_user
+        end
+      else
+        user = Individual.find_or_create(email: params[:email].strip, name: params[:name])
+      end
     end
+
+    if params[:add] == 'myself'
+      voter = user
+    else
+      voter = Individual.create(name: params[:name])
+    end
+
     statement = Statement.find(params[:statement_id])
-    LogMailer.log_email("@#{current_user.twitter} added #{individual.name} (@#{individual.twitter}) to '#{statement.content}'").deliver
+    LogMailer.log_email("@#{current_user.try(:twitter) || request.remote_ip} added #{voter.name} (@#{voter.try(:twitter)}) to '#{statement.content}'").deliver
     Agreement.create(
       statement_id: params[:statement_id],
-      individual_id: individual.id,
+      individual_id: voter.id,
       url: params[:source],
       extent: params[:commit] == "No" ? 0 : 100)
-    redirect_to statement_path(statement)
+    redirect_to statement_path(statement), notice: "Done"
   end
 
   # GET /statements

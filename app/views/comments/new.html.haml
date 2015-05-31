@@ -7,7 +7,7 @@
       Author:
       = text_field_tag(:twitter, "", class: "form-control", placeholder: "@twitter_username")
       Please provide a source:
-      = text_field_tag(:source, "", class: "form-control", placeholder: "http://... where the comment comes from")
+      = text_field_tag(:comment_source, "", class: "form-control", placeholder: "http://... where the comment comes from")
 
     = hidden_field_tag(:statement_id, @statement.id)
     = hidden_field_tag(:user_id, current_user.try(:id))
