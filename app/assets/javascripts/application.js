@@ -16,6 +16,7 @@
 //= require_tree .
 
 $(document).ready(function() {
+  statements_observers();
 
   $("#skip").off("click").on("click", function(e){
     current_statement = statements_to_vote[0]

@@ -1,5 +1,4 @@
-$(document).ready(function() {
-
+function statements_observers() {
   $("#add_myself").off("click").on("click", function(e){
     $("#source_box").hide();
   });
