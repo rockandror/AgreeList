@@ -52,7 +52,7 @@ class Individual < ActiveRecord::Base
   end
 
   def to_param
-    twitter || "user-#{hashed_id}"
+    twitter.present? ? twitter : "user-#{hashed_id}"
   end
 
   def in_favor?(statement)
