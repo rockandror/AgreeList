@@ -35,7 +35,7 @@ class StatementsController < ApplicationController
       statement_id: params[:statement_id],
       individual_id: individual.id,
       url: params[:source],
-      extent: params[:add] == "disagreement" ? 0 : 100)
+      extent: params[:commit] == "No" ? 0 : 100)
     redirect_to statement_path(statement)
   end
 

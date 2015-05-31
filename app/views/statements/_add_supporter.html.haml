@@ -1,19 +1,23 @@
 = form_tag("/add_supporter", :method => "post") do
   = text_field_tag(:new_supporter,"", class: "form-control", placeholder: "@twitter_username")
   %br
-  = radio_button_tag :add, 'agreement'
-  Agrees
-  = radio_button_tag :add, 'disagreement'
-  Disagrees
+  = radio_button_tag :add, 'myself', true
+  I'm adding myself
+  = radio_button_tag :add, 'someone_else'
+  I'm adding someone else
   %br
   %br
-  = label_tag(:source, "Source or more info url:")
-  %br
-  = text_field_tag(:source, "", class: "form-control", placeholder: "http:// where it's clear that he/she agrees/disagrees")
+  #source_box
+    = label_tag(:source, "Source or more info url:")
+    %br
+    = text_field_tag(:source, "", class: "form-control", placeholder: "http:// where it's clear that he/she agrees/disagrees")
   = hidden_field_tag(:statement_id, @statement.id)
   %br
   - if signed_in?
-    = submit_tag("Add", class: "btn btn-primary")
+    = submit_tag("Yes", class: "btn btn-primary")
+    = submit_tag("No", class: "btn btn-primary")
   - else
     = link_to "Add", "", class: "btn btn-primary", onclick: "alert('Sign in required.')"
+:javascript
+  $("#source_box").hide();
 

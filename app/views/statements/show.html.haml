@@ -1,5 +1,11 @@
 .container
   %h1= @statement.content
+  .textcenter
+    #add
+      .jumbotron
+        %h3 Gather who agree
+        = render partial: "add_supporter"
+
   .row
     .col-md-6
       .add_me
@@ -10,12 +16,6 @@
         = render partial: "add_me", locals: { agree: false }
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
-  .textcenter
-    #add
-      %br
-      %h3 Do you know someone else who agree/disagree? Add them now:
-      .jumbotron
-        = render partial: "add_supporter"
   #comments
     %h3 Comments:
     = render template: "comments/index"

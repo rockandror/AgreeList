@@ -16,6 +16,14 @@
 //= require_tree .
 
 $(document).ready(function() {
+  $("#add_myself").off("click").on("click", function(e){
+    $("#source_box").hide();
+  });
+
+  $("#add_someone_else").off("click").on("click", function(e){
+    $("#source_box").show();
+  });
+
   $("#skip").off("click").on("click", function(e){
     current_statement = statements_to_vote[0]
     statements_to_vote.splice(0, 1);
