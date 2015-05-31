@@ -8,11 +8,11 @@
   .row
     .col-md-6
       .add_me
-        = render partial: "add_me", locals: { agree: true }
+        = "People who agree (#{@agreements_in_favor.size})"
       = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
     .col-md-6
       .add_me
-        = render partial: "add_me", locals: { agree: false }
+        = "People who disagree (#{@agreements_against.size})"
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   #comments
