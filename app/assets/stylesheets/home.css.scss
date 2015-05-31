@@ -1,31 +1,6 @@
-#statements {
-  padding-top: 10px;
-  background-color: orange;
-  a:link, a:visited {
-    color: purple;
+@media (min-width: 768px) {
+  #home {
+    width: 600px;
   }
 }
 
-#liquid_democracy_points {
-  background-color: red;
-}
-
-@media (min-width: 990px) {
-  .row {
-    padding-bottom: 10px;
-  }
-}
-
-#info {
-  margin-bottom: 5px;
-}
-
-.jumbotron {
-  margin-bottom: 0px;
-}
-
-@media (max-width: 991px) {
-  .home_txt {
-    height: 110px;
-  }
-}

@@ -1,0 +1,10 @@
+#home.container.text-center
+  %h1 Gather who agree
+  %br
+  = form_tag "/home", role: "form" do
+    .form-group
+      = text_field_tag "question", "", class: "form-control", placeholder: "Yes/no question. E.g. Should the UK remain in the EU?", size: 20
+    .form_group
+      = text_field_tag "email", "", class: "form-control", placeholder: "Your email"
+    %br
+    = submit_tag "Create", class: "btn btn-primary btn-default"
