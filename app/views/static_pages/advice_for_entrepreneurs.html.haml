@@ -1,0 +1,55 @@
+.jumbotron
+  .text-center
+    %h1 Advice for entrepreneurs
+    %h5= "Learn what the world thinks on things that matter to you" unless current_user
+    %br
+    - if current_user
+      #quick_questions{class: @statements_to_vote.size == 0 ? "hide" : ""}
+        %span{id: "statement"}= @statements_to_vote.try(:[], 0).try(:[], 1)
+        %br
+        %br
+        = link_to "Agree", "#", class: "btn btn-primary", id: "quick_agree"
+        = link_to "Disagree", "#", class: "btn btn-primary", id: "quick_disagree"
+        %br
+        %br
+        - if @statements_to_vote.size > 1
+          %span{id: "quick_skip"}
+            = link_to "Skip", "#", id: "skip"
+            |
+        = link_to "New", "/statement"
+      #voted_questions
+      #new_statement{class: @statements_to_vote.size == 0 ? "" : "hide"}
+        %br
+        = link_to "New Advice", "/statement", class: "btn btn-primary"
+    - else
+      = link_to image_tag("twitter-login.png"), "/auth/twitter"
+
+%section#info
+  .container
+    .col-md-4
+      %h3 1. Give your advice
+    .col-md-4
+      %h3 2. Entrepreneurs get your insights
+    .col-md-4
+      %h3 3. Others tell you if they agree!
+
+#statements
+  .container
+    .row
+      - 3.times do |i|
+        = render partial: "row", locals: { statement: @statements[i], individual: @individuals[i] }
+    .row
+      - 3.times do |i|
+        = render partial: "row", locals: { statement: @statements[i + 3], individual: @individuals[i + 3] }
+    .row
+      - 3.times do |i|
+        = render partial: "row", locals: { statement: @statements[i + 6], individual: @individuals[i + 6] }
+%section
+  .container
+    %h3 A friend tells you: I'm afraid that someone steals my idea.
+    %h3
+      Now you can say:
+      = link_to "100% of people", "/s/tell-your-idea-the-feedback-connections-sales-opportunities-outweigh-the-possibility-that-someone-steals-your-idea-rmxoeiqhjsla"
+      on AgreeList think that the feedback, connections, sales opportunities outweigh the possibility that someone steals it.
+:javascript
+  var statements_to_vote = #{@statements_to_vote};
