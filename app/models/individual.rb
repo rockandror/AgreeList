@@ -8,10 +8,9 @@ class Individual < ActiveRecord::Base
   has_many :statements, :through => :agreements
   has_many :comments
 
-  validates :twitter, :presence => true
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
-  before_create :update_followers_count
+  before_create :update_followers_count, :generate_hashed_id
   before_save :update_profile_from_twitter
 
   def self.create_with_omniauth(auth)
@@ -36,8 +35,8 @@ class Individual < ActiveRecord::Base
     end
   end
 
-  def self.find_or_create(twitter)
-    self.find_by_twitter(twitter.downcase) || self.create(twitter: twitter.downcase)
+  def self.find_or_create(params)
+    self.find_by_email(params[:email].downcase) || self.create(email: params[:email].downcase, name: params[:name])
   end
 
   def agrees
@@ -53,7 +52,7 @@ class Individual < ActiveRecord::Base
   end
 
   def to_param
-    twitter
+    twitter || "user-#{hashed_id}"
   end
 
   def in_favor?(statement)
@@ -83,4 +82,12 @@ class Individual < ActiveRecord::Base
       config.access_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
     end
   end
+
+  def generate_hashed_id
+    self.hashed_id = loop do
+      token = rand(999999999).to_s
+      break token unless Individual.where('hashed_id' => token).first.present?
+    end
+  end
+
 end
