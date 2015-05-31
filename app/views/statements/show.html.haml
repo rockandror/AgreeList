@@ -4,15 +4,15 @@
     .jumbotron
       %h3 Gather who agree
       = render partial: "add_supporter"
-
+  %br
   .row
     .col-md-6
       .add_me
-        = "People who agree (#{@agreements_in_favor.size})"
+        %h4= "Who agree (#{@agreements_in_favor.size}):"
       = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
     .col-md-6
       .add_me
-        = "People who disagree (#{@agreements_against.size})"
+        %h4= "Who disagree (#{@agreements_against.size}):"
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   #comments
