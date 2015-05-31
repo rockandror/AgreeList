@@ -42,7 +42,7 @@ class StatementsController < ApplicationController
   # GET /statements
   # GET /statements.json
   def index
-    @statements = Statement.tagged_with("entrepreneurship").order("created_at DESC")
+    @statements = Statement.order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb

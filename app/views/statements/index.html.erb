@@ -10,8 +10,7 @@
 
 <% @statements.each do |statement| %>
   <tr>
-    <td><%= statement.content %></td>
-    <td><%= link_to 'Show', statement %></td>
+    <td><%= link_to statement.content, statement %></td>
     <td><%= link_to 'Edit', edit_statement_path(statement) %></td>
     <td><%= link_to 'Destroy', statement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
