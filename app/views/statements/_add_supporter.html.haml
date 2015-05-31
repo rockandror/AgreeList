@@ -6,12 +6,14 @@
   = radio_button_tag :add, 'someone_else'
   I'm adding someone else
   %br
-  %br
   #source_box
+    %br
     = label_tag(:source, "Source or more info url:")
     %br
     = text_field_tag(:source, "", class: "form-control", placeholder: "http:// where it's clear that he/she agrees/disagrees")
   = hidden_field_tag(:statement_id, @statement.id)
+  %br
+  = text_field_tag(:email, "", class: "form-control", placeholder: "Your email")
   %br
   - if signed_in?
     = submit_tag("Yes", class: "btn btn-primary")
