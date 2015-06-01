@@ -50,7 +50,7 @@ class StatementsController < ApplicationController
       statement_id: params[:statement_id],
       individual_id: voter.id,
       url: params[:source],
-      extent: params[:commit] == "No" ? 0 : 100)
+      extent: params[:commit] == "Disagree" ? 0 : 100)
     redirect_to statement_path(statement), notice: "Done"
   end
 

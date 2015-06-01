@@ -13,5 +13,5 @@
   %br
   = text_field_tag(:email, "", class: "form-control", placeholder: "Your email") unless current_user.try(:email)
   %br
-  = submit_tag("Yes", class: "btn btn-primary")
-  = submit_tag("No", class: "btn btn-primary")
+  = submit_tag("Agree", class: "btn btn-primary")
+  = submit_tag("Disagree", class: "btn btn-primary")
