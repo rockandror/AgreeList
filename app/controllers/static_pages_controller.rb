@@ -19,6 +19,7 @@ class StaticPagesController < ApplicationController
     else
       @statements = urls.map{ |s| Statement.find_by_hashed_id(s.split("-").last) }
       @individuals = twitters.map{ |t| Individual.find_by_twitter(t) }
+      @contents = contents
     end
   end
 
@@ -54,6 +55,19 @@ class StaticPagesController < ApplicationController
        http://www.agreelist.com/s/go-with-your-gut-rx54xxorby6y
        http://www.agreelist.com/s/don-t-give-up-olyhqve6j6sf
        http://www.agreelist.com/s/set-goals-4m7m7oidosa8)
+  end
+
+  def contents
+    ["Launch early, get feedback and start iterating",
+     "Entrepreneurs should have a sense of purpose",
+     "Seek out negative feedback",
+     "A single founder in a startup is a mistake",
+     "Consider crowdfunding to fund your startup",
+     "Stay self-funded for as long as possible",
+     "Don’t go all in with your business",
+     "Listen to others but go with your gut",
+     "Don’t give up"
+    ]
   end
 
   def twitters

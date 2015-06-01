@@ -37,13 +37,13 @@
   .container
     .row
       - 3.times do |i|
-        = render partial: "row", locals: { statement: @statements[i], individual: @individuals[i] }
+        = render partial: "row", locals: { content: @contents[i], statement: @statements[i], individual: @individuals[i] }
     .row
       - 3.times do |i|
-        = render partial: "row", locals: { statement: @statements[i + 3], individual: @individuals[i + 3] }
+        = render partial: "row", locals: { content: @contents[i + 3], statement: @statements[i + 3], individual: @individuals[i + 3] }
     .row
       - 3.times do |i|
-        = render partial: "row", locals: { statement: @statements[i + 6], individual: @individuals[i + 6] }
+        = render partial: "row", locals: { content: @contents[i + 6], statement: @statements[i + 6], individual: @individuals[i + 6] }
 %section
   .container
     %h3 A friend tells you: I'm afraid that someone steals my idea.
