@@ -15,10 +15,11 @@
         %h4= "Who disagree (#{@agreements_against.size}):"
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
-  #comments
-    %h3 Comments:
-    = render template: "comments/index"
-    = render template: "comments/new"
+  - if @comments.size > 0
+    #comments
+      %h3 Comments:
+      = render template: "comments/index"
+      =# render template: "comments/new"
   - unless Rails.env == "test" || @related_statements.size < 6
     %h3 Other questions
     .row
