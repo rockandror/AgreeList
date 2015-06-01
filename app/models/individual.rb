@@ -36,7 +36,15 @@ class Individual < ActiveRecord::Base
   end
 
   def self.find_or_create(params)
-    self.find_by_email(params[:email].downcase) || self.create(email: params[:email].downcase, name: params[:name])
+    self.find_by_email(params[:email].downcase) || self.create_from_twitter_if_possible(params)
+  end
+
+  def self.create_from_twitter_if_possible(params)
+    if params[:name][0] == "@"
+      self.create(email: params[:email].try(:downcase), twitter: params[:name].gsub("@", ""))
+    else
+      self.create(email: params[:email].try(:downcase), name: params[:name])
+    end
   end
 
   def agrees

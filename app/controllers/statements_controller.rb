@@ -51,7 +51,7 @@ class StatementsController < ApplicationController
         user = Individual.find_or_create(email: params[:email].strip, name: params[:name])
       end
     else
-      user = Individual.create(name: params[:name])
+      user = Individual.create_from_twitter_if_possible(params)
     end
 
     if params[:add] == 'myself'
