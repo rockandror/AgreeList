@@ -29,11 +29,13 @@ class StatementsController < ApplicationController
         if current_user.email.blank?
           current_user.email = params[:email].strip
           current_user.save
-          user = current_user
         end
+        user = current_user
       else
         user = Individual.find_or_create(email: params[:email].strip, name: params[:name])
       end
+    else
+      user = Individual.create(name: params[:name])
     end
 
     if params[:add] == 'myself'
