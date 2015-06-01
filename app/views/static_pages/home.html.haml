@@ -1,7 +1,7 @@
 #home.container.text-center
   %h1 Gather who agree
   %br
-  = form_tag "/home", role: "form" do
+  = form_tag "/statements/quick", role: "form" do
     .form-group
       = text_field_tag "question", "", class: "form-control", placeholder: "Yes/no question. E.g. Should the UK remain in the EU?", size: 20
     .form_group

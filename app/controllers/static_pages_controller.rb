@@ -10,6 +10,9 @@ class StaticPagesController < ApplicationController
   def home
   end
 
+  def create_statement_from_homepage
+  end
+
   def advice_for_entrepreneurs
     if Rails.env == "test"
       test_home

@@ -3,6 +3,15 @@ class StatementsController < ApplicationController
   before_action :admin_required, only: [:edit, :update, :destroy, :index]
   before_action :find_statement, only: [:show, :destroy, :update, :edit]
 
+  def quick_create
+    @statement = Statement.new(content: params[:question])
+    @statement.tag_list = "Others"
+    @statement.save
+    Individual.find_or_create(email: params[:email])
+    LogMailer.log_email("@#{params[:email]} has created '#{@statement.content}'").deliver
+    redirect_to @statement
+  end
+
   def new_and_agree
     @statement = Statement.new
   end

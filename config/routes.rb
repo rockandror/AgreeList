@@ -9,6 +9,7 @@ Al::Application.routes.draw do
   get '/advice-for-entrepreneurs' => 'static_pages#advice_for_entrepreneurs'
   get '/statement' => 'statements#new_and_agree'
   post '/save_email' => 'individuals#save_email'
+  post '/statements/quick' => 'statements#quick_create'
   resources :individuals, only: [:edit, :update, :destroy]
   match '/add_supporter' => 'statements#add_supporter', via: [:get, :post]
   get '/contact' => 'static_pages#contact'

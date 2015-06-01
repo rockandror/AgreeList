@@ -20,4 +20,21 @@ describe do
       expect(page).to have_text("feedback@agreelist.com")
     end
   end
+
+  feature "create statement" do
+    scenario "should create a statement" do
+      visit "/"
+      fill_in "question", with: "Should the UK leave the EU?"
+      fill_in "email", with: "hi@hectorperezarenas.com"
+      expect{ click_on "Create" }.to change{ Statement.count }.by(1)
+    end
+
+    scenario "should save the email of the author" do
+      visit "/"
+      fill_in "question", with: "Should the UK leave the EU?"
+      fill_in "email", with: "hi@hectorperezarenas.com"
+      expect{ click_on "Create" }.to change{ Individual.count }.by(1)
+      expect(Individual.last.email).to eq "hi@hectorperezarenas.com"
+    end
+  end
 end
