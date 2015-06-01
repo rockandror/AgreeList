@@ -7,7 +7,14 @@ class StatementsController < ApplicationController
     @statement = Statement.new(content: params[:question])
     @statement.tag_list = "Others"
     @statement.save
-    Individual.find_or_create(email: params[:email])
+    if current_user
+      unless current_user.email.present?
+        current_user.email = params[:email]
+        current_user.save
+      end
+    else
+      Individual.find_or_create(email: params[:email])
+    end
     LogMailer.log_email("@#{params[:email]} has created '#{@statement.content}'").deliver
     redirect_to @statement
   end
