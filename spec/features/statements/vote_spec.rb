@@ -10,7 +10,7 @@ feature 'logged user' do
   scenario 'adds someone who disagrees' do
     fill_in 'name', with: 'Superman'
 
-    click_button "No"
+    click_button "Disagree"
     expect(Agreement.last.disagree?).to eq(true)
   end
 end
@@ -25,7 +25,7 @@ feature 'non logged user' do
   scenario 'adds someone who disagrees' do
     fill_in 'name', with: 'Superman'
 
-    click_button "No"
+    click_button "Disagree"
     expect(Agreement.last.disagree?).to eq(true)
   end
 
@@ -33,7 +33,7 @@ feature 'non logged user' do
     fill_in 'name', with: 'Superman'
     fill_in 'source', with: 'http://...'
 
-    expect{ click_button "Yes" }.to change{ Individual.count }.by(2)
+    expect{ click_button "Agree" }.to change{ Individual.count }.by(2)
   end
 end
 

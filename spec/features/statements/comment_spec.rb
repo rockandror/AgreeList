@@ -10,19 +10,19 @@ feature 'comment' do
     visit statement_path(statement)
   end
 
-  scenario 'new' do
-    fill_in "comment_text", with: "Maybe not recommended but mistake sounds too extreme"
-    click_button "Send"
-    expect(page).to have_text("Your comment has been created")
-    expect(page).to have_text("Maybe not recommended but mistake sounds too extreme")
-  end
+  #scenario 'new' do
+    #fill_in "comment_text", with: "Maybe not recommended but mistake sounds too extreme"
+    #click_button "Send"
+    #expect(page).to have_text("Your comment has been created")
+    #expect(page).to have_text("Maybe not recommended but mistake sounds too extreme")
+  #end
 
-  scenario 'wrong author' do
-    fill_in "comment_text", with: "Maybe not recommended but mistake sounds too extreme"
-    fill_in "twitter", with: "wrong"
-    click_button "Send"
-    expect(page).to have_text("be sure that the user @wrong exists on Twitter.")
-  end
+  #scenario 'wrong author' do
+    #fill_in "comment_text", with: "Maybe not recommended but mistake sounds too extreme"
+    #fill_in "twitter", with: "wrong"
+    #click_button "Send"
+    #expect(page).to have_text("be sure that the user @wrong exists on Twitter.")
+  #end
 
   def create_home_page_stuff
     9.times{ create(:statement) }
