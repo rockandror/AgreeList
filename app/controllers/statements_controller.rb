@@ -71,7 +71,7 @@ class StatementsController < ApplicationController
     end
 
     statement = Statement.find(params[:statement_id])
-    LogMailer.log_email("@#{current_user.try(:twitter) || request.remote_ip} added #{voter.name} (@#{voter.try(:twitter)}) to '#{statement.content}'").deliver
+    LogMailer.log_email("@#{current_user.try(:twitter)}, email: #{params[:email]}, ip: #{request.remote_ip} added #{voter.name} (@#{voter.try(:twitter)}) to '#{statement.content}'").deliver
     Agreement.create(
       statement_id: params[:statement_id],
       individual_id: voter.id,
