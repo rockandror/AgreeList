@@ -21,7 +21,7 @@ describe do
     end
   end
 
-  feature "create statement" do
+  feature "homepage" do
     scenario "should create a statement" do
       visit "/"
       fill_in "question", with: "Should the UK leave the EU?"
@@ -33,7 +33,7 @@ describe do
       visit "/"
       fill_in "question", with: "Should the UK leave the EU?"
       fill_in "email", with: "hi@hectorperezarenas.com"
-      expect{ click_on "Create" }.to change{ Individual.count }.by(1)
+      click_on "Create"
       expect(Individual.last.email).to eq "hi@hectorperezarenas.com"
     end
   end
