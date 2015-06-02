@@ -1,10 +1,10 @@
 = form_tag("/add_supporter", :method => "post") do
   = text_field_tag(:name,"", class: "form-control", placeholder: "Name or @twitter (yours or someone else's)")
   %br
-  = radio_button_tag :add, 'myself'
-  I'm adding myself
   = radio_button_tag :add, 'someone_else', true
   I'm adding someone else
+  = radio_button_tag :add, 'myself'
+  I'm adding myself
   %br
   #source_box
     %br
