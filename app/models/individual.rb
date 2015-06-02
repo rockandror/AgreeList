@@ -36,7 +36,7 @@ class Individual < ActiveRecord::Base
   end
 
   def self.find_or_create(params)
-    self.find_by_email(params[:email].downcase) || self.create_from_twitter_if_possible(params)
+    self.find_by_email(params[:email]) || self.create(params)
   end
 
   def self.create_from_twitter_if_possible(params)

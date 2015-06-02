@@ -56,8 +56,18 @@ class StatementsController < ApplicationController
 
     if params[:add] == 'myself'
       voter = user
+      if params[:name][0] == "@"
+        voter.name = nil
+        voter.twitter = params[:name].gsub("@", "")
+        voter.save
+      end
     else
-      voter = Individual.create(name: params[:name])
+      if params[:name][0] == "@"
+        params[:name][0] = ""
+        voter = Individual.create(twitter: params[:name])
+      else
+        voter = Individual.create(name: params[:name])
+      end
     end
 
     statement = Statement.find(params[:statement_id])

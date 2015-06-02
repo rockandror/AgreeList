@@ -13,6 +13,12 @@ feature 'logged user' do
     click_button "Disagree"
     expect(Agreement.last.disagree?).to eq(true)
   end
+
+  scenario 'adds someone who disagrees with its twitter' do
+    fill_in 'name', with: "@arpahector"
+    click_button "Disagree"
+    expect(Individual.last.twitter).to eq "arpahector"
+  end
 end
 
 
@@ -34,6 +40,12 @@ feature 'non logged user' do
     fill_in 'source', with: 'http://...'
 
     expect{ click_button "Agree" }.to change{ Individual.count }.by(2)
+  end
+
+  scenario 'adds someone who disagrees with its twitter' do
+    fill_in 'name', with: "@arpahector"
+    click_button "Disagree"
+    expect(Individual.last.twitter).to eq "arpahector"
   end
 end
 
