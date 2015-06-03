@@ -19,8 +19,8 @@ class StaticPagesController < ApplicationController
     else
       @statements = urls.map{ |s| Statement.find_by_hashed_id(s.split("-").last) }
       @individuals = twitters.map{ |t| Individual.find_by_twitter(t) }
-      @contents = contents
     end
+    @contents = contents
   end
 
   def contact

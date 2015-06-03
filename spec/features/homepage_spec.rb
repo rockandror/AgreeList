@@ -16,7 +16,7 @@ describe do
   feature "contact email" do
     scenario "should have contact email" do
       visit "/"
-      click_on "Contact"
+      #click_on "Contact"
       expect(page).to have_text("feedback@agreelist.com")
     end
   end
