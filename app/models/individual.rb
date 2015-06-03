@@ -6,7 +6,7 @@ class Individual < ActiveRecord::Base
   }
   has_many :agreements, dependent: :destroy
   has_many :statements, :through => :agreements
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 
