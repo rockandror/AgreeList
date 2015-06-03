@@ -56,7 +56,7 @@ function addSupporter(agreement_or_disagreement) {
     }
     $.ajax({
       type: 'post',
-      url: "/add_supporter",
+      url: "/votes",
       dataType: "application/x-www-form-urlencoded;charset=utf-8",
       data: {
         add: agreement_or_disagreement,

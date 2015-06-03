@@ -6,6 +6,7 @@ Al::Application.routes.draw do
     end
   end
   resources :comments, only: :create
+  resources :votes, only: :create
   get '/entrepreneurs' => 'static_pages#advice_for_entrepreneurs'
   get '/statement' => 'statements#new_and_agree'
   post '/save_email' => 'individuals#save_email'
