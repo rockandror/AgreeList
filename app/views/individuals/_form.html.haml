@@ -36,9 +36,9 @@
         = f.text_field :email, class: "form-control"
     .row
       .col-sm-2
-        = f.label :avatar
+        = f.label :picture
       .col-sm-8
-        = f.file_field :avatar
+        = f.file_field :picture
     = hidden_field_tag :back_url, params[:back_url]
     .text-center
       = f.submit "Continue", class: "btn btn-primary"
