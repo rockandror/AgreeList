@@ -20,7 +20,7 @@
       %h3 Comments:
       = render template: "comments/index"
       =# render template: "comments/new"
-  - unless Rails.env == "test" || @related_statements.size < 6
+  - unless Rails.env == "test" || @related_statements.size == 0 || @related_statements.tag_list == ["Others"]
     %h3 Other questions
     .row
       .col-md-6
