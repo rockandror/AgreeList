@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     LogMailer.log_email("#{user.name} (@#{user.twitter}) just signed in!").deliver
     # redirect_to user.email.present? ? "/statement" : "/join", :notice => "Signed in!"
-    redirect_to "/entrepreneurs", notice: "Signed in!"
+    redirect_to "/", notice: "Signed in!"
   end
 
   def destroy

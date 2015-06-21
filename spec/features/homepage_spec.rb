@@ -21,20 +21,20 @@ describe do
     end
   end
 
-  feature "homepage" do
-    scenario "should create a statement" do
-      visit "/"
-      fill_in "question", with: "Should the UK leave the EU?"
-      fill_in "email", with: "hi@hectorperezarenas.com"
-      expect{ click_on "Create" }.to change{ Statement.count }.by(1)
-    end
+#  feature "homepage" do
+    #scenario "should create a statement" do
+      #visit "/"
+      #fill_in "question", with: "Should the UK leave the EU?"
+      #fill_in "email", with: "hi@hectorperezarenas.com"
+      #expect{ click_on "Create" }.to change{ Statement.count }.by(1)
+    #end
 
-    scenario "should save the email of the author" do
-      visit "/"
-      fill_in "question", with: "Should the UK leave the EU?"
-      fill_in "email", with: "hi@hectorperezarenas.com"
-      click_on "Create"
-      expect(Individual.last.email).to eq "hi@hectorperezarenas.com"
-    end
-  end
+    #scenario "should save the email of the author" do
+      #visit "/"
+      #fill_in "question", with: "Should the UK leave the EU?"
+      #fill_in "email", with: "hi@hectorperezarenas.com"
+      #click_on "Create"
+      #expect(Individual.last.email).to eq "hi@hectorperezarenas.com"
+    #end
+ # end
 end
