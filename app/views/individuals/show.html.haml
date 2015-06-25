@@ -5,7 +5,7 @@
     .media-body
       %h1.media-heading
         = @individual.name
-        = link_to "Follow #{@individual.twitter}", "https://twitter.com/#{@individual.twitter}", class: "twitter-follow-button", "data-show-count" => "true", "data-size" => "large" if @individual.twitter
+        = link_to "Follow #{@individual.twitter}", "https://twitter.com/#{@individual.twitter}", class: "twitter-follow-button", "data-show-count" => "true", "data-size" => "large" if @individual.twitter.present?
       %br
       = @individual.bio.present? ? @individual.bio : @individual.description
   = link_to("Edit", edit_individual_path) if admin?
