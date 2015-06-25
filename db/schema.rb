@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531163846) do
+ActiveRecord::Schema.define(version: 20150625181243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20150531163846) do
 
   create_table "individuals", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "twitter"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150531163846) do
     t.string   "description"
     t.text     "bio"
     t.string   "hashed_id"
+    t.boolean  "update_picture",                    default: true
   end
 
   create_table "relationships", force: true do |t|

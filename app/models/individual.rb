@@ -31,7 +31,7 @@ class Individual < ActiveRecord::Base
       self.description = user.description
       self.followers_count = user.followers_count
       url = user.profile_image_url_https(:original)
-      self.picture = open(url)
+      self.picture = open(url) if self.update_picture
     end
   end
 
