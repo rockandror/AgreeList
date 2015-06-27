@@ -19,6 +19,7 @@ class Individual < ActiveRecord::Base
       user.uid = auth["uid"]
       user.twitter = auth["info"]["nickname"].downcase
       user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
       user.followers_count = auth["extra"]["raw_info"]["followers_count"] unless Rails.env == "test"
     end
   end
