@@ -1,6 +1,5 @@
 Al::Application.routes.draw do
   root to: 'static_pages#advice_for_entrepreneurs', via: :get
-
   post '/telegram-28sjd920zlcye7' => 'telegram#update'
 
   resources :statements, path: "s" do
