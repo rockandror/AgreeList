@@ -23,6 +23,6 @@ Al::Application.routes.draw do
 
   get "/auth/failure" => redirect("/")
 
-  get '/:id' => 'individuals#show', :as => :profile
   post '/telegram-28sjd920zlcye7' => 'telegram#update'
+  get '/:id' => 'individuals#show', :as => :profile
 end
