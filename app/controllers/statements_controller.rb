@@ -40,36 +40,13 @@ class StatementsController < ApplicationController
   end
 
   def add_supporter
-    if params[:email].present?
-      if current_user
-        if current_user.email.blank?
-          current_user.email = params[:email].strip
-          current_user.save
-        end
-        user = current_user
-      else
-        user = Individual.find_or_create(email: params[:email].strip, name: params[:name])
-      end
-    else
-      user = Individual.create_from_twitter_if_possible(params)
-    end
-
-    if params[:add] == 'myself'
-      voter = user
-      if params[:name][0] == "@"
-        voter.name = nil
-        voter.twitter = params[:name].gsub("@", "")
-        voter.save
-      end
-    else
-      if params[:name][0] == "@"
-        params[:name][0] = ""
-        voter = Individual.create(twitter: params[:name])
-      else
-        voter = Individual.create(name: params[:name])
-      end
-    end
-
+    twitter = params[:name][0] == "@" ? params[:name].gsub("@", "") : nil
+    voter = MagicVoter.new(email: params[:email].try(:strip),
+                           name: twitter ? nil : params[:name],
+                           twitter: twitter,
+                           current_user: current_user,
+                           adding_myself: params[:add] == "myself"
+                          ).find_or_create!
     statement = Statement.find(params[:statement_id])
     LogMailer.log_email("@#{current_user.try(:twitter)}, email: #{params[:email]}, ip: #{request.remote_ip} added #{voter.name} (@#{voter.try(:twitter)}) to '#{statement.content}'").deliver
     Agreement.create(
@@ -163,5 +140,13 @@ class StatementsController < ApplicationController
 
   def find_statement
     @statement = Statement.find_by_hashed_id(params[:id].split("-").last)
+  end
+
+  def twitter?
+    params[:name][0] == "@"
+  end
+
+  def twitter
+    params[:name].gsub("@", "")
   end
 end

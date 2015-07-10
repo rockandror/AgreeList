@@ -38,6 +38,7 @@ feature 'non logged user' do
   scenario 'should create two users when adding someone else' do
     fill_in 'name', with: 'Superman'
     fill_in 'source', with: 'http://...'
+    fill_in 'email', with: 'hhh@jjj.com'
 
     expect{ click_button "Agree" }.to change{ Individual.count }.by(2)
   end
@@ -46,6 +47,14 @@ feature 'non logged user' do
     fill_in 'name', with: "@arpahector"
     click_button "Disagree"
     expect(Individual.last.twitter).to eq "arpahector"
+  end
+
+  scenario 'adds two times the same @user' do
+    fill_in 'name', with: "@arpahector"
+    click_button "Agree"
+    fill_in 'name', with: "@arpahector"
+    click_button "Agree"
+    expect(Individual.count).to eq 1
   end
 end
 
