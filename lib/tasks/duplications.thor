@@ -1,4 +1,15 @@
 class Duplications < Thor
+  desc 'info',
+       'info'
+  def info
+    require './config/environment'
+    Individual.order(created_at: :desc).each do |user|
+      user.agreements.each do |agreement|
+        puts "@#{user.twitter} (#{user.id}) #{agreement.statement.try(:content)} - #{agreement.extent == 100} - #{agreement.url}"
+      end
+    end
+  end
+
   desc 'merge',
        'merge users with the same twitter'
    def merge
