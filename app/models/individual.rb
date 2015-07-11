@@ -1,4 +1,5 @@
 class Individual < ActiveRecord::Base
+  nilify_blanks only: [:twitter]
   has_attached_file :picture, s3_host_name: "s3-eu-west-1.amazonaws.com", :default_url => '/assets/missing-:style.jpg', styles: {
     thumb: '100x100#',
     square: '200x200#',
@@ -9,6 +10,7 @@ class Individual < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+  validates_uniqueness_of :twitter, allow_nil: true
 
   before_create :update_followers_count, :generate_hashed_id
   before_save :update_profile_from_twitter
