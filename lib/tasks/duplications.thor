@@ -10,7 +10,7 @@ class Duplications < Thor
            duplicated.agreements.each do |agreement|
              agreement.individual_id = user.id
              puts "#{user.twitter} - #{agreement.statement.content}"
-             agreement.save!
+             puts agreement.save
            end
            puts "destroying #{duplicated.twitter}"
            duplicated.reload.destroy
