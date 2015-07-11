@@ -9,9 +9,11 @@ class Duplications < Thor
          duplicated_users(user).each do |duplicated|
            duplicated.agreements.each do |agreement|
              agreement.individual_id = user.id
-             agreement.save
+             puts "#{user.twitter} - #{agreement.statement.content}"
+             agreement.save!
            end
-           duplicated.destroy
+           puts "destroying #{duplicated.twitter}"
+           duplicated.reload.destroy
          end
        end
      end
