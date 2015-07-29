@@ -14,7 +14,7 @@ feature 'comment' do
       visit statement_path(statement)
     end
 
-    scenario 'new comment' do
+    xscenario 'new comment' do
       fill_in "comment_text", with: "Yep"
       click_button "Send"
       expect(page).to have_text("Your comment has been created")
