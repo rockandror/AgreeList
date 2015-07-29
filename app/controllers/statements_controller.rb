@@ -48,6 +48,7 @@ class StatementsController < ApplicationController
                            adding_myself: params[:add] == "myself"
                           ).find_or_create!
     statement = Statement.find(params[:statement_id])
+    Comment.create(individual: voter, text: params[:comment], statement: statement) if params[:comment].present?
     LogMailer.log_email("@#{current_user.try(:twitter)}, email: #{params[:email]}, ip: #{request.remote_ip} added #{voter.name} (@#{voter.try(:twitter)}) to '#{statement.content}'").deliver
     Agreement.create(
       statement_id: params[:statement_id],
