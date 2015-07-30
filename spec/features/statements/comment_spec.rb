@@ -6,8 +6,19 @@ feature 'comment' do
 
   before do
     create_home_page_stuff
-    login
-    visit statement_path(statement)
+  end
+
+  context "logged in" do
+    before do
+      login
+      visit statement_path(statement)
+    end
+
+    xscenario 'new comment' do
+      fill_in "comment_text", with: "Yep"
+      click_button "Send"
+      expect(page).to have_text("Your comment has been created")
+    end
   end
 
   #scenario 'new' do

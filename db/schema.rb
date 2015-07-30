@@ -38,13 +38,6 @@ ActiveRecord::Schema.define(version: 20150625181243) do
     t.string   "source"
   end
 
-  create_table "delegations", force: true do |t|
-    t.integer  "representative_id"
-    t.integer  "represented_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "individuals", force: true do |t|
     t.string   "name"
     t.datetime "created_at",                                       null: false
@@ -62,13 +55,6 @@ ActiveRecord::Schema.define(version: 20150625181243) do
     t.text     "bio"
     t.string   "hashed_id"
     t.boolean  "update_picture",                    default: true
-  end
-
-  create_table "relationships", force: true do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "statements", force: true do |t|
@@ -101,12 +87,5 @@ ActiveRecord::Schema.define(version: 20150625181243) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
-
-  create_table "via", force: true do |t|
-    t.integer  "agreement_id"
-    t.integer  "individual_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
