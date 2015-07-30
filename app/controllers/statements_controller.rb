@@ -76,7 +76,8 @@ class StatementsController < ApplicationController
     @related_statements = Statement.where.not(id: @statement.id).tagged_with(@statement.tags.first).limit(6)
 
     @comment = Comment.new
-    @comments = @statement.comments.order(:created_at)
+    @comments = {}
+    @statement.comments.each{|comment| @comments[comment.individual.id] = comment.text}
 
     respond_to do |format|
       format.html # show.html.erb
