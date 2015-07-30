@@ -18,5 +18,7 @@
           = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
           |
           = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
-        = @comments[individual.id]
+        %br
+        %br
+        %i= @comments[individual.id].try(:text)
     #br
