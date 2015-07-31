@@ -22,6 +22,7 @@ Al::Application.routes.draw do
   get '/test' => 'static_pages#polar'
 
   get "/auth/failure" => redirect("/")
+  get "/brexit" => redirect("/s/should-the-united-kingdom-remain-a-member-of-the-european-union-sblrlc9vgxp7")
 
   get '/:id' => 'individuals#show', :as => :profile
 end
