@@ -9,12 +9,12 @@ class Statement < ActiveRecord::Base
   before_create :generate_hashed_id, :set_entrepreneurship_tag
 
   def agreements_in_favor
-    agreements.select{ |a| a.extent == 100 }.sort_by{ |a| - (a.individual.followers_count + a.individual.ranking) }
+    agreements.select{ |a| a.extent == 100 }.sort_by{ |a| - ranking(a) }
   end
   alias_method :supporters, :agreements_in_favor
 
   def agreements_against
-    agreements.select{ |a| a.extent == 0 }.sort_by { |a| - (a.individual.followers_count + a.individual.ranking) }
+    agreements.select{ |a| a.extent == 0 }.sort_by { |a| - ranking(a) }
   end
   alias_method :detractors, :agreements_against
 
@@ -23,6 +23,11 @@ class Statement < ActiveRecord::Base
   end
 
   private
+
+  def ranking(agreement)
+    r = agreement.individual.ranking
+    r == 0 ? agreement.individual.followers_count : r
+  end
 
   def generate_hashed_id
     self.hashed_id = loop do
