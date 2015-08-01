@@ -1,7 +1,7 @@
 .container
   %h1= @statement.content
   .text-center
-    = link_to "Add someone else", "#add_someone_else", class: "btn btn-primary"
+    = link_to "Add someone else", "#gather", class: "btn btn-primary"
     %br
     or help us and
     %br
@@ -33,7 +33,7 @@
         - @related_statements[3..5].each do |related|
           = link_to related.content, related
           %br
-  #add_someone_else.jumbotron.textcenter
+  #gather.jumbotron.textcenter
     %h3 Gather who agree
     = render partial: "add_supporter"
 :javascript
