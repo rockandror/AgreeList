@@ -37,6 +37,6 @@ class Statement < ActiveRecord::Base
   end
 
   def set_entrepreneurship_tag
-    self.tag_list.add("entrepreneurship")
+    self.tag_list.add("entrepreneurship") unless self.tag_list.any?
   end
 end

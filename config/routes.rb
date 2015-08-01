@@ -1,5 +1,5 @@
 Al::Application.routes.draw do
-  root to: 'static_pages#advice_for_entrepreneurs', via: :get
+  root to: 'static_pages#home', via: :get
   resources :statements, path: "s" do
     collection do
       post 'create_and_agree'
@@ -7,7 +7,7 @@ Al::Application.routes.draw do
   end
   resources :comments, only: :create
   resources :votes, only: :create
-  get '/entrepreneurs', to: redirect('/')
+  get '/entrepreneurs', to: 'static_pages#advice_for_entrepreneurs'
   get '/statement' => 'statements#new_and_agree'
   post '/save_email' => 'individuals#save_email'
   post '/statements/quick' => 'statements#quick_create'
