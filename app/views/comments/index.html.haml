@@ -1,6 +1,6 @@
 - if @comments.size > 0
   #ol
-    - @comments.each do |comment|
+    - @comments.each do |individual_id, comment|
       - individual = comment.individual
       .media
         .media-left
