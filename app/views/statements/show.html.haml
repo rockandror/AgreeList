@@ -6,16 +6,14 @@
       = render partial: "add_supporter"
   %br
   .row
-    .add_me.col-md-6
-      %h4= "Who agree (#{@agreements_in_favor.size}):"
-    .add_me.col-md-6
-      %h4= "Who disagree (#{@agreements_against.size}):"
-  - [@agreements_in_favor, @agreements_against].map(&:size).max.times do |index|
-    .row
-      .col-md-6
-        = render partial: "whoagree", locals: { agreement: @agreements_in_favor[index] } if @agreements_in_favor[index]
-      .col-md-6
-        = render partial: "whoagree", locals: { agreement: @agreements_against[index] } if @agreements_against[index]
+    .col-md-6
+      .add_me
+        %h4= "Who agree (#{@agreements_in_favor.size}):"
+      = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
+    .col-md-6
+      .add_me
+        %h4= "Who disagree (#{@agreements_against.size}):"
+      = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   #comments
     -# %h3 Comments:

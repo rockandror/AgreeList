@@ -1,23 +1,24 @@
 %br
 #ol
-  - individual = agreement.individual
-  .media
-    .media-left
-      %a{href: "/#{individual.twitter}"}
-        = image_tag(individual.picture.url(:thumb), class: "picture media-object")
-    .media-body
-      %h4.media-heading
-        = link_to(individual.name || individual.twitter, profile_path(individual))
-        %span.source
-          - if agreement.url.present? && agreement.url != "http://"
-            = link_to "source", agreement.url
-      #br
-      = individual.bio.present? ? individual.bio : individual.description
-      - if admin?
-        = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
-        |
-        = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
-      %br
-      %br
-      %i= @comments[individual.id].try(:text)
+  - agreements.each do |agreement|
+    - individual = agreement.individual
+    .media
+      .media-left
+        %a{href: "/#{individual.twitter}"}
+          = image_tag(individual.picture.url(:thumb), class: "picture media-object")
+      .media-body
+        %h4.media-heading
+          = link_to(individual.name || individual.twitter, profile_path(individual))
+          %span.source
+            - if agreement.url.present? && agreement.url != "http://"
+              = link_to "source", agreement.url
+        #br
+        = individual.bio.present? ? individual.bio : individual.description
+        - if admin?
+          = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
+          |
+          = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
+        %br
+        %br
+        %i= @comments[individual.id].try(:text)
     #br
