@@ -19,8 +19,7 @@ class Statement < ActiveRecord::Base
   alias_method :detractors, :agreements_against
 
   def to_param
-    #"#{content.parameterize}-#{hashed_id}"
-    hashed_id
+    "#{content.parameterize}-#{hashed_id}"
   end
 
   private

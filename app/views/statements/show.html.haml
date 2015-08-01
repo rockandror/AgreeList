@@ -5,7 +5,7 @@
     %br
     or help us and
     %br
-    = link_to "Share on Twitter", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => statement_url(@statement), "data-text" => "#{@statement.content} See who agree on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
+    = link_to "Share on Twitter", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}/s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agree on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
   %br
   .row
     .col-md-6
