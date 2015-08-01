@@ -18,7 +18,7 @@
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   #comments
-    - unless @statement.id == 7 # brexit
+    - if @comments.size > 0 && @statement.id != 7 # brexit
       %h3 Comments:
       = render template: "comments/index"
       -#= render template: "comments/new"
