@@ -7,17 +7,21 @@ class StatementsController < ApplicationController
   def quick_create
     @statement = Statement.new(content: params[:question])
     @statement.tag_list = "Others"
-    @statement.save
-    if current_user
-      unless current_user.email.present?
-        current_user.email = params[:email]
-        current_user.save
+    if @statement.save
+      if current_user
+        unless current_user.email.present?
+          current_user.email = params[:email]
+          current_user.save
+        end
+      else
+        Individual.find_or_create(email: params[:email])
       end
+      LogMailer.log_email("@#{params[:email]} has created '#{@statement.content}'").deliver
+      redirect_to @statement
     else
-      Individual.find_or_create(email: params[:email])
+      flash[:error] = @statement.errors.messages[:content].first
+      render template: "static_pages/home"
     end
-    LogMailer.log_email("@#{params[:email]} has created '#{@statement.content}'").deliver
-    redirect_to @statement
   end
 
   def new_and_agree
