@@ -2,6 +2,7 @@ class StatementsController < ApplicationController
   before_action :login_required, only: [:create, :create_and_agree]
   before_action :admin_required, only: [:edit, :update, :destroy, :index]
   before_action :find_statement, only: [:show, :destroy, :update, :edit]
+  before_action :redirect_to_statement_url, only: :show
 
   def quick_create
     @statement = Statement.new(content: params[:question])
@@ -141,6 +142,10 @@ class StatementsController < ApplicationController
 
   def find_statement
     @statement = Statement.find_by_hashed_id(params[:id].split("-").last)
+  end
+
+  def redirect_to_statement_url
+    redirect_to statement_path(@statement) if params[:id] != @statement.to_param
   end
 
   def twitter?
