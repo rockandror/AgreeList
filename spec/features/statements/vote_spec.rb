@@ -34,8 +34,8 @@ feature 'non logged user' do
     click_button "Disagree"
     expect(Agreement.last.disagree?).to eq(true)
   end
-  
-  scenario 'comment' do
+
+  xscenario 'comment' do
     fill_in 'name', with: 'Superman'
     fill_in 'comment', with: 'Because...'
 

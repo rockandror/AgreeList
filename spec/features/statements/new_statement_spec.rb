@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'statement' do
   before do
     9.times do
-      create(:individual)
+      create(:individual, twitter: nil)
       create(:statement)
     end
     login
