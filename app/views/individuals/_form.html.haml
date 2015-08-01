@@ -36,6 +36,11 @@
         = f.text_field :email, class: "form-control"
     .row
       .col-sm-2
+        =f.label :ranking
+      .col-sm-8
+        = f.text_field :ranking, class: "form-control"
+    .row
+      .col-sm-2
         = f.label :picture
       .col-sm-8
         = f.file_field :picture
