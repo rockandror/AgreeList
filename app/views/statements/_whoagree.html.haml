@@ -4,11 +4,10 @@
     - individual = agreement.individual
     .media
       .media-left
-        %a{href: "/#{individual.twitter}"}
-          = image_tag(individual.picture.url(:thumb), class: "picture media-object")
+        = image_tag(individual.picture.url(:thumb), class: "picture media-object")
       .media-body
         %h4.media-heading
-          = link_to(individual.name || individual.twitter, profile_path(individual))
+          %span.name= individual.name || individual.twitter
           %span.source
             - if agreement.url.present? && agreement.url != "http://"
               = link_to "source", agreement.url
