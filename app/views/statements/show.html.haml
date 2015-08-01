@@ -1,9 +1,11 @@
 .container
   %h1= @statement.content
-  .textcenter
-    .jumbotron
-      %h3 Gather who agree
-      = render partial: "add_supporter"
+  .text-center
+    = link_to "Add someone else", "#add_someone_else", class: "btn btn-primary"
+    %br
+    or help us and
+    %br
+    = link_to "Share on Twitter", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => statement_url(@statement), "data-text" => "#{@statement.content} See who agree on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
   %br
   .row
     .col-md-6
@@ -31,3 +33,8 @@
         - @related_statements[3..5].each do |related|
           = link_to related.content, related
           %br
+  #add_someone_else.jumbotron.textcenter
+    %h3 Gather who agree
+    = render partial: "add_supporter"
+:javascript
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
