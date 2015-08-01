@@ -1,9 +1,11 @@
 #home.container.text-center
-  %h1 Gather who agree
+  %h1 Polls where people gather who agree
+  = link_to "Should the UK remain in the EU?", "/brexit", class: "btn btn-large"
+  = link_to "Entrepreneurs", "/entrepreneurs"
   %br
   = form_tag "/statements/quick", role: "form" do
     .form-group
-      = text_field_tag "question", "", class: "form-control", placeholder: "Yes/no question. E.g. Should the UK remain in the EU?", size: 20
+      = text_field_tag "question", "", class: "form-control", placeholder: "Yes/no question. E.g. Is global warming real?", size: 20
     - unless current_user
       .form_group
         = text_field_tag "email", "", class: "form-control", placeholder: "Your email"
