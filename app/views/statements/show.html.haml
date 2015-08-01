@@ -3,7 +3,7 @@
   .text-center
     Share on Twitter
     %br
-    = link_to "Share on Twitter", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}/s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agree on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
+    = link_to "Share on Twitter", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agree on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
     - if [@agreements_in_favor.size, @agreements_against.size].max > 1
       %br
       or
