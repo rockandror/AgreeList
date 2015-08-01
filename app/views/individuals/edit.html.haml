@@ -1,5 +1,9 @@
 .container
   .jumbotron
-    %h2.text-center= @individual.name
+    %h2.text-center
+      = @individual.name
+      = link_to "Follow #{@individual.twitter}", "https://twitter.com/#{@individual.twitter}", class: "twitter-follow-button", "data-show-count" => "true", "data-size" => "large" if @individual.twitter.present?
     %br
     = render 'form'
+:javascript
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
