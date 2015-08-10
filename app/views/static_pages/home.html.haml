@@ -5,7 +5,7 @@
   %br
   = form_tag "/statements/quick", role: "form" do
     .form-group
-      = text_field_tag "question", "", class: "form-control", placeholder: "Yes/no question. E.g. Is global warming real?", size: 20
+      = text_field_tag "question", "", class: "form-control", placeholder: "Yes/no question. E.g. Is climate change real?", size: 20
     - unless current_user
       .form_group
         = text_field_tag "email", "", class: "form-control", placeholder: "Your email"
