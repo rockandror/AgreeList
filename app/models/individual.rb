@@ -76,7 +76,7 @@ class Individual < ActiveRecord::Base
     agreement(statement).where(extent: 0).first.present?
   end
 
-  def picture_from_url(url)
+  def picture_from_url=(url)
     self.picture = open(url)
   end
 
