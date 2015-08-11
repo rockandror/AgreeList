@@ -11,7 +11,7 @@
     = text_field_tag(:source, "", class: "form-control", placeholder: "http:// where it's clear that he/she agrees/disagrees")
   = hidden_field_tag(:statement_id, @statement.id)
   %br
-  = text_field_tag(:comment, "", class: "form-control", placeholder: "Reason why you or the person you are adding agrees/disagrees (optional)")
+  = text_field_tag(:comment, "", class: "form-control", placeholder: "Reason why you or the person you are adding agrees/disagrees (optional)", maxlength: 254)
   %br
   = text_field_tag(:email, "", class: "form-control", placeholder: "Your email") unless current_user.try(:email)
   %br
