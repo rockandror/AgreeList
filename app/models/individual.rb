@@ -1,3 +1,5 @@
+require "open-uri"
+
 class Individual < ActiveRecord::Base
   nilify_blanks only: [:twitter]
   has_attached_file :picture, s3_host_name: "s3-eu-west-1.amazonaws.com", :default_url => '/assets/missing-:style.jpg', styles: {
@@ -72,6 +74,10 @@ class Individual < ActiveRecord::Base
 
   def against?(statement)
     agreement(statement).where(extent: 0).first.present?
+  end
+
+  def picture_from_url(url)
+    self.picture = open(url)
   end
 
   private
