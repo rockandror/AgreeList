@@ -13,6 +13,8 @@
   %br
   = text_field_tag(:comment, "", class: "form-control", placeholder: "Reason why you or the person you are adding agrees/disagrees (optional)", maxlength: 254)
   %br
+  = text_field_tag(:biography, "", class: "form-control", placeholder: "Short biography", maxlength: 100)
+  %br
   = text_field_tag(:email, "", class: "form-control", placeholder: "Your email") unless current_user.try(:email)
   %br
   = submit_tag("Agree", class: "btn btn-primary")

@@ -43,6 +43,13 @@ feature 'non logged user' do
     expect(Comment.last.text).to eq "Because..."
   end
 
+  scenario 'bio' do
+    fill_in 'name', with: "Superman"
+    fill_in 'biography', with: "Hero"
+    click_button "Agree"
+    expect(page).to have_text('Hero')
+  end
+
   scenario 'should create two users when adding someone else' do
     fill_in 'name', with: 'Superman'
     fill_in 'source', with: 'http://...'
