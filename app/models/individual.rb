@@ -80,6 +80,10 @@ class Individual < ActiveRecord::Base
     self.picture = open(url)
   end
 
+  def picture_from_url
+    ""
+  end
+
   private
 
   def update_followers_count

@@ -41,9 +41,9 @@
         = f.text_field :ranking, class: "form-control"
     .row
       .col-sm-2
-        = f.label :picture
+        = f.label :picture_url
       .col-sm-8
-        = f.file_field :picture
+        = f.text_field :picture_from_url, class: "form-control"
     = hidden_field_tag :back_url, params[:back_url]
     .text-center
       = f.submit "Continue", class: "btn btn-primary"

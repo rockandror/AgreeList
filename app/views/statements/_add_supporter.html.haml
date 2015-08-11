@@ -15,7 +15,7 @@
   %br
   = text_field_tag(:biography, "", class: "form-control", placeholder: "Short biography", maxlength: 100)
   %br
-  = text_field_tag(:picture_url, "", class: "form-control", placeholder: "Photo url", maxlength: 254)
+  = text_field_tag(:picture_from_url, "", class: "form-control", placeholder: "Photo url", maxlength: 254)
   %br
   = text_field_tag(:email, "", class: "form-control", placeholder: "Your email") unless current_user.try(:email)
   %br
