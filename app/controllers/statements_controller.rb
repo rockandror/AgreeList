@@ -59,6 +59,7 @@ class StatementsController < ApplicationController
       individual_id: voter.id,
       url: params[:source],
       extent: params[:commit] == "Disagree" ? 0 : 100)
+    Comment.create(statement: statement, individual: voter, text: params[:comment])
     redirect_to statement_path(statement), notice: "Done"
   end
 

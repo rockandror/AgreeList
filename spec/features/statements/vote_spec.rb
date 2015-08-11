@@ -35,13 +35,12 @@ feature 'non logged user' do
     expect(Agreement.last.disagree?).to eq(true)
   end
 
-  xscenario 'comment' do
+  scenario 'comment' do
     fill_in 'name', with: 'Superman'
     fill_in 'comment', with: 'Because...'
 
     click_button "Disagree"
     expect(Comment.last.text).to eq "Because..."
-
   end
 
   scenario 'should create two users when adding someone else' do
