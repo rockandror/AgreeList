@@ -77,7 +77,7 @@ class Individual < ActiveRecord::Base
   end
 
   def picture_from_url=(url)
-    self.picture = open(url)
+    self.picture = open(url) if url.present?
   end
 
   def picture_from_url
