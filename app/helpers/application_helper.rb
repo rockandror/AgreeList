@@ -6,4 +6,9 @@ module ApplicationHelper
   def tag_path(t)
     "/tags/#{t}"
   end
+
+  def percentage(statement)
+    total = statement.agreements.size
+    total == 0 ? 50 : statement.supporters.size * 100 / total
+  end
 end

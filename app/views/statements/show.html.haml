@@ -10,14 +10,15 @@
       %br
       = link_to "Add someone else", "#gather", class: "btn btn-primary"
   %br
+  - percentage = percentage(@statement)
   .row
     .col-md-6
       .add_me
-        %h4= "Who agree (#{@agreements_in_favor.size}):"
+        %h4= "Who agree (#{percentage}%):"
       = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
     .col-md-6
       .add_me
-        %h4= "Who disagree (#{@agreements_against.size}):"
+        %h4= "Who disagree (#{100 - percentage}%):"
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   #comments
