@@ -1,80 +1,84 @@
 require 'spec_helper'
 
-feature 'logged user' do
+feature 'voting' do
+  attr_reader :statement
+
   before do
-    statement = create(:statement)
+    seed_data
     login
     visit statement_path(statement)
   end
 
-  scenario 'adds someone who disagrees' do
-    fill_in 'name', with: 'Superman'
+  context 'logged user' do
+    scenario 'adds someone who disagrees' do
+      fill_in 'name', with: 'Superman'
 
-    click_button "Disagree"
-    expect(Agreement.last.disagree?).to eq(true)
+      click_button "Disagree"
+      expect(Agreement.last.disagree?).to eq(true)
+    end
+
+    scenario 'adds someone who disagrees with its twitter' do
+      fill_in 'name', with: "@arpahector"
+      click_button "Disagree"
+      expect(Individual.last.twitter).to eq "arpahector"
+    end
   end
 
-  scenario 'adds someone who disagrees with its twitter' do
-    fill_in 'name', with: "@arpahector"
-    click_button "Disagree"
-    expect(Individual.last.twitter).to eq "arpahector"
-  end
-end
+  context 'non logged user' do
+    scenario 'adds someone who disagrees' do
+      fill_in 'name', with: 'Superman'
 
+      click_button "Disagree"
+      expect(Agreement.last.disagree?).to eq(true)
+    end
 
-feature 'non logged user' do
-  before do
-    statement = create(:statement)
-    visit statement_path(statement)
-  end
+    scenario 'comment' do
+      fill_in 'name', with: 'Superman'
+      fill_in 'comment', with: 'Because...'
 
-  scenario 'adds someone who disagrees' do
-    fill_in 'name', with: 'Superman'
+      click_button "Disagree"
+      expect(Comment.last.text).to eq "Because..."
+    end
 
-    click_button "Disagree"
-    expect(Agreement.last.disagree?).to eq(true)
-  end
+    scenario 'bio' do
+      fill_in 'name', with: "Superman"
+      fill_in 'biography', with: "Hero"
+      click_button "Agree"
+      expect(page).to have_text('Hero')
+    end
 
-  scenario 'comment' do
-    fill_in 'name', with: 'Superman'
-    fill_in 'comment', with: 'Because...'
+    scenario 'should create two users when adding someone else' do
+      fill_in 'name', with: 'Superman'
+      fill_in 'source', with: 'http://...'
+      fill_in 'email', with: 'hhh@jjj.com'
 
-    click_button "Disagree"
-    expect(Comment.last.text).to eq "Because..."
-  end
+      expect{ click_button "Agree" }.to change{ Individual.count }.by(2)
+    end
 
-  scenario 'bio' do
-    fill_in 'name', with: "Superman"
-    fill_in 'biography', with: "Hero"
-    click_button "Agree"
-    expect(page).to have_text('Hero')
-  end
+    scenario 'adds someone who disagrees with its twitter' do
+      fill_in 'name', with: "@arpahector"
+      click_button "Disagree"
+      expect(Individual.last.twitter).to eq "arpahector"
+    end
 
-  scenario 'should create two users when adding someone else' do
-    fill_in 'name', with: 'Superman'
-    fill_in 'source', with: 'http://...'
-    fill_in 'email', with: 'hhh@jjj.com'
-
-    expect{ click_button "Agree" }.to change{ Individual.count }.by(2)
-  end
-
-  scenario 'adds someone who disagrees with its twitter' do
-    fill_in 'name', with: "@arpahector"
-    click_button "Disagree"
-    expect(Individual.last.twitter).to eq "arpahector"
+    scenario 'adds two times the same @user' do
+      fill_in 'name', with: "@arpahector"
+      click_button "Agree"
+      fill_in 'name', with: "@arpahector"
+      click_button "Agree"
+      expect(Individual.count).to eq 1
+    end
   end
 
-  scenario 'adds two times the same @user' do
-    fill_in 'name', with: "@arpahector"
-    click_button "Agree"
-    fill_in 'name', with: "@arpahector"
-    click_button "Agree"
-    expect(Individual.count).to eq 1
-  end
-end
+  private
 
-def login
-  Individual.create(name: "Hector", twitter: "arpahector")
-  visit "/auth/twitter"
+  def seed_data
+    @statement = create(:statement)
+    create(:individual, twitter: "arpahector")
+  end
+
+  def login
+    visit "/auth/twitter"
+  end
 end
 
