@@ -2,23 +2,22 @@ require 'spec_helper'
 
 feature 'join' do
   before do
+    seed_data
     login
   end
 
-  scenario 'save email' do
-    fill_in 'individual_email', with: 'myemail@example.com'
-    click_button "Next"
-    expect(@user.reload.email).to eq("myemail@example.com")
+  scenario 'redirect_to statement' do
+    expect(current_path).to eq("/entrepreneurs")
   end
 
-  scenario 'redirect_to statement' do
-    fill_in 'individual_email', with: 'myemail@example.com'
-    click_button "Next"
-    expect(current_path).to eq("/statement")
+  private
+
+  def seed_data
+    create(:statement)
+    create(:individual, twitter: "arpahector")
   end
 
   def login
-    @user = Individual.create(name: "Hector", twitter: "arpahector")
     visit "/auth/twitter"
   end
 end
