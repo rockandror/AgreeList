@@ -2,39 +2,27 @@ require 'spec_helper'
 
 describe do
   before do
-    Statement.create(content: "aaa")
-    Individual.create(name: "bbbb", twitter: "ccc")
+    seed_data
   end
 
-  feature "title" do
-    scenario "should have h1" do
+  feature "homepage" do
+    before do
       visit "/"
-      expect(page).to have_selector('h1', text: '')
     end
-  end
 
-  feature "contact email" do
-    scenario "should have contact email" do
-      visit "/"
-      #click_on "Contact"
+    scenario "should have a title h1" do
+      expect(page).to have_selector('h1')
+    end
+
+    scenario "should have the contact email" do
       expect(page).to have_text("feedback@agreelist.com")
     end
   end
 
-#  feature "homepage" do
-    #scenario "should create a statement" do
-      #visit "/"
-      #fill_in "question", with: "Should the UK leave the EU?"
-      #fill_in "email", with: "hi@hectorperezarenas.com"
-      #expect{ click_on "Create" }.to change{ Statement.count }.by(1)
-    #end
+  private
 
-    #scenario "should save the email of the author" do
-      #visit "/"
-      #fill_in "question", with: "Should the UK leave the EU?"
-      #fill_in "email", with: "hi@hectorperezarenas.com"
-      #click_on "Create"
-      #expect(Individual.last.email).to eq "hi@hectorperezarenas.com"
-    #end
- # end
+  def seed_data
+    create(:statement)
+    create(:individual, twitter: "arpahector")
+  end
 end
