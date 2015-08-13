@@ -2,11 +2,10 @@ require "spec_helper"
 
 describe "Referer blacklist", type: :request do
   before do
-    9.times do
-      create(:statement)
-      create(:individual)
-    end
+    create(:statement)
+    create(:individual)
   end
+
   describe "referer spam" do
     it "is blocked" do
       spammers = ["http://darodar.com", "http://theguardlan.com/"]
