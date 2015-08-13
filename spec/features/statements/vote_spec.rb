@@ -5,11 +5,14 @@ feature 'voting' do
 
   before do
     seed_data
-    login
-    visit statement_path(statement)
   end
 
   context 'logged user' do
+    before do
+      login
+      visit statement_path(statement)
+    end
+
     scenario 'adds someone who disagrees' do
       fill_in 'name', with: 'Superman'
 
@@ -25,6 +28,10 @@ feature 'voting' do
   end
 
   context 'non logged user' do
+    before do
+      visit statement_path(statement)
+    end
+
     scenario 'adds someone who disagrees' do
       fill_in 'name', with: 'Superman'
 
