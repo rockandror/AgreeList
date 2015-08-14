@@ -13,9 +13,9 @@
   %br
   = text_field_tag(:comment, "", class: "form-control", placeholder: "Reason why you or the person you are adding agrees/disagrees (optional)", maxlength: 254)
   %br
-  = text_field_tag(:biography, "", class: "form-control", placeholder: "Short biography", maxlength: 100)
+  = text_field_tag(:biography, "", class: "form-control", placeholder: "Short biography (taken from Twitter if used)", maxlength: 100)
   %br
-  = text_field_tag(:picture_from_url, "", class: "form-control", placeholder: "Photo url", maxlength: 254)
+  = text_field_tag(:picture_from_url, "", class: "form-control", placeholder: "Photo url (taken from Twitter if used)", maxlength: 254)
   %br
   = text_field_tag(:email, "", class: "form-control", placeholder: "Your email") unless current_user.try(:email)
   %br
