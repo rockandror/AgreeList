@@ -12,7 +12,7 @@ class MagicVoter
 
   def find_or_create!
     find_or_create_voter
-    Individual.create(email: email) if !current_user && email.present?
+    Individual.create(email: email) if !current_user && !adding_myself && email.present?
     self.voter
   end
 
