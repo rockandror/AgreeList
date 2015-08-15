@@ -14,7 +14,7 @@ feature 'voting' do
     end
 
     scenario 'adds someone who disagrees' do
-      fill_in 'name', with: 'Superman'
+      fill_in 'name', with: 'Hector Perez'
 
       click_button "Disagree"
       expect(Agreement.last.disagree?).to eq(true)
@@ -33,14 +33,14 @@ feature 'voting' do
     end
 
     scenario 'adds someone who disagrees' do
-      fill_in 'name', with: 'Superman'
+      fill_in 'name', with: 'Hector Perez'
 
       click_button "Disagree"
       expect(Agreement.last.disagree?).to eq(true)
     end
 
     scenario 'comment' do
-      fill_in 'name', with: 'Superman'
+      fill_in 'name', with: 'Hector Perez'
       fill_in 'comment', with: 'Because...'
 
       click_button "Disagree"
@@ -48,14 +48,14 @@ feature 'voting' do
     end
 
     scenario 'bio' do
-      fill_in 'name', with: "Superman"
+      fill_in 'name', with: "Hector Perez"
       fill_in 'biography', with: "Hero"
       click_button "Agree"
       expect(page).to have_text('Hero')
     end
 
     scenario 'should create two users when adding someone else' do
-      fill_in 'name', with: 'Superman'
+      fill_in 'name', with: 'Hector Perez'
       fill_in 'source', with: 'http://...'
       fill_in 'email', with: 'hhh@jjj.com'
 

@@ -44,28 +44,6 @@ class StatementsController < ApplicationController
     end
   end
 
-  def add_supporter
-    twitter = params[:name][0] == "@" ? params[:name].gsub("@", "") : nil
-    voter = MagicVoter.new(email: params[:email].try(:strip),
-                           name: twitter ? nil : params[:name],
-                           twitter: twitter,
-                           current_user: current_user,
-                           adding_myself: params[:add] == "myself"
-                          ).find_or_create!
-    voter.bio = params[:biography] if params[:biography].present?
-    voter.picture_from_url = params[:picture_from_url] if params[:picture_from_url].present?
-    voter.save
-    statement = Statement.find(params[:statement_id])
-    LogMailer.log_email("@#{current_user.try(:twitter)}, email: #{params[:email]}, ip: #{request.remote_ip} added #{voter.name} (@#{voter.try(:twitter)}) to '#{statement.content}'").deliver
-    Agreement.create(
-      statement_id: params[:statement_id],
-      individual_id: voter.id,
-      url: params[:source],
-      extent: params[:commit] == "Disagree" ? 0 : 100)
-    Comment.create(statement: statement, individual: voter, text: params[:comment])
-    redirect_to statement_path(statement), notice: "Done"
-  end
-
   # GET /statements
   # GET /statements.json
   def index
@@ -154,13 +132,5 @@ class StatementsController < ApplicationController
 
   def redirect_to_statement_url
     redirect_to statement_path(@statement) if params[:id] != @statement.to_param
-  end
-
-  def twitter?
-    params[:name][0] == "@"
-  end
-
-  def twitter
-    params[:name].gsub("@", "")
   end
 end

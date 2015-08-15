@@ -12,7 +12,7 @@ Al::Application.routes.draw do
   post '/save_email' => 'individuals#save_email'
   post '/statements/quick' => 'statements#quick_create'
   resources :individuals, only: [:edit, :update, :destroy]
-  match '/add_supporter' => 'statements#add_supporter', via: [:get, :post]
+  match '/add_supporter' => 'agreements#add_supporter', via: [:get, :post]
   get '/contact' => 'static_pages#contact'
   get '/join' => 'static_pages#join'
   post '/emails' => 'static_pages#send_email'
