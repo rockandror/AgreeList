@@ -11,7 +11,7 @@ class AgreementsController < ApplicationController
   def add_supporter
     if spam?
       render status: 401, text: "Your message has to be approved because it seemed spam. Sorry for the inconvenience."
-      LogMailer.log_email("spam? params: #{params.inspect}").deliver
+      LogMailer.log_email("spam? params: #{params.inspect}").deliver unless statement_used_by_spammers?
     else
       twitter = params[:name][0] == "@" ? params[:name].gsub("@", "") : nil
       voter = MagicVoter.new(email: params[:email].try(:strip),
@@ -51,5 +51,9 @@ class AgreementsController < ApplicationController
 
   def first_and_surname?
     params[:name] =~ /\ /
+  end
+
+  def statement_used_by_spammers?
+    params[:statement_id] == "113"
   end
 end
