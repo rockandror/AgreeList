@@ -5,7 +5,7 @@ feature 'spam filter' do
   let(:individual) { create(:individual) }
 
   scenario 'should filter names without surname' do
-    # real pesons have name and surname separated by a space
+    # real people have name and surname separated by a space
     visit statement_path(statement)
     fill_in 'name', with: "Spammer"
     click_button "Agree"

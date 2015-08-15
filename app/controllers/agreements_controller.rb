@@ -37,7 +37,7 @@ class AgreementsController < ApplicationController
 
   private
 
-  def spam?
+  def spam? # real people have name and surname separated by a space
     !twitter? && !first_and_surname?
   end
 
