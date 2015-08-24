@@ -12,7 +12,7 @@
           %li= link_to "New", "/statement" if current_user
           %li= link_to "Profile", profile_path(current_user.twitter) if current_user
           %li= link_to "Sign in with Twitter", "/auth/twitter" if !current_user && @statement && @statement.tag_list.include?("entrepreneurship")
-          %li= link_to "About", "/about"
+          -#%li= link_to "About", "/about"
           %li= link_to "Sign Out", signout_path if current_user
           %a{href: "#", class: "dropdown-toggle", "data-toggle" => "dropdown", role: "button", "aria-expanded" => "false"}
 
