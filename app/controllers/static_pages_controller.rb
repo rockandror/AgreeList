@@ -8,6 +8,17 @@ class StaticPagesController < ApplicationController
   end
 
   def home
+
+  end
+
+  def about
+    if Rails.env == "test"
+      @hector = Individual.first
+      @emilie = Individual.first
+    else
+      @hector = Individual.where(twitter: "arpahector").first
+      @emilie = Individual.where(hashed_id: "657249273").first
+    end
   end
 
   def create_statement_from_homepage

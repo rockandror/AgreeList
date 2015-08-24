@@ -13,9 +13,12 @@ Al::Application.routes.draw do
   post '/statements/quick' => 'statements#quick_create'
   resources :individuals, only: [:edit, :update, :destroy]
   match '/add_supporter' => 'agreements#add_supporter', via: [:get, :post]
+
   get '/contact' => 'static_pages#contact'
   get '/join' => 'static_pages#join'
   post '/emails' => 'static_pages#send_email'
+  get '/about' => 'static_pages#about'
+
   match "/auth/twitter/callback" => 'sessions#create', via: [:get, :post]
   get "/signout" => "sessions#destroy", as: :signout
   resources :agreements, only: [:destroy]
