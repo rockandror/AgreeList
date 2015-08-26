@@ -1,6 +1,9 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryGirl.define do  factory :beta_email do
+    
+  end
+
   factory :comment do
     text "MyText"
     individual_id 1

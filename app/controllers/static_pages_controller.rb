@@ -4,6 +4,16 @@ class StaticPagesController < ApplicationController
     @individual = current_user
   end
 
+  def email
+    LogMailer.log_email("email: #{params[:email]}, comment: #{params[:comment]}").deliver
+    email = BetaEmail.new(email: params[:email], comment: params[:comment])
+    if email.save
+      redirect_to "/", notice: "Email saved"
+    else
+      redirect_to "/", notice: "There was an error. Please try again"
+    end
+  end
+
   def polar
   end
 

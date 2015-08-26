@@ -1,13 +1,11 @@
 #home.container.text-center
-  %h1 Polls where people gather who agree
-  = link_to "Should the UK remain in the EU?", "/brexit", class: "btn btn-large"
-  = link_to "Entrepreneurs", "/entrepreneurs"
+  %h1 Coming soon
+  Leave your email and we'll contact you when we launch.
   %br
-  = form_tag "/statements/quick", role: "form" do
+  %br
+  = form_tag "/email", role: "form" do
     .form-group
-      = text_field_tag "question", "", class: "form-control", placeholder: "Yes/no question. E.g. Is climate change real?", size: 20
-    - unless current_user
-      .form_group
-        = text_field_tag "email", "", class: "form-control", placeholder: "Your email"
+      = text_field_tag "email",  "", class: "form-control", placeholder: "Email"
       %br
-    = submit_tag "Create", class: "btn btn-primary btn-default"
+      = text_area_tag "comment",  "", class: "form-control", placeholder: "Comment"
+    = submit_tag "Send", class: "btn btn-primary btn-default"
