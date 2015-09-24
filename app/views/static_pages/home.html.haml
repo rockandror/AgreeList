@@ -1,12 +1,13 @@
 #home.container.text-center
-  %i "Information networks straddle the world. Nothing remains concealed. But the sheer volume of information dissolves the information. We are unable to take it all in." Gunther Grass, Nobel laureate
-  %h1 Coming soon
-  Leave your email and we'll contact you when we launch.
-  %br
-  %br
-  = form_tag "/email", role: "form" do
-    .form-group
-      = text_field_tag "email",  "", class: "form-control", placeholder: "Email"
-      %br
-      = text_area_tag "comment",  "", class: "form-control", placeholder: "Comment"
-    = submit_tag "Send", class: "btn btn-primary btn-default"
+  .jumbotron
+    %i "Information networks straddle the world. Nothing remains concealed. But the sheer volume of information dissolves the information. We are unable to take it all in." Gunther Grass, Nobel laureate
+    %h1 Coming soon
+    Leave your email and we'll contact you when we launch.
+    %br
+    %br
+    = form_tag "/email", role: "form" do
+      .form-group
+        = text_field_tag "email",  "", class: "form-control", placeholder: "Email"
+        %br
+        = text_area_tag "comment",  "", class: "form-control", placeholder: "Comment"
+      = submit_tag "Send", class: "btn btn-primary btn-default"
