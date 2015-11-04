@@ -1,5 +1,6 @@
 .container
-  %h1 What's new
+  .row
+    %h1 What's new
   - @agreements.each do |agreement|
     - individual = agreement.individual
     .row
