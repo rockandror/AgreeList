@@ -53,11 +53,13 @@ class Individual < ActiveRecord::Base
   end
 
   def agrees
-    agreements.select{ |a| a.extent == 100 && a.statement.tag_list.include?("entrepreneurship") }.map{ |i| i.statement }
+    # agreements.select{ |a| a.extent == 100 && a.statement.tag_list.include?("entrepreneurship") }.map{ |i| i.statement }
+    agreements.select{ |a| a.extent == 100 }.map{ |i| i.statement }
   end
 
   def disagrees
-    agreements.select{ |a| a.extent == 0 && a.statement.tag_list.include?("entrepreneurship") }.map{ |i| i.statement }
+    # agreements.select{ |a| a.extent == 0 && a.statement.tag_list.include?("entrepreneurship") }.map{ |i| i.statement }
+    agreements.select{ |a| a.extent == 0 }.map{ |i| i.statement }
   end
 
   def self.search(search)
