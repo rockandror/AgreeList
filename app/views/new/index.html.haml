@@ -1,0 +1,28 @@
+.container
+  %h1 What's new
+  - @agreements.each do |agreement|
+    - individual = agreement.individual
+    .row
+      .left
+        .media
+          .media-left
+            = image_tag(individual.picture.url(:thumb), class: "picture media-object")
+          .media-body
+            %h4.media-heading
+              %span.name= individual.name || individual.twitter
+              %span.source
+                - if agreement.url.present? && agreement.url != "http://"
+                  = link_to "source", agreement.url
+            #br
+            = individual.bio.present? ? individual.bio : individual.description
+            - if admin?
+              = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
+              |
+              = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
+            %br
+            %br
+      .right
+        = agreement.extent == 100 ? "agrees" : "disagrees"
+        %br
+        = link_to agreement.statement.content, statement_path(agreement.statement)
+    #br

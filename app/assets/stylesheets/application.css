@@ -24,3 +24,8 @@
 span.source{
   font-size: 10px;
 }
+
+.left{
+  float: left;
+  width: 600px;
+}
