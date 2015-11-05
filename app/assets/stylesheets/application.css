@@ -29,3 +29,7 @@ span.source{
   float: left;
   width: 600px;
 }
+
+.vote-icon{
+  margin-top: -5px;
+}

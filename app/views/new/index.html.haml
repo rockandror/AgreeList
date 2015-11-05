@@ -19,11 +19,15 @@
           %br
           = agreement.extent == 100 ? "Agrees:" : "Disagrees:"
           = link_to agreement.statement.content, statement_path(agreement.statement)
+          = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
+          = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
           %br
           - if agreement.reason.present?
             Reason:
             = agreement.reason
             %span.source= link_to "source", agreement.url
+            = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
+            = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
           %br
           %br
     #br
