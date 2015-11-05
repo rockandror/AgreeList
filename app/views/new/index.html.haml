@@ -1,6 +1,6 @@
 .container
   .row
-    %h1 What's new
+    %h1 Discover the best opinions
   - @agreements.each do |agreement|
     - individual = agreement.individual
     .row
@@ -10,16 +10,20 @@
         .media-body
           %h4.media-heading
             %span.name= link_to(individual.name || individual.twitter, "/#{individual.to_param}")
-            %span.source
-              = individual.bio.present? ? individual.bio : individual.description
+          %span.source
+            = individual.bio.present? ? individual.bio : individual.description
           - if admin?
             = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
             |
             = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
           %br
           = agreement.extent == 100 ? "Agrees:" : "Disagrees:"
-          %br
           = link_to agreement.statement.content, statement_path(agreement.statement)
+          %br
+          - if agreement.reason.present?
+            Reason:
+            = agreement.reason
+            %span.source= link_to "source", agreement.source
           %br
           %br
     #br
