@@ -8,13 +8,23 @@ class Statement < ActiveRecord::Base
   validates :content, presence: true, length: { maximum: 140 }
   before_create :generate_hashed_id, :set_entrepreneurship_tag
 
-  def agreements_in_favor
-    agreements.select{ |a| a.extent == 100 }.sort_by{ |a| - ranking(a) }
+  def agreements_in_favor(order = :ranking)
+    a = agreements.select{ |a| a.agree? }
+    if order == :ranking
+      a.sort_by{ |a| - ranking(a) }
+    else
+      a.sort_by{ |a| - a.created_at.to_i }
+    end
   end
   alias_method :supporters, :agreements_in_favor
 
-  def agreements_against
-    agreements.select{ |a| a.extent == 0 }.sort_by { |a| - ranking(a) }
+  def agreements_against(order = :ranking)
+    a = agreements.select{ |a| a.disagree? }
+    if order == :ranking
+      a.sort_by{ |a| - ranking(a) }
+    else
+      a.sort_by{ |a| - a.created_at.to_i }
+    end
   end
   alias_method :detractors, :agreements_against
 
