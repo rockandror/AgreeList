@@ -1,8 +1,5 @@
 .container
-  %h1
-    = @statement.content
-    = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
-    = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
+  %h1= @statement.content
           
   .text-center
     Share on Twitter

@@ -20,9 +20,6 @@
         - if @statement.id == 7 # brexit
           %br
           %br
-          - if agreement.reason.present?
-            %i= agreement.reason
-            = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
-            = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
+          %i= agreement.reason
           
     #br
