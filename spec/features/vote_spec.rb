@@ -44,7 +44,7 @@ feature 'voting' do
       fill_in 'comment', with: 'Because...'
 
       click_button "Disagree"
-      expect(Comment.last.text).to eq "Because..."
+      expect(Agreement.last.reason).to eq "Because..."
     end
 
     scenario 'bio' do
