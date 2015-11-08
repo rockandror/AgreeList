@@ -12,7 +12,7 @@
       = link_to "Add someone else", "#gather", class: "btn btn-primary"
   %br
   .text-right
-    Order by
+    Ordered by
     - if params[:order] != "date"
       Relevance -
       = link_to "Change to What's new", statement_path(@statement, :order => "date")
