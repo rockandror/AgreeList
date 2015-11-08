@@ -8,7 +8,7 @@ class Statement < ActiveRecord::Base
   validates :content, presence: true, length: { maximum: 140 }
   before_create :generate_hashed_id, :set_entrepreneurship_tag
 
-  def agreements_in_favor(args)
+  def agreements_in_favor(args = {})
     a = agreements.select{ |a| a.agree? }
     if args[:order] == "date"
       a.sort_by{ |a| - a.created_at.to_i }
@@ -18,7 +18,7 @@ class Statement < ActiveRecord::Base
   end
   alias_method :supporters, :agreements_in_favor
 
-  def agreements_against(args)
+  def agreements_against(args = {})
     a = agreements.select{ |a| a.disagree? }
     if args[:order] == "date"
       a.sort_by{ |a| - a.created_at.to_i }
