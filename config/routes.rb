@@ -1,5 +1,7 @@
 Al::Application.routes.draw do
   root to: 'static_pages#home', via: :get
+  get '/next_home' => 'home#index', as: :home
+  post '/results' => 'home#save_email'
   resources :statements, path: "s" do
     collection do
       post 'create_and_agree'

@@ -1,0 +1,17 @@
+.container.text-center
+  - if params[:vote]
+    %h3 Leave your email to see the results:
+    = form_tag "/results", role: "form" do
+      .form-group
+        .col-sm-4
+        .col-sm-4
+          = text_field_tag "email", "", class: "form-control", placeholder: "Email"
+          = hidden_field_tag "vote", params[:vote]
+          %br
+          = submit_tag "See results", class: "btn btn-primary btn-default"
+  - else
+    %h3 Our first question:
+    %h1 Should the UK remain a member of the EU?
+    = link_to "Agree", home_path(vote: "agree"), class: "btn btn-default btn-primary"
+    = link_to "Disagree", home_path(vote: "disagree"), class: "btn btn-default btn-primary"
+
