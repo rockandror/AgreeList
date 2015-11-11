@@ -7,7 +7,7 @@ feature 'next home' do
   end
 
   scenario 'vote' do
-    visit home_path
+    visit root_path
     click_link "Agree"
     fill_in "email", with: "hi@hectorperezarenas.com"
     click_button "See results"

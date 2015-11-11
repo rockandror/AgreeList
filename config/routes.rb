@@ -1,6 +1,5 @@
 Al::Application.routes.draw do
-  root to: 'static_pages#home', via: :get
-  get '/next_home' => 'home#index', as: :home
+  root to: 'home#index', via: :get
   post '/results' => 'home#save_email'
   resources :statements, path: "s" do
     collection do
