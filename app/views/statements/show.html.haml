@@ -11,14 +11,13 @@
       %br
       = link_to "Add someone else", "#gather", class: "btn btn-primary"
   %br
-  .text-right
-    Ordered by
-    - if params[:order] != "date"
-      Relevance -
-      = link_to "Change to What's new", statement_path(@statement, :order => "date")
-    - else
-      Date -
-      = link_to "Change to Ranking", statement_path(@statement, order: nil)
+  Ordered by
+  - if params[:order] != "date"
+    Relevance -
+    = link_to "Change to What's new", statement_path(@statement, :order => "date")
+  - else
+    Date -
+    = link_to "Change to Ranking", statement_path(@statement, order: nil)
   .row
     .col-md-6
       .add_me
