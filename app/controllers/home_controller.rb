@@ -8,6 +8,6 @@ class HomeController < ApplicationController
   private
 
   def brexit
-    Statement.find(7)
+    Statement.find_by_content("Should the UK remain a member of the EU?")
   end
 end
