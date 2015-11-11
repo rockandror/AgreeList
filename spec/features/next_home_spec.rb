@@ -14,5 +14,6 @@ feature 'next home' do
     expect(page).to have_content("Should the UK remain a member of the EU?")
     expect(BetaEmail.last.email).to eq "hi@hectorperezarenas.com"
     expect(BetaEmail.last.comment).to eq "agree"
+    expect(ActionMailer::Base.deliveries.size).to eq 1
   end
 end
