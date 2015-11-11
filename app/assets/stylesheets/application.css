@@ -33,30 +33,3 @@ span.source{
 .vote-icon{
   margin-top: -5px;
 }
-
-#hec {
-  background: url('/assets/intro-bg.jpg') no-repeat bottom center scroll;
-  height: 900px;
-  color: white;
-  margin-top: -20px;
-  padding: 0;
-  display: table;
-  width: 100%;
-  background-size: cover;
-}
-
-.btn-home {
-  border-color: white;
-  border-style: solid;
-  border-width: 2px;
-  background-color: Transparent;
-  color: white;
-}
-
-#agree_disagree_buttons {
-  margin-top: 50px;
-}
-
-#container-home {
-  margin-top: 150px;
-}

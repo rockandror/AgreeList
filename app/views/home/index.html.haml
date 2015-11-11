@@ -1,19 +1,21 @@
-#hec
-  #container-home.container.text-center
-    - if params[:vote]
-      %h3 Leave your email to see the results:
-      = form_tag "/results", role: "form" do
-        .form-group
-          .col-sm-4
-          .col-sm-4
-            = text_field_tag "email", "", class: "form-control", placeholder: "Email"
-            = hidden_field_tag "vote", params[:vote]
-            %br
-            = submit_tag "See results", class: "btn-home btn-lg"
-    - else
-      %h3 Our first question:
-      %h1 Should the UK remain a member of the EU?
-      #agree_disagree_buttons
-        = link_to "Agree", home_path(vote: "agree"), class: "btn-home btn-lg"
-        = link_to "Disagree", home_path(vote: "disagree"), class: "btn-home btn-lg"
+#homepage
+  .container-fluid
+    .row-fluid
+      .centering.text-center
+        - if params[:vote]
+          %h3 Leave your email to see the results:
+          = form_tag "/results", role: "form" do
+            .form-group
+              .col-sm-4
+              .col-sm-4
+                = text_field_tag "email", "", class: "form-control", placeholder: "Email"
+                = hidden_field_tag "vote", params[:vote]
+                %br
+                = submit_tag "See results", class: "btn-home btn-lg"
+        - else
+          %h3 Our first question:
+          %h1 Should the UK remain a member of the EU?
+          #agree_disagree_buttons
+            = link_to "Agree", home_path(vote: "agree"), class: "btn-home btn-lg"
+            = link_to "Disagree", home_path(vote: "disagree"), class: "btn-home btn-lg"
 
