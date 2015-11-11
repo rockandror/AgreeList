@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def save_email
     BetaEmail.create(email: params[:email], comment: params[:vote])
-    LogMailer.log_email("@#{params[:email]} #{params[:vote]}").deliver
+    LogMailer.log_email("#{params[:email]} #{params[:vote]}").deliver
     redirect_to statement_path(brexit)
   end
 
