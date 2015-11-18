@@ -19,15 +19,31 @@
           %br
           = agreement.extent == 100 ? "Agrees:" : "Disagrees:"
           = link_to agreement.statement.content, statement_path(agreement.statement)
-          = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
-          = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
+
+          - if current_user
+            = link_to(image_tag("agree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'agree'), method: :post, class: "vote_link")
+            = link_to(image_tag("disagree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'disagree'), method: :post, class: "vote_link")
+          - else
+            = link_to(image_tag("agree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal")
+            = link_to(image_tag("disagree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'disagree'), method: :post, class: "vote_link")
           %br
           - if agreement.reason.present?
             Reason:
             = agreement.reason
             %span.source= link_to "source", agreement.url
-            = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
-            = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
+            -# = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
+            -# = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
           %br
           %br
     #br
+#myModal.modal.fade{role: "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h3 Login with Twitter to vote
+      .modal-body.text-center
+        = link_to image_tag("twitter-login.png"), "/auth/twitter"
+        or
+        = link_to "Back", "#", "data-dismiss" => "modal"
+:javascript
+  var logged_in = #{signed_in?};

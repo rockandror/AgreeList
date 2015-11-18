@@ -8,12 +8,12 @@
           %li= msg
 
 .jumbotron.text-center
-  %h3 Give your advice for entrepreneurs:
+  %h3 Create a new question:
   = form_tag("/s/create_and_agree", class: "form-horizontal") do |f|
     .form-group
       .col-sm-2
       .col-sm-8
-        = text_field_tag :content, "", class: "form-control", placeholder: "Advice"
-    = submit_tag "Next", class: "btn btn-primary"
+        = text_field_tag :content, "", class: "form-control", placeholder: "Yes/no question"
+    = submit_tag "Create", class: "btn btn-primary"
     or
-    = link_to "skip", root_path
+    = link_to "back", new_path
