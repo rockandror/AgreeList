@@ -1,6 +1,6 @@
 .jumbotron
   .text-center
-    %h3 Wanna know when people agree/disagree with your advice? Write your email:
+    %h4 Leave your email to know when someone agrees/disagrees:
     = form_for @individual, url: { action: :save_email, controller: :individuals }, method: :post do |f|
       .form-group
         .col-sm-2

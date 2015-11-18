@@ -28,7 +28,7 @@ class StatementsController < ApplicationController
     @statement = Statement.new
   end
 
-  def create_and_agree # from /statement & from user profiles
+  def create_and_agree # from new_question_path & from user profiles
     @statement = Statement.new(content: params[:content])
 
     LogMailer.log_email("@#{current_user.twitter} has created '#{@statement.content}'").deliver
@@ -38,7 +38,8 @@ class StatementsController < ApplicationController
         individual_id: params[:individual_id] || current_user.id,
         url: params[:url],
         extent: 100)
-      redirect_to current_user.email.present? ? (params[:back_url] || @statement) : "/join?back=#{@statement.hashed_id}"
+      back = params[:back_url] || "/new"
+      redirect_to current_user.email.present? ? back : "/join?back=#{back}"
     else
       render action: "new_and_agree"
     end
