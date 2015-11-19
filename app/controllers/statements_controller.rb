@@ -41,6 +41,7 @@ class StatementsController < ApplicationController
       back = params[:back_url] || "/new"
       redirect_to current_user.email.present? ? back : "/join?back=#{back}"
     else
+      flash[:error] = @statement.errors.full_messages.first
       redirect_to new_path
     end
   end
