@@ -8,8 +8,6 @@
           = submit_tag "Create", class: "btn btn-primary", id: "create-question"
         - else
           = link_to "Create", "#", class: "button btn btn-primary", id: "create-question", "data-toggle" => "modal", "data-target" => "#loginToCreate"
-  .row.col-md-12
-    %h1 What's new
   - @agreements.each do |agreement|
     - individual = agreement.individual
     .row.col-md-12
@@ -20,11 +18,16 @@
           %h4.media-heading
             %span.name= link_to(individual.name || individual.twitter, "/#{individual.to_param}")
           %span.source
-            = individual.bio.present? ? individual.bio : individual.description
-          - if admin?
-            = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
-            |
-            = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
+            - bio = individual.bio.present? ? individual.bio : individual.description
+            - if bio
+              = bio
+            - else
+              %br
+          %span
+            - if admin?
+              = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
+              |
+              = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
           %br
           = agreement.extent == 100 ? "Agrees:" : "Disagrees:"
           = link_to agreement.statement.content, statement_path(agreement.statement)
@@ -42,7 +45,6 @@
             %span.source= link_to "source", agreement.url
             -# = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
             -# = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
-          %br
           %br
     #br
 #myModal.modal.fade{role: "dialog"}
