@@ -1,6 +1,7 @@
 class NewController < ApplicationController
   def index
     @agreements = Agreement.order(updated_at: :desc).limit(30).joins(:individual).joins(:statement)
+    @statement = Statement.new
   end
 
   def vote

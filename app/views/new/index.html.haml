@@ -1,9 +1,23 @@
 .container
-  .row
+  - if @statement.errors.any?
+    #error_explanation.alert.alert-danger
+      %h2
+        = pluralize(@statement.errors.count, "error")
+        prohibited this statement from being saved:
+        %ul
+          - @statement.errors.full_messages.each do |msg|
+            %li= msg
+  #new-statement.row.col-md-12
+    = form_tag("/s/create_and_agree", class: "form-horizontal") do |f|
+      #new-statement-content
+        = text_field_tag :content, "", class: "form-control", placeholder: "What do you agree?"
+      #new-statement-button
+        = submit_tag "Create", class: "btn btn-primary", id: "create-question"
+  .row.col-md-12
     %h1 What's new
   - @agreements.each do |agreement|
     - individual = agreement.individual
-    .row
+    .row.col-md-12
       .media
         .media-left
           = image_tag(individual.picture.url(:thumb), class: "picture media-object")

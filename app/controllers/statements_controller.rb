@@ -41,7 +41,7 @@ class StatementsController < ApplicationController
       back = params[:back_url] || "/new"
       redirect_to current_user.email.present? ? back : "/join?back=#{back}"
     else
-      render action: "new_and_agree"
+      redirect_to new_path
     end
   end
 

@@ -33,3 +33,20 @@ span.source{
 .vote-icon{
   margin-top: -5px;
 }
+
+#create-question{
+  margin-left: -20px;
+}
+
+#new-statement{
+  margin-top: 20px;
+}
+
+#new-statement-content{
+  float: left;
+  width: 80%;
+}
+
+#new-statement-button{
+  margin-left: 84%;
+}
