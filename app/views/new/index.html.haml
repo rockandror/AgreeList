@@ -4,7 +4,10 @@
       #new-statement-content
         = text_field_tag :content, "", class: "form-control", placeholder: "What do you agree?"
       #new-statement-button
-        = submit_tag "Create", class: "btn btn-primary", id: "create-question"
+        - if current_user
+          = submit_tag "Create", class: "btn btn-primary", id: "create-question"
+        - else
+          = link_to "Create", "#", class: "button btn btn-primary", id: "create-question", "data-toggle" => "modal", "data-target" => "#loginToCreate"
   .row.col-md-12
     %h1 What's new
   - @agreements.each do |agreement|
@@ -51,5 +54,15 @@
         = link_to image_tag("twitter-login.png"), "/auth/twitter"
         or
         = link_to "Back", "#", "data-dismiss" => "modal"
+#loginToCreate.modal.fade{role: "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h3 Login with Twitter to post
+      .modal-body.text-center
+        = link_to image_tag("twitter-login.png"), "/auth/twitter"
+        or
+        = link_to "Back", "#", "data-dismiss" => "modal"
+
 :javascript
   var logged_in = #{signed_in?};
