@@ -28,7 +28,14 @@ class StatementsController < ApplicationController
     @statement = Statement.new
   end
 
+  def content(statement)
+    s, user = statement.split(" by @")
+    user = current_user unless user.present?
+    s, user
+  end
+
   def create_and_agree # from new_question_path & from user profiles
+    new_content, user = content(params[:content])
     @statement = Statement.new(content: params[:content])
 
     LogMailer.log_email("@#{current_user.twitter} has created '#{@statement.content}'").deliver

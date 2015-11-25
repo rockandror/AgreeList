@@ -37,7 +37,7 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'pg', '0.17.1'
+gem 'pg'
 gem 'rails_12factor', group: :production
 gem 'acts-as-taggable-on', '~> 3.4'
 gem "nilify_blanks"

@@ -19,6 +19,13 @@ feature 'statement' do
     expect(page).to have_text("Content can\'t be blank")
   end
 
+  scenario "create and agree" do
+    visit new_path
+    fill_in 'content', with: "Poverty fuels terrorism"
+    click_button "Create"
+    expect(Statement.last.content).to eq "Poverty fuels terrorism"
+  end
+
   private
 
   def seed_data
