@@ -19,11 +19,7 @@
           %h4.media-heading
             %span.name= link_to(individual.name || individual.twitter, "/#{individual.to_param}")
           %span.source
-            - bio = individual.bio.present? ? individual.bio : individual.description
-            - if bio
-              = bio
-            - else
-              %br
+            = individual.bio.present? ? individual.bio : individual.description
           %span
             - if admin?
               = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
