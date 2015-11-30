@@ -8,7 +8,11 @@
           = submit_tag "Create", class: "btn btn-primary", id: "create-question"
         - else
           = link_to "Create", "#", class: "button btn btn-primary", id: "create-question", "data-toggle" => "modal", "data-target" => "#loginToCreate"
-  %h3 Discover new opinions
+  %h3
+    Discover new opinions
+    | Featured: 
+    = link_to "Brexit", "/brexit", class: "button"
+    
   - @agreements.each do |agreement|
     - individual = agreement.individual
     .row.col-md-12
