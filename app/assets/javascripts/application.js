@@ -17,4 +17,10 @@
 
 $(document).ready(function() {
   statements_observers();
+
+  $(".vote").click(function(event) {
+    var vote = $(this).attr("vote");
+    var statement_id = $(this).attr("statement_id");
+    $("#vote-twitter-login").attr("href", "/auth/twitter?task=voting&vote=" + vote + "&statement_id=" + statement_id)
+  });
 });

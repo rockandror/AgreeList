@@ -4,6 +4,13 @@ class SessionsController < ApplicationController
     user = Individual.find_by_twitter(auth["info"]["nickname"].downcase) || Individual.create_with_omniauth(auth)
     session[:user_id] = user.id
     LogMailer.log_email("#{user.name} (@#{user.twitter}) just signed in!").deliver
+    if params["task"] == "voting"
+      Vote.new(
+        statement_id: params["statement_id"],
+        individual_id: user.id,
+        extent: params["vote"] == "agree" ? 100 : 0
+      ).vote!
+    end
     # redirect_to user.email.present? ? "/statement" : "/join", :notice => "Signed in!"
     redirect_to "/new", notice: "Signed in!"
   end

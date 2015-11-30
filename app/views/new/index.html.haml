@@ -37,8 +37,8 @@
             = link_to(image_tag("agree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'agree'), method: :post, class: "vote_link")
             = link_to(image_tag("disagree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'disagree'), method: :post, class: "vote_link")
           - else
-            = link_to(image_tag("agree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal")
-            = link_to(image_tag("disagree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'disagree'), method: :post, class: "vote_link")
+            = link_to(image_tag("agree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: agreement.statement_id, class: "vote")
+            = link_to(image_tag("disagree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: agreement.statement_id, class: "vote")
           %br
           - if agreement.reason.present?
             Reason:
@@ -54,7 +54,7 @@
       .modal-header.text-center
         %h3 Login with Twitter to vote
       .modal-body.text-center
-        = link_to image_tag("twitter-login.png"), "/auth/twitter"
+        = link_to image_tag("twitter-login.png"), "/auth/twitter", id: "vote-twitter-login"
         or
         = link_to "Back", "#", "data-dismiss" => "modal"
 #loginToCreate.modal.fade{role: "dialog"}
