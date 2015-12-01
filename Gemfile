@@ -35,6 +35,7 @@ gem 'jquery-rails'
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
 
 gem 'pg', '0.17.1'
