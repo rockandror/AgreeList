@@ -63,7 +63,7 @@
       .modal-header.text-center
         %h3 Login with Twitter to post
       .modal-body.text-center
-        = link_to image_tag("twitter-login.png"), "/auth/twitter"
+        = link_to image_tag("twitter-login.png"), "/auth/twitter", id: "create-twitter-login"
         or
         = link_to "Back", "#", "data-dismiss" => "modal"
 

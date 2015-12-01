@@ -10,6 +10,13 @@ class SessionsController < ApplicationController
         individual_id: user.id,
         extent: params["vote"] == "agree" ? 100 : 0
       ).vote!
+    elsif params["task"] == "post"
+      s = Statement.create(content: params["content"])
+      Vote.new(
+        statement_id: s.id,
+        individual_id: user.id,
+        extent: 100
+      ).vote!
     end
     # redirect_to user.email.present? ? "/statement" : "/join", :notice => "Signed in!"
     redirect_to "/new", notice: "Signed in!"
