@@ -22,7 +22,7 @@ class IndividualsController < ApplicationController
   def save_email
     if current_user.update_attributes(params.require(:individual).permit(:email))
       back = params[:back].try(:keys).try(:first)
-      redirect_to back.try(:present?) ? back : new_path
+      redirect_to back.try(:present?) ? back : root_path
     else
       render action: "edit"
     end

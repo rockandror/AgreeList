@@ -1,5 +1,5 @@
 Al::Application.routes.draw do
-  root to: 'home#index', via: :get
+  root to: 'new#index', via: :get
   post '/results' => 'home#save_email'
   resources :statements, path: "s" do
     collection do
@@ -28,7 +28,6 @@ Al::Application.routes.draw do
 
   get "/auth/failure" => redirect("/")
   get "/brexit" => redirect("/s/should-the-united-kingdom-remain-a-member-of-the-european-union-sblrlc9vgxp7")
-  get "/new" => "new#index", as: :new
 
   post "/email" => 'static_pages#email'
   get '/:id' => 'individuals#show', :as => :profile
