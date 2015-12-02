@@ -10,7 +10,6 @@ Al::Application.routes.draw do
   resources :votes, only: :create
   post '/vote', to: 'new#vote', as: :vote
   get '/entrepreneurs', to: 'static_pages#advice_for_entrepreneurs'
-  get '/new_question' => 'statements#new_and_agree', as: :new_question
   post '/save_email' => 'individuals#save_email'
   post '/statements/quick' => 'statements#quick_create'
   resources :individuals, only: [:edit, :update, :destroy]

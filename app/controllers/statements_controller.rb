@@ -24,10 +24,6 @@ class StatementsController < ApplicationController
     end
   end
 
-  def new_and_agree
-    @statement = Statement.new
-  end
-
   def create_and_agree # from new_question_path & from user profiles
     @statement = Statement.new(content: params[:content])
 
