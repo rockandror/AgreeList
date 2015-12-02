@@ -8,6 +8,7 @@ gem 'aws-sdk', '< 2.0'
 gem "twitter"
 gem "haml-rails"
 gem 'pry'
+gem 'kaminari'
 
 gem 'omniauth-twitter', github: "arunagw/omniauth-twitter", ref: "81bf3ec0f51804d35fbc4d8f8d658e944bff6abd"
 gem 'rack-attack'
