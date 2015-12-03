@@ -30,5 +30,7 @@ Al::Application.routes.draw do
   post "/touch/:id" => 'agreements#touch', as: :touch
 
   post "/email" => 'static_pages#email'
+  get "/terms" => "static_pages#terms", as: :terms
+  get "/privacy" => "static_pages#privacy", as: :privacy
   get '/:id' => 'individuals#show', :as => :profile
 end
