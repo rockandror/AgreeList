@@ -30,6 +30,8 @@
               = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
               |
               = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
+              |
+              = link_to("thouch", touch_path(agreement), method: :post)
           %br
           = agreement.extent == 100 ? "Agrees:" : "Disagrees:"
           = link_to agreement.statement.content, statement_path(agreement.statement)

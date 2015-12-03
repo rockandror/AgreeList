@@ -1,5 +1,11 @@
 class AgreementsController < ApplicationController
-  before_action :admin_required, only: :destroy
+  before_action :admin_required, only: [:destroy, :touch]
+
+  def touch
+    agreement = Agreement.find_by_hashed_id(params[:id])
+    agreement.touch if agreement
+    redirect_to root_path
+  end
 
   def destroy
     @agreement = Agreement.find_by_hashed_id(params[:id])

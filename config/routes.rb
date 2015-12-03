@@ -27,6 +27,7 @@ Al::Application.routes.draw do
 
   get "/auth/failure" => redirect("/")
   get "/brexit" => redirect("/s/should-the-united-kingdom-remain-a-member-of-the-european-union-sblrlc9vgxp7")
+  post "/touch/:id" => 'agreements#touch', as: :touch
 
   post "/email" => 'static_pages#email'
   get '/:id' => 'individuals#show', :as => :profile
