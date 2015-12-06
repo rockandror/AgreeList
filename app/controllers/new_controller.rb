@@ -1,6 +1,6 @@
 class NewController < ApplicationController
   def index
-    @agreements = Agreement.order(updated_at: :desc).page(params[:page] || 1).per(50).joins(:individual).joins(:statement)
+    @agreements = Agreement.order(updated_at: :desc).page(params[:page] || 1).per(50).includes(:statement).includes(:individual)
     @statement = Statement.new
   end
 
