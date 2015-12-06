@@ -7,7 +7,7 @@
         = image_tag(individual.picture.url(:thumb), class: "picture media-object")
       .media-body
         %h4.media-heading
-          %span.name= link_to(individual.name || individual.twitter, individual)
+          %span.name= link_to(individual.name || individual.twitter, "/#{individual.to_param}")
           %span.source
             - if agreement.url.present? && agreement.url != "http://"
               = link_to "source", agreement.url
