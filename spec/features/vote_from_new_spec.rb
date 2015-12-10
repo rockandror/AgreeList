@@ -4,7 +4,7 @@ feature 'voting', js: true do
   before do
     s = Statement.create(content: "Is global warming real?")
     Agreement.create(individual: create(:individual), statement: s)
-    visit root_path
+    visit new_path
   end
 
   scenario "should find an opinion" do

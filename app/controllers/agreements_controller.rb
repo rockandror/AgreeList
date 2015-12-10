@@ -4,7 +4,7 @@ class AgreementsController < ApplicationController
   def touch
     agreement = Agreement.find_by_hashed_id(params[:id])
     agreement.touch if agreement
-    redirect_to root_path
+    redirect_to params[:back_url] || root_path
   end
 
   def destroy

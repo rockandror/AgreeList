@@ -21,11 +21,11 @@ $(document).ready(function() {
   $(".vote").click(function(event) {
     var vote = $(this).attr("vote");
     var statement_id = $(this).attr("statement_id");
-    $("#vote-twitter-login").attr("href", "/auth/twitter?task=voting&vote=" + vote + "&statement_id=" + statement_id)
+    $("#vote-twitter-login").attr("href", "/auth/twitter?task=voting&vote=" + vote + "&statement_id=" + statement_id + "&back_url=/new")
   });
 
   $("#create-question").click(function(event) {
     var question = $("#content").val();
-    $("#create-twitter-login").attr("href", "/auth/twitter?task=post&content=" + question);
+    $("#create-twitter-login").attr("href", "/auth/twitter?task=post&content=" + question + "&back_url=/new");
   });
 });

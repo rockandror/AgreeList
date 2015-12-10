@@ -1,5 +1,6 @@
 Al::Application.routes.draw do
-  root to: 'new#index', via: :get
+  root to: 'home#index', via: :get
+  get "/new", to: "new#index", as: :new
   post '/results' => 'home#save_email'
   resources :statements, path: "s" do
     collection do

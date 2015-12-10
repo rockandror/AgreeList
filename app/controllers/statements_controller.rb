@@ -34,10 +34,10 @@ class StatementsController < ApplicationController
         individual_id: params[:individual_id] || current_user.id,
         url: params[:url],
         extent: 100)
-      redirect_to params[:back_url] || root_path
+      redirect_to params[:back_url] || new_path
     else
       flash[:error] = @statement.errors.full_messages.first
-      redirect_to root_path
+      redirect_to new_path
     end
   end
 

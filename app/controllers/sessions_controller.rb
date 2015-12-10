@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       ).vote!
     end
     # redirect_to user.email.present? ? "/statement" : "/join", :notice => "Signed in!"
-    redirect_to root_path, notice: "Signed in!"
+    redirect_to(params[:back_url] || root_path, notice: "Signed in!")
   end
 
   def destroy

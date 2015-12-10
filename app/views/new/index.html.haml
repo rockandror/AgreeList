@@ -31,7 +31,7 @@
               |
               = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
               |
-              = link_to("thouch", touch_path(agreement), method: :post)
+              = link_to("thouch", touch_path(agreement, back_url: "/new"), method: :post)
           %br
           = agreement.extent == 100 ? "Agrees:" : "Disagrees:"
           = link_to agreement.statement.content, statement_path(agreement.statement)
