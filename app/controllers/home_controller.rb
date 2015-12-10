@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+  def index
+    @statement = Rails.env.production? ? Statement.find(7) : Statement.first
+  end
   def save_email
     BetaEmail.create(email: params[:email], comment: params[:vote])
     LogMailer.log_email("#{params[:email]} #{params[:vote]}").deliver

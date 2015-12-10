@@ -16,10 +16,23 @@
           %h3 Our first question:
           %h1 Should the UK remain a member of the EU?
           #agree_disagree_buttons
-            = link_to "Agree", root_path(vote: "agree"), class: "btn-home btn-lg"
-            = link_to "Disagree", root_path(vote: "disagree"), class: "btn-home btn-lg"
+            - if current_user
+              = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: statement_path(@statement)), method: :post, class: "btn-home btn-lg vote_link"
+              = link_to "Disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: statement_path(@statement)), method: :post, class: "btn-home btn-lg vote_link"
+            - else
+              = link_to "Agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-home btn-lg vote"
+              = link_to "Disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-home btn-lg vote"
           %br
           or
           %br
           = link_to "Discover new opinions", "/new", class: "white-link"
+#myModal.modal.fade{role: "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h3 Login with Twitter to vote
+      .modal-body.text-center
+        = link_to image_tag("twitter-login.png"), "/auth/twitter", id: "vote-twitter-login"
+        or
+        = link_to "Back", "#", "data-dismiss" => "modal"
 
