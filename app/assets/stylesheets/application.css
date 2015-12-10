@@ -54,3 +54,7 @@ span.source{
 .media-left{
   height: 110px;
 }
+
+.white-link{
+  color: white;
+}
