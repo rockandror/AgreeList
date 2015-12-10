@@ -21,7 +21,8 @@ $(document).ready(function() {
   $(".vote").click(function(event) {
     var vote = $(this).attr("vote");
     var statement_id = $(this).attr("statement_id");
-    $("#vote-twitter-login").attr("href", "/auth/twitter?task=voting&vote=" + vote + "&statement_id=" + statement_id + "&back_url=/new")
+    var back_url = $(this).attr("back_url");
+    $("#vote-twitter-login").attr("href", "/auth/twitter?task=voting&vote=" + vote + "&statement_id=" + statement_id + "&back_url=" + back_url)
   });
 
   $("#create-question").click(function(event) {

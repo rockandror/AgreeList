@@ -37,11 +37,11 @@
           = link_to agreement.statement.content, statement_path(agreement.statement)
 
           - if current_user
-            = link_to(image_tag("agree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'agree'), method: :post, class: "vote_link")
-            = link_to(image_tag("disagree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'disagree'), method: :post, class: "vote_link")
+            = link_to(image_tag("agree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'agree', back_url: new_path), method: :post, class: "vote_link")
+            = link_to(image_tag("disagree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'disagree', back_url: new_path), method: :post, class: "vote_link")
           - else
-            = link_to(image_tag("agree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: agreement.statement_id, class: "vote")
-            = link_to(image_tag("disagree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: agreement.statement_id, class: "vote")
+            = link_to(image_tag("agree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: agreement.statement_id, class: "vote", back_url: new_path)
+            = link_to(image_tag("disagree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: agreement.statement_id, class: "vote", back_url: new_path)
           %br
           - if agreement.reason.present?
             Reason:

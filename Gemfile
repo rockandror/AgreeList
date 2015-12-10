@@ -7,7 +7,6 @@ gem "paperclip"
 gem 'aws-sdk', '< 2.0'
 gem "twitter"
 gem "haml-rails"
-gem 'pry'
 gem 'kaminari'
 
 gem 'omniauth-twitter', github: "arunagw/omniauth-twitter", ref: "81bf3ec0f51804d35fbc4d8f8d658e944bff6abd"
@@ -18,6 +17,7 @@ group :development, :test do
   # gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'pry'
 end
 
 group :development do

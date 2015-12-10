@@ -15,7 +15,7 @@ class NewController < ApplicationController
         extent: params[:vote] == "agree" ? 100 : 0)
     end
     agreement.save
-    redirect_to action: :index
+    redirect_to params[:back_url] || new_path
   end
 
   private

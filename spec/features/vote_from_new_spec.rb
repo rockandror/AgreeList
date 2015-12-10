@@ -24,6 +24,14 @@ feature 'voting', js: true do
     end
   end
 
+  context "clicking on disagree" do
+    scenario "should authenticate and vote" do
+      all(".vote-icon")[1].click
+      click_link "vote-twitter-login"
+      expect(page).to have_content("Hector Perez")
+    end
+  end
+
   scenario "create question should authenticate and create" do
     fill_in :content, with: "Does poverty fuel terrorism?"
     click_link "Create"
