@@ -17,6 +17,8 @@
           = link_to "edit", edit_individual_path(individual) + "?back_url=#{request.url}"
           |
           = link_to("delete", agreement, method: :delete, data: { confirm: "You sure?" })
+          |
+          = link_to("thouch", touch_path(agreement, back_url: statement_path(agreement.statement)), method: :post)
         %br
         %br
         %i= agreement.reason
