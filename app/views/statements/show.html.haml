@@ -4,12 +4,12 @@
   .text-center
     Share on Twitter
     %br
-    = link_to "Share on Twitter", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
+    = link_to "", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
     - if [@agreements_in_favor.size, @agreements_against.size].max > 1
       %br
       or
       %br
-      = link_to "Add someone else", "#gather", class: "btn btn-primary"
+      = link_to "Add an opinion", "#gather", class: "btn btn-primary"
   %br
   - if [@agreements_in_favor.size, @agreements_against.size].max > 3
     Ordered by
@@ -46,7 +46,7 @@
           = link_to related.content, related
           %br
   #gather.jumbotron.textcenter
-    %h3 Gather who agree
+    %h3 Gather who agrees
     = render partial: "add_supporter"
 :javascript
   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
