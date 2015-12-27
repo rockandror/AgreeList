@@ -1,6 +1,13 @@
 class AgreementsController < ApplicationController
   before_action :admin_required, only: [:destroy, :touch]
 
+  def update
+    agreement = Agreement.find_by_hashed_id(params[:id])
+    agreement.reason = params[:agreement][:reason]
+    agreement.save
+    redirect_to statement_path(main_statement)
+  end
+
   def touch
     agreement = Agreement.find_by_hashed_id(params[:id])
     agreement.touch if agreement

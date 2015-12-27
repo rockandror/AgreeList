@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
   def admin_required
     redirect_to "/", notice: "admin required" unless admin?
   end
+
+  def main_statement
+    Rails.env.production? ? Statement.find(7) : Statement.first
+  end
 end

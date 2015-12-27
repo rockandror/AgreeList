@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @statement = Rails.env.production? ? Statement.find(7) : Statement.first
+    @statement = main_statement
+    @agreement = Agreement.where(statement: @statement, individual: current_user).first if signed_in?
   end
+
   def save_email
     BetaEmail.create(email: params[:email], comment: params[:vote])
     LogMailer.log_email("#{params[:email]} #{params[:vote]}").deliver

@@ -2,14 +2,13 @@
   .container-fluid
     .row-fluid
       .centering.text-center
-        - if params[:vote]
-          %h3 Leave your email to see the results:
-          = form_tag "/results", role: "form" do
+        - if signed_in? && @agreement
+          %h3= "Why do you #{@agreement.extent == 100 ? 'agree' : 'disagree'} that the UK should remain in the EU?"
+          = form_for @agreement do
             .form-group
               .col-sm-4
               .col-sm-4
-                = text_field_tag "email", "", class: "form-control", placeholder: "Email"
-                = hidden_field_tag "vote", params[:vote]
+                = text_field :agreement, :reason, class: "form-control", placeholder: "Reason"
                 %br
                 = submit_tag "See results", class: "btn-home btn-lg"
         - else
@@ -17,11 +16,11 @@
           %h1 Should the UK remain a member of the EU?
           #agree_disagree_buttons
             - if current_user
-              = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: statement_path(@statement)), method: :post, class: "btn-home btn-lg vote_link"
-              = link_to "Disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: statement_path(@statement)), method: :post, class: "btn-home btn-lg vote_link"
+              = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: root_path), method: :post, class: "btn-home btn-lg vote_link"
+              = link_to "Disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: root_path), method: :post, class: "btn-home btn-lg vote_link"
             - else
-              = link_to "Agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: statement_path(@statement)
-              = link_to "Disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: statement_path(@statement)
+              = link_to "Agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: root_path
+              = link_to "Disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: root_path
           %br
           or
           %br
