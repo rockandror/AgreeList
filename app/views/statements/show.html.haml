@@ -1,7 +1,6 @@
 .container
-  %h1= @statement.content
-          
   .text-center
+    %h1= @statement.content
     Share on Twitter
     %br
     = link_to "", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
