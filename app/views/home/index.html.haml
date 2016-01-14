@@ -12,8 +12,8 @@
                 %br
                 = submit_tag "See results", class: "btn-home btn-lg"
         - else
-          %h3 Our first question:
-          %h1 Should the UK remain a member of the EU?
+          %h3 Our first statement:
+          %h1 The UK should remain in the EU
           #agree_disagree_buttons
             - if current_user
               = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: root_path), method: :post, class: "btn-home btn-lg vote_link"

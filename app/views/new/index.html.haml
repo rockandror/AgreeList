@@ -2,7 +2,7 @@
   #new-statement.row.col-md-12
     = form_tag("/s/create_and_agree", class: "form-horizontal") do |f|
       #new-statement-content
-        = text_field_tag :content, "", class: "form-control", placeholder: "Create a question you agree with to hear what others think"
+        = text_field_tag :content, "", class: "form-control", placeholder: "Write a statement you agree with to hear what others think"
       #new-statement-button
         - if current_user
           = submit_tag "Create", class: "btn btn-primary", id: "create-question"
