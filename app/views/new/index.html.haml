@@ -19,10 +19,13 @@
     .row.col-md-12
       .media
         .media-left
-          = image_tag(individual.picture.url(:thumb), class: "picture media-object")
+          = image_tag(individual.picture.url(:mini), class: "picture media-object")
         .media-body
           %h4.media-heading
             %span.name= link_to(individual.name || individual.twitter, "/#{individual.to_param}")
+            = agreement.extent == 100 ? "agrees" : "disagrees"
+            that
+            = link_to agreement.statement.content, statement_path(agreement.statement)
           %span.source
             = individual.bio.present? ? individual.bio : individual.description
           %span
@@ -33,24 +36,13 @@
               |
               = link_to("thouch", touch_path(agreement, back_url: "/new"), method: :post)
           %br
-          = agreement.extent == 100 ? "Agrees:" : "Disagrees:"
-          = link_to agreement.statement.content, statement_path(agreement.statement)
-
           - if current_user
             = link_to(image_tag("agree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'agree', back_url: new_path), method: :post, class: "vote_link")
             = link_to(image_tag("disagree.png", class: "vote-icon"), vote_path(statement_id: agreement.statement_id, vote: 'disagree', back_url: new_path), method: :post, class: "vote_link")
           - else
             = link_to(image_tag("agree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: agreement.statement_id, class: "vote", back_url: new_path)
             = link_to(image_tag("disagree.png", class: "vote-icon"), "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: agreement.statement_id, class: "vote", back_url: new_path)
-          %br
-          - if agreement.reason.present?
-            Reason:
-            = agreement.reason
-            %span.source= link_to "source", agreement.url
-            -# = link_to(image_tag("agree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
-            -# = link_to(image_tag("disagree.png", class: "vote-icon"), "#", onclick: 'alert("This feature is not ready yet!")')
-          %br
-    #br
+  %br
   .text-center
     = paginate @agreements
 #myModal.modal.fade{role: "dialog"}

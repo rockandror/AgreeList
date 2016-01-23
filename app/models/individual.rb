@@ -3,6 +3,7 @@ require "open-uri"
 class Individual < ActiveRecord::Base
   nilify_blanks only: [:twitter]
   has_attached_file :picture, s3_host_name: "s3-eu-west-1.amazonaws.com", :default_url => '/assets/missing-:style.jpg', styles: {
+    mini: "50x50",
     thumb: '100x100#',
     square: '200x200#',
     medium: '300x300>'
