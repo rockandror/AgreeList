@@ -1,14 +1,14 @@
 .container
   .text-center
     %h1= @statement.content
-    Share on Twitter
-    %br
-    = link_to "", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
     - if [@agreements_in_favor.size, @agreements_against.size].max > 1
+      = link_to "Add an opinion", "#gather", class: "btn btn-primary"
       %br
       or
       %br
-      = link_to "Add an opinion", "#gather", class: "btn btn-primary"
+    Share on Twitter
+    %br
+    = link_to "", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
   %br
   - if [@agreements_in_favor.size, @agreements_against.size].max > 3
     Ordered by
