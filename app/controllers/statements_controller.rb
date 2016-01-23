@@ -25,7 +25,7 @@ class StatementsController < ApplicationController
   end
 
   def create_and_agree # from new_question_path & from user profiles
-    @statement = Statement.new(content: params[:content])
+    @statement = Statement.new(content: params[:content], individual: current_user)
 
     LogMailer.log_email("@#{current_user.twitter} has created '#{@statement.content}'").deliver
     if @statement.save

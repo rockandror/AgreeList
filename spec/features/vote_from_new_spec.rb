@@ -32,11 +32,20 @@ feature 'voting', js: true do
     end
   end
 
-  scenario "create question should authenticate and create" do
-    fill_in :content, with: "Does poverty fuel terrorism?"
-    click_link "Create"
-    click_link "create-twitter-login"
-    expect(page).to have_content("Does poverty fuel terrorism?")
-    expect(page).to have_content("Hector Perez")
+  context "create question" do
+    scenario "should authenticate and create statement" do
+      fill_in :content, with: "Does poverty fuel terrorism?"
+      click_link "Create"
+      click_link "create-twitter-login"
+      expect(page).to have_content("Does poverty fuel terrorism?")
+      expect(page).to have_content("Hector Perez")
+    end
+
+    scenario "should set individual (creator)" do
+      fill_in :content, with: "Does poverty fuel terrorism?"
+      click_link "Create"
+      click_link "create-twitter-login"
+      expect(Statement.last.individual.name).to eq "Hector Perez"
+    end
   end
 end
