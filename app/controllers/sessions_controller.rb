@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         extent: params["vote"] == "agree" ? 100 : 0
       ).vote!
     elsif params["task"] == "post"
-      s = Statement.create(content: params["content"])
+      s = Statement.create(content: params["content"], individual_id: user.id)
       Vote.new(
         statement_id: s.id,
         individual_id: user.id,
