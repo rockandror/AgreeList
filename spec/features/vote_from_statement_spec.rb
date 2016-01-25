@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'voting' do
+feature 'voting', js: true do
   attr_reader :statement
 
   before do
@@ -11,6 +11,18 @@ feature 'voting' do
     before do
       login
       visit statement_path(statement)
+    end
+
+    scenario "agree" do
+      click_link "Agree"
+      expect(page).to have_content("Hector Perez")
+      expect(page).to have_content("Who agrees (1)")
+    end
+
+    scenario "disagree" do
+      click_link "Disagree"
+      expect(page).to have_content("Hector Perez")
+      expect(page).to have_content("Who disagrees (1)")
     end
 
     scenario 'adds someone who disagrees' do
@@ -30,6 +42,20 @@ feature 'voting' do
   context 'non logged user' do
     before do
       visit statement_path(statement)
+    end
+
+    scenario "agree" do
+      click_link "Agree"
+      click_link "vote-twitter-login"
+      expect(page).to have_content("Hector Perez")
+      expect(page).to have_content("Who agrees (1)")
+    end
+
+    scenario "disagree" do
+      click_link "Disagree"
+      click_link "vote-twitter-login"
+      expect(page).to have_content("Hector Perez")
+      expect(page).to have_content("Who disagrees (1)")
     end
 
     scenario 'adds someone who disagrees' do
@@ -65,7 +91,6 @@ feature 'voting' do
     scenario 'should create one user when adding myself' do
       fill_in 'name', with: 'Hector Perez'
       choose 'add_myself'
-      fill_in 'source', with: 'http://...'
       fill_in 'email', with: 'hhh@jjj.com'
 
       expect{ click_button "Agree" }.to change{ Individual.count }.by(1)
@@ -90,7 +115,6 @@ feature 'voting' do
 
   def seed_data
     @statement = create(:statement)
-    create(:individual, twitter: "arpahector")
   end
 
   def login

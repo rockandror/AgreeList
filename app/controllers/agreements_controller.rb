@@ -5,7 +5,7 @@ class AgreementsController < ApplicationController
     agreement = Agreement.find_by_hashed_id(params[:id])
     agreement.reason = params[:agreement][:reason]
     agreement.save
-    redirect_to statement_path(main_statement)
+    redirect_to "#{statement_path(main_statement)}?order=date"
   end
 
   def touch

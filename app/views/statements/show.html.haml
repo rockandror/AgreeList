@@ -1,14 +1,26 @@
 .container
   .text-center
-    %h1= @statement.content
-    - if [@agreements_in_favor.size, @agreements_against.size].max > 1
-      = link_to "Add an opinion", "#gather", class: "btn btn-primary"
-      %br
-      or
-      %br
-    Share on Twitter
+    %h1
+      = @statement.content
+      = link_to "", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
     %br
-    = link_to "", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
+    - if current_user
+      - if (@agreements_in_favor + @agreements_against).map(&:individual_id).include?(current_user.id)
+        - already_voted = true
+      - else
+        = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: "#{statement_path(@statement)}?order=date"), method: :post, class: "btn-statement btn-lg vote_link"
+        = link_to "Disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: "#{statement_path(@statement)}?order=date"), method: :post, class: "btn-statement btn-lg vote_link"
+        - already_voted = false
+    - else
+      = link_to "Agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-statement btn-lg vote", back_url: "#{statement_path(@statement)}?order=date"
+      = link_to "Disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-statement btn-lg vote", back_url: "#{statement_path(@statement)}?order=date"
+
+    - if [@agreements_in_favor.size, @agreements_against.size].max > 1
+      - unless already_voted
+        %br
+        %br
+        or
+      = link_to "Add someone else's opinion", "#gather", class: (already_voted ? "btn btn-primary" : "")
   %br
   - if [@agreements_in_favor.size, @agreements_against.size].max > 3
     Ordered by
@@ -47,5 +59,15 @@
   #gather.jumbotron.textcenter
     %h3 Gather who agrees
     = render partial: "add_supporter"
+#myModal.modal.fade{role: "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h3 Login with Twitter to vote
+      .modal-body.text-center
+        = link_to image_tag("twitter-login.png"), "/auth/twitter", id: "vote-twitter-login"
+        or
+        = link_to "Back", "#", "data-dismiss" => "modal"
+
 :javascript
   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
