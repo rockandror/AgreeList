@@ -21,6 +21,10 @@
           = link_to("thouch", touch_path(agreement, back_url: statement_path(agreement.statement)), method: :post)
         %br
         %br
-        %i= agreement.reason
-        
+        - if individual == current_user
+          = form_for agreement do |f|
+            = f.text_area :reason, placeholder: "Reason", class: "form-control"
+            = f.submit "Save", class: "btn"
+        - else
+          %i= agreement.reason
     #br
