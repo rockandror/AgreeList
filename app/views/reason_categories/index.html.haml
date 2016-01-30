@@ -1,0 +1,18 @@
+.container
+  %h1 Listing comment categories
+
+  %table{class: "table"}
+    %thead
+      %th Name
+      %th
+      %th
+    %tbody
+      - @reason_categories.each do |reason_category|
+        %tr
+          %td= link_to reason_category.name, edit_reason_category_path(reason_category)
+          %td= link_to "Edit", edit_reason_category_path(reason_category)
+          %td= link_to 'Destroy', reason_category, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Comment category', new_reason_category_path

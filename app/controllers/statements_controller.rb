@@ -63,6 +63,8 @@ class StatementsController < ApplicationController
     @comments = {}
     @statement.comments.each{|comment| @comments[comment.individual.id] = comment}
 
+    @categories = ReasonCategory.all
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @statement }

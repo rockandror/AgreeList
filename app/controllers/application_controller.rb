@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    current_user.try(:twitter) == "arpahector"
+    %w(Emilie_Esposito arpahector).include?(current_user.try(:twitter))
   end
 
   def login_required

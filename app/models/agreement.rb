@@ -4,6 +4,7 @@ class Agreement < ActiveRecord::Base
 
   belongs_to :statement
   belongs_to :individual
+  belongs_to :reason_category
 
   before_create :generate_hashed_id
   after_create :rm_opposite_agreement, :update_counters
@@ -20,10 +21,6 @@ class Agreement < ActiveRecord::Base
 
   def agree?
     extent == 100
-  end
-
-  def to_param
-    self.hashed_id
   end
 
   private

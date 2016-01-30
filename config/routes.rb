@@ -9,6 +9,7 @@ Al::Application.routes.draw do
   end
   resources :comments, only: :create
   resources :votes, only: :create
+  resources :reason_categories, except: :show
   post '/vote', to: 'new#vote', as: :vote
   get '/entrepreneurs', to: 'static_pages#advice_for_entrepreneurs'
   post '/save_email' => 'individuals#save_email'

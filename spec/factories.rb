@@ -1,6 +1,11 @@
 require 'faker'
 
-FactoryGirl.define do  factory :beta_email do
+FactoryGirl.define do
+  factory :reason_category do
+    name "MyString"
+  end
+
+  factory :beta_email do
     
   end
 

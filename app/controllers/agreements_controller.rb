@@ -2,20 +2,24 @@ class AgreementsController < ApplicationController
   before_action :admin_required, only: [:destroy, :touch]
 
   def update
-    agreement = Agreement.find_by_hashed_id(params[:id])
+    agreement = Agreement.find(params[:id])
     agreement.reason = params[:agreement][:reason]
+    agreement.reason_category_id = params[:agreement][:reason_category_id].to_i
     agreement.save
-    redirect_to "#{statement_path(main_statement)}?order=date"
+    respond_to do |format|
+      format.html { redirect_to "#{statement_path(agreement.statement)}?order=date" }
+      format.js { render json: agreement.to_json, status: :ok }
+    end
   end
 
   def touch
-    agreement = Agreement.find_by_hashed_id(params[:id])
+    agreement = Agreement.find(params[:id])
     agreement.touch if agreement
     redirect_to params[:back_url] || root_path
   end
 
   def destroy
-    @agreement = Agreement.find_by_hashed_id(params[:id])
+    @agreement = Agreement.find(params[:id])
     statement = @agreement.statement
     @agreement.destroy
     redirect_to statement_path(statement)

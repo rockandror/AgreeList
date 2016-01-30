@@ -1,0 +1,6 @@
+- if admin?
+  = form_for agreement do |f|
+    Category:
+    = f.select :reason_category_id, @categories.map{|c| [c.name, c.id]}, {include_blank: true}, class: "reason_category", id: "reason_category_from_agreement_#{agreement.id}", agreement_id: agreement.id
+    = f.hidden_field :reason
+    = link_to "Edit categories", reason_categories_path
