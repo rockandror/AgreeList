@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123103313) do
+ActiveRecord::Schema.define(version: 20160130140347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,11 @@ ActiveRecord::Schema.define(version: 20160123103313) do
     t.integer  "individual_id"
     t.integer  "statement_id"
     t.integer  "extent"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "hashed_id"
     t.text     "reason"
+    t.integer  "reason_category_id"
   end
 
   add_index "agreements", ["hashed_id"], name: "index_agreements_on_hashed_id", using: :btree
@@ -71,6 +72,12 @@ ActiveRecord::Schema.define(version: 20160123103313) do
     t.string   "hashed_id"
     t.boolean  "update_picture",                    default: true
     t.integer  "ranking",                           default: 0
+  end
+
+  create_table "reason_categories", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: true do |t|
