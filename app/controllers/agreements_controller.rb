@@ -47,6 +47,7 @@ class AgreementsController < ApplicationController
         individual_id: voter.id,
         url: params[:source],
         reason: params[:comment],
+        reason_category_id: params[:reason_category_id],
         extent: params[:commit] == "Disagree" ? 0 : 100)
       redirect_to statement_path(statement), notice: "Done"
     end
