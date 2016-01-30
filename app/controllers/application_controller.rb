@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :signed_in?, :admin?
+  helper_method :current_user, :signed_in?, :admin?, :has_admin_category_rights?
 
   private
 
@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
+    current_user.try(:twitter) == "arpahector"
+  end
+
+  def has_admin_category_rights?
     %w(Emilie_Esposito arpahector).include?(current_user.try(:twitter))
   end
 

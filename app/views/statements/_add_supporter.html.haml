@@ -12,7 +12,7 @@
   = hidden_field_tag(:statement_id, @statement.id)
   %br
   = text_field_tag(:comment, "", class: "form-control", placeholder: "Reason why you or the person you are adding agrees/disagrees (optional)", maxlength: 254)
-  - if admin?
+  - if has_admin_category_rights?
     Category:
     = select_tag :reason_category_id, options_from_collection_for_select(ReasonCategory.all, "id", "name"), include_blank: true
     = link_to "Edit categories", reason_categories_path

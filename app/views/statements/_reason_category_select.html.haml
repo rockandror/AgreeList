@@ -1,4 +1,4 @@
-- if admin?
+- if has_admin_category_rights?
   = form_for agreement do |f|
     Category:
     = f.select :reason_category_id, @categories.map{|c| [c.name, c.id]}, {include_blank: true}, class: "reason_category", id: "reason_category_from_agreement_#{agreement.id}", agreement_id: agreement.id
