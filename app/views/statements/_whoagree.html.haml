@@ -25,8 +25,7 @@
           = form_for agreement, url: agreement_path(agreement) do |f|
             = f.text_area :reason, placeholder: "Reason", class: "form-control"
             = f.submit "Save", class: "btn"
-          = render partial: "reason_category_select", locals: { agreement: agreement }
         - else
           %i= agreement.reason
-          = render partial: "reason_category_select", locals: { agreement: agreement }
+        = render partial: "reason_category_select", locals: { agreement: agreement }
     #br
