@@ -55,8 +55,9 @@ class StatementsController < ApplicationController
   # GET /statements/1
   # GET /statements/1.json
   def show
-    @agreements_in_favor = @statement.agreements_in_favor(order: params[:order])
-    @agreements_against = @statement.agreements_against(order: params[:order])
+    category_id = ReasonCategory.find_by_name(params[:c]).try(:id)
+    @agreements_in_favor = @statement.agreements_in_favor(order: params[:order], category_id: category_id)
+    @agreements_against = @statement.agreements_against(order: params[:order], category_id: category_id)
     @related_statements = Statement.where.not(id: @statement.id).tagged_with(@statement.tags.first).limit(6)
 
     @comment = Comment.new

@@ -10,7 +10,9 @@ class Statement < ActiveRecord::Base
   before_create :generate_hashed_id, :set_entrepreneurship_tag
 
   def agreements_in_favor(args = {})
+    # TODO: Use queries for this
     a = agreements.select{ |a| a.agree? }
+    a = a.select{|b| b.reason_category_id == args[:category_id] } if args[:category_id]
     if args[:order] == "date"
       a.sort_by{ |a| - a.created_at.to_i }
     else
@@ -20,7 +22,9 @@ class Statement < ActiveRecord::Base
   alias_method :supporters, :agreements_in_favor
 
   def agreements_against(args = {})
+    # TODO: Use queries for this
     a = agreements.select{ |a| a.disagree? }
+    a = a.select{|b| b.reason_category_id == args[:category_id] } if args[:category_id]
     if args[:order] == "date"
       a.sort_by{ |a| - a.created_at.to_i }
     else

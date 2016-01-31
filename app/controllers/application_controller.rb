@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :signed_in?, :admin?, :has_admin_category_rights?
-
+  helper_method :current_user, :signed_in?, :admin?, :has_admin_category_rights?, :main_statement
   private
 
   def current_user
@@ -29,6 +28,6 @@ class ApplicationController < ActionController::Base
   end
 
   def main_statement
-    Rails.env.production? ? Statement.find(7) : Statement.first
+    Rails.env.test? ? Statement.first : Statement.find(7)
   end
 end

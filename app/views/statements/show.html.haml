@@ -22,6 +22,14 @@
         or
       = link_to "Add someone else's opinion", "#gather", class: (already_voted ? "btn btn-primary" : "")
   %br
+  - if has_admin_category_rights?
+    = link_to "Board", brexit_board_path if @statement == main_statement
+    - if params[:c]
+      >
+      = link_to "All", statement_path(@statement)
+      >
+      = params[:c]
+  %br
   - if [@agreements_in_favor.size, @agreements_against.size].max > 3
     Ordered by
     - if params[:order] != "date"

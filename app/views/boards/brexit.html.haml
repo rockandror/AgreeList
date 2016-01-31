@@ -4,10 +4,10 @@
     .col-md-6
       - @categories_in_favor.each do |category|
         - count = category.agreements.size
-        %h3= "#{category.name} - #{count} #{'Vote'.pluralize(count)}"
+        %h3= link_to "#{category.name} - #{count} #{'Vote'.pluralize(count)}", statement_path(@statement, c: category.name)
         %br
     .col-md-6
       - @categories_against.each do |category|
         - count = category.agreements.size
-        %h3= "#{category.name} - #{count} #{'Vote'.pluralize(count)}"
+        %h3= link_to "#{category.name} - #{count} #{'Vote'.pluralize(count)}", statement_path(@statement, c: category.name)
         %br
