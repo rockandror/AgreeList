@@ -1,0 +1,13 @@
+.container
+  %h1 AgreeBoard
+  .row
+    .col-md-6
+      - @categories_in_favor.each do |category|
+        - count = category.agreements.size
+        %h3= "#{category.name} - #{count} #{'Vote'.pluralize(count)}"
+        %br
+    .col-md-6
+      - @categories_against.each do |category|
+        - count = category.agreements.size
+        %h3= "#{category.name} - #{count} #{'Vote'.pluralize(count)}"
+        %br

@@ -1,6 +1,7 @@
 Al::Application.routes.draw do
   root to: 'home#index', via: :get
   get "/new", to: "new#index", as: :new
+  get "/boards/brexit", to: "boards#brexit", as: :brexit_board
   post '/results' => 'home#save_email'
   resources :statements, path: "s" do
     collection do
