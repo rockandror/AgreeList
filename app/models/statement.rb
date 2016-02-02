@@ -28,6 +28,7 @@ class Statement < ActiveRecord::Base
   def filtered_agreements(agree_or_disagree, args)
     a = agreements.where(extent: (agree_or_disagree == :agree ? 100 : 0)).includes(:individual)
     a = a.where(reason_category_id: args[:category_id]) if args[:category_id]
+    a = a.where(reason_category_id: nil) if args[:filter_by] == :non_categorized
     if args[:order] == "date"
       a.sort_by{ |a| - a.created_at.to_i }
     else
