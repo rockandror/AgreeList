@@ -10,26 +10,12 @@ class Statement < ActiveRecord::Base
   before_create :generate_hashed_id, :set_entrepreneurship_tag
 
   def agreements_in_favor(args = {})
-    # TODO: Use queries for this
-    a = agreements.select{ |a| a.agree? }
-    a = a.select{|b| b.reason_category_id == args[:category_id] } if args[:category_id]
-    if args[:order] == "date"
-      a.sort_by{ |a| - a.created_at.to_i }
-    else
-      a.sort_by{ |a| - ranking(a) }
-    end
+    filtered_agreements(:agree, args)
   end
   alias_method :supporters, :agreements_in_favor
 
   def agreements_against(args = {})
-    # TODO: Use queries for this
-    a = agreements.select{ |a| a.disagree? }
-    a = a.select{|b| b.reason_category_id == args[:category_id] } if args[:category_id]
-    if args[:order] == "date"
-      a.sort_by{ |a| - a.created_at.to_i }
-    else
-      a.sort_by{ |a| - ranking(a) }
-    end
+    filtered_agreements(:disagree, args)
   end
   alias_method :detractors, :agreements_against
 
@@ -38,6 +24,16 @@ class Statement < ActiveRecord::Base
   end
 
   private
+
+  def filtered_agreements(agree_or_disagree, args)
+    a = agreements.where(extent: (agree_or_disagree == :agree ? 100 : 0)).includes(:individual)
+    a = a.where(reason_category_id: args[:category_id]) if args[:category_id]
+    if args[:order] == "date"
+      a.sort_by{ |a| - a.created_at.to_i }
+    else
+      a.sort_by{ |a| - ranking(a) }
+    end
+  end
 
   def ranking(agreement)
     r = agreement.individual.ranking
