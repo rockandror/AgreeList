@@ -27,5 +27,11 @@
             = f.submit "Save", class: "btn"
         - else
           %i= agreement.reason
+        - if current_user
+          %br
+          - if agreement.upvotes.size == 0
+            = link_to "Upvote", upvote_agreement_path(agreement), method: :post
+          - else
+            = link_to "Upvote (#{agreement.upvotes.size})", upvote_agreement_path(agreement), method: :post
         = render partial: "reason_category_select", locals: { agreement: agreement }
     #br

@@ -1,25 +1,32 @@
 class AgreementsController < ApplicationController
   before_action :admin_required, only: [:destroy, :touch]
+  before_action :find_agreement, only: [:upvote, :update, :touch, :destroy]
+
+  def upvote
+    if upvote = Upvote.where(agreement: @agreement, individual: current_user).first
+      upvote.destroy
+    else
+      Upvote.create(agreement: @agreement, individual: current_user)
+    end
+    redirect_to statement_path(@agreement.statement)
+  end
 
   def update
-    agreement = Agreement.find(params[:id])
-    agreement.reason = params[:agreement][:reason]
-    agreement.reason_category_id = params[:agreement][:reason_category_id].to_i
-    agreement.save
+    @agreement.reason = params[:agreement][:reason]
+    @agreement.reason_category_id = params[:agreement][:reason_category_id].to_i
+    @agreement.save
     respond_to do |format|
-      format.html { redirect_to "#{statement_path(agreement.statement)}?order=date" }
-      format.js { render json: agreement.to_json, status: :ok }
+      format.html { redirect_to "#{statement_path(@agreement.statement)}?order=date" }
+      format.js { render json: @agreement.to_json, status: :ok }
     end
   end
 
   def touch
-    agreement = Agreement.find(params[:id])
-    agreement.touch if agreement
+    @agreement.touch if @agreement
     redirect_to params[:back_url] || root_path
   end
 
   def destroy
-    @agreement = Agreement.find(params[:id])
     statement = @agreement.statement
     @agreement.destroy
     redirect_to statement_path(statement)
@@ -73,5 +80,9 @@ class AgreementsController < ApplicationController
 
   def statement_used_by_spammers?
     params[:statement_id] == "113"
+  end
+
+  def find_agreement
+    @agreement = Agreement.find(params[:id])
   end
 end
