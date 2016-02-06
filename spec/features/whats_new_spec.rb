@@ -11,9 +11,9 @@ feature "What's new" do
 
   scenario "loads page" do
     visit statement_path(@statement)
-    click_link "Change to What's new"
-    expect(page).to have_link "Change to Ranking"
-    click_link "Change to Ranking"
-    expect(page).to have_link "Change to What's new"
+    click_link "Votes"
+    expect(page).to have_link "Date"
+    click_link "Date"
+    expect(page).to have_link "Votes"
   end
 end

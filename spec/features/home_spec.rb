@@ -8,9 +8,9 @@ feature 'voting', js: true do
   end
 
   scenario "should authenticate and agree" do
-    click_link "Agree"
+    click_link "Yes, I agree"
     click_link "vote-twitter-login"
-    expect(page).to have_content("Why do you agree that the UK should remain in the EU?")
+    expect(page).to have_content("Why do you agree on brexit?")
     fill_in :agreement_reason, with: "Because it's good for the economy"
     click_button "See results"
     expect(page).to have_content("Hector Perez")
@@ -18,9 +18,9 @@ feature 'voting', js: true do
   end
 
   scenario "should authenticate and disagree" do
-    click_link "Disagree"
+    click_link "No, I disagree"
     click_link "vote-twitter-login"
-    expect(page).to have_content("Why do you disagree that the UK should remain in the EU?")
+    expect(page).to have_content("Why do you disagree on brexit?")
     fill_in :agreement_reason, with: "Because it's bad for the economy"
     click_button "See results"
     expect(page).to have_content("Hector Perez")
@@ -33,8 +33,8 @@ feature 'voting', js: true do
     end
 
     scenario "should vote" do
-      click_link "Agree"
-      expect(page).to have_content("Why do you agree that the UK should remain in the EU?")
+      click_link "Yes, I agree"
+      expect(page).to have_content("Why do you agree on brexit?")
       fill_in :agreement_reason, with: "Because it's bad for the economy"
       click_button "See results"
       expect(page).to have_content("Hector Perez")
@@ -42,8 +42,8 @@ feature 'voting', js: true do
     end
 
     scenario "should vote" do
-      click_link "Disagree"
-      expect(page).to have_content("Why do you disagree that the UK should remain in the EU?")
+      click_link "No, I disagree"
+      expect(page).to have_content("Why do you disagree on brexit?")
       fill_in :agreement_reason, with: "Because it's bad for the economy"
       click_button "See results"
       expect(page).to have_content("Hector Perez")
