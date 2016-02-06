@@ -12,6 +12,7 @@ class Individual < ActiveRecord::Base
   has_many :statements, :through => :agreements
   has_many :comments, dependent: :destroy
   has_many :created_statements, through: :individuals, dependent: :nullify
+  has_many :upvotes
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   validates_uniqueness_of :twitter, allow_nil: true

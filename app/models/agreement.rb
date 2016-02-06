@@ -5,6 +5,7 @@ class Agreement < ActiveRecord::Base
   belongs_to :statement
   belongs_to :individual
   belongs_to :reason_category
+  has_many :upvotes
 
   before_create :generate_hashed_id
   after_create :rm_opposite_agreement, :update_counters

@@ -33,11 +33,9 @@
   - if [@agreements_in_favor.size, @agreements_against.size].max > 3
     Ordered by
     - if params[:order] != "date"
-      Relevance -
-      = link_to "Change to What's new", statement_path(@statement, :order => "date")
+      = link_to "Votes", statement_path(@statement, :order => "date")
     - else
-      Date -
-      = link_to "Change to Ranking", statement_path(@statement, order: nil)
+      = link_to "Date", statement_path(@statement, order: nil)
   .row
     .col-md-6
       .add_me

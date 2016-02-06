@@ -1,2 +1,10 @@
-%h3= link_to "#{category_name} - #{count} #{'Vote'.pluralize(count)}", statement_path(@statement, c: category_name)
-%br
+%h3= link_to "#{category.name} - #{count} #{'Vote'.pluralize(count)}", statement_path(@statement, c: category.name)
+- if agreement
+  - individual = agreement.individual
+  .media
+    .media-left
+      = image_tag(individual.picture.url(:mini), class: "picture media-object")
+    .media-body
+      %i= agreement.reason
+      %br
+      = " - #{ individual.name || individual.twitter}"

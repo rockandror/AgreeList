@@ -25,7 +25,11 @@ Al::Application.routes.draw do
 
   match "/auth/twitter/callback" => 'sessions#create', via: [:get, :post]
   get "/signout" => "sessions#destroy", as: :signout
-  resources :agreements, only: [:destroy, :update]
+  resources :agreements, only: [:destroy, :update] do
+    member do
+      post 'upvote'
+    end
+  end
   get '/test' => 'static_pages#polar'
 
   get "/auth/failure" => redirect("/")
