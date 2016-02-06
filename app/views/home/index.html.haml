@@ -3,7 +3,7 @@
     .row-fluid
       .centering.text-center
         - if signed_in? && @agreement
-          %h3= "Why do you #{@agreement.extent == 100 ? 'agree' : 'disagree'} that the UK should remain in the EU?"
+          %h3= "Why do you #{@agreement.extent == 100 ? 'agree' : 'disagree'} on brexit?"
           = form_for @agreement do
             .form-group
               .col-sm-4
@@ -12,15 +12,14 @@
                 %br
                 = submit_tag "See results", class: "btn-home btn-lg"
         - else
-          %h3 Our first statement:
-          %h1 The UK should remain in the EU
+          %h1 Brexit. Do you agree?
           #agree_disagree_buttons
             - if current_user
-              = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: root_path), method: :post, class: "btn-home btn-lg vote_link"
-              = link_to "Disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: root_path), method: :post, class: "btn-home btn-lg vote_link"
+              = link_to "Yes, I agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: root_path), method: :post, class: "btn-home btn-lg vote_link"
+              = link_to "No, I disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: root_path), method: :post, class: "btn-home btn-lg vote_link"
             - else
-              = link_to "Agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: root_path
-              = link_to "Disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: root_path
+              = link_to "Yes, I agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: root_path
+              = link_to "No, I disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-home btn-lg vote", back_url: root_path
           %br
           or
           %br
