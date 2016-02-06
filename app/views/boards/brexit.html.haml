@@ -7,8 +7,7 @@
         = link_to "#{@percentage_in_favor}% of Votes", statement_path(@statement)
         = ")"
       - @categories_in_favor.each do |category|
-        = render partial: "category", locals: {category_name: category.name, count: category.agreements.size}
-      = render partial: "category", locals: {category_name: "Others", count: @votes_in_favor_without_category_count}
+        = render partial: "category", locals: {category: category, count: category.agreements.size, agreement: category.top_agreement}
     .col-md-6
       %h3
         = "No, I disagree ("
@@ -16,5 +15,4 @@
         = ")"
 
       - @categories_against.each do |category|
-        = render partial: "category", locals: {category_name: category.name, count: category.agreements.size}
-      = render partial: "category", locals: {category_name: "Others", count: @votes_against_without_category_count}
+        = render partial: "category", locals: {category: category, count: category.agreements.size, agreement: category.top_disagreement}
