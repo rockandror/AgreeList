@@ -1,5 +1,5 @@
 class ReasonCategoriesController < ApplicationController
-  before_action :admin_required
+  before_action :category_admin_required
   before_action :set_reason_category, only: [:show, :edit, :update, :destroy]
 
   # GET /reason_categories

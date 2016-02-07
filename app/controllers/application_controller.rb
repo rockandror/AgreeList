@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     redirect_to "/", notice: "admin required" unless admin?
   end
 
+  def category_admin_required
+    redirect_to "/", notice: "admin required" unless has_admin_category_rights?
+  end
+
   def main_statement
     Rails.env.test? ? Statement.first : Statement.find(7)
   end
