@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def has_admin_category_rights?
-    %w(Emilie_Esposito arpahector).include?(current_user.try(:twitter))
+    %w(emilie_esposito arpahector).include?(current_user.try(:twitter).try(:downcase))
   end
 
   def login_required
