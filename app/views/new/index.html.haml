@@ -12,7 +12,7 @@
     Discover new opinions
     %span{class: "small"}
       | Featured: 
-      = link_to "Should the UK remain in the EU?", "/brexit", class: "button"
+      = link_to "Brexit", "/brexit", class: "button"
     
   - @agreements.each do |agreement|
     - individual = agreement.individual
@@ -23,8 +23,7 @@
         .media-body
           %h4.media-heading
             %span.name= link_to(individual.name || individual.twitter, "/#{individual.to_param}")
-            = agreement.extent == 100 ? "agrees" : "disagrees"
-            that
+            = agreement.extent == 100 ? "agrees:" : "disagrees:"
             = link_to agreement.statement.content, statement_path(agreement.statement)
           %span.source
             = individual.bio.present? ? individual.bio : individual.description
