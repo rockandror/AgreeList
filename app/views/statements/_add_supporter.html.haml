@@ -1,13 +1,8 @@
 = form_tag("/add_supporter", :method => "post") do
-  = text_field_tag(:name,"", class: "form-control", placeholder: "Name or @twitter (yours or someone else's)")
+  = text_field_tag(:name,"", class: "form-control", placeholder: "Name or @twitter")
   %br
-  = radio_button_tag :add, 'someone_else', true
-  I am adding someone else's opinion
-  = radio_button_tag :add, 'myself'
-  I am adding my opinion
-  %br
+  = hidden_field_tag :agg, 'someone_else'
   #source_box
-    %br
     = text_field_tag(:source, "", class: "form-control", placeholder: "http:// where it's clear that he/she agrees/disagrees")
   = hidden_field_tag(:statement_id, @statement.id)
   %br

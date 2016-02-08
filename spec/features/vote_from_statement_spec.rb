@@ -88,14 +88,6 @@ feature 'voting', js: true do
       expect{ click_button "Agree" }.to change{ Individual.count }.by(2)
     end
 
-    scenario 'should create one user when adding myself' do
-      fill_in 'name', with: 'Hector Perez'
-      choose 'add_myself'
-      fill_in 'email', with: 'hhh@jjj.com'
-
-      expect{ click_button "Agree" }.to change{ Individual.count }.by(1)
-    end
-
     scenario 'adds someone who disagrees with its twitter' do
       fill_in 'name', with: "@arpahector"
       click_button "Disagree"
