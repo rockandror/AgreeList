@@ -13,7 +13,7 @@ class IndividualsController < ApplicationController
 
   def update
     if @individual.update_attributes(params.require(:individual).permit(:name, :twitter, :email, :bio, :picture_from_url, :ranking))
-      redirect_to(params[:back_url] || root_path, notice: 'Successfully updated.')
+      redirect_to(params[:back_url].gsub(" ", "+") || root_path, notice: 'Successfully updated.')
     else
       render action: "edit"
     end
