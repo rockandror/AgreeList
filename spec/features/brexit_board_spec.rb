@@ -15,8 +15,8 @@ feature "brexit board" do
 
     scenario "should list the categories with votes" do
       visit brexit_board_path
-      expect(page).to have_content("Economy - 2 Votes")
-      expect(page).to have_content("Science - 1 Vote")
+      expect(page).to have_content("Economy (2)")
+      expect(page).to have_content("Science (1)")
     end
   end
 
