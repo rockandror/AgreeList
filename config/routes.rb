@@ -1,7 +1,8 @@
 Al::Application.routes.draw do
   root to: 'home#index', via: :get
   get "/new", to: "new#index", as: :new
-  get "/boards/brexit", to: "boards#brexit", as: :brexit_board
+  get "/brexit", to: "boards#brexit", as: :brexit_board
+  get "/boards/brexit" => redirect("/brexit")
   post '/results' => 'home#save_email'
   resources :statements, path: "s" do
     collection do
@@ -33,7 +34,6 @@ Al::Application.routes.draw do
   get '/test' => 'static_pages#polar'
 
   get "/auth/failure" => redirect("/")
-  get "/brexit" => redirect("/s/should-the-united-kingdom-remain-a-member-of-the-european-union-sblrlc9vgxp7")
   post "/touch/:id" => 'agreements#touch', as: :touch
 
   post "/email" => 'static_pages#email'
