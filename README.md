@@ -4,6 +4,8 @@ Gathering all the people who agree and disagree on issues such as Brexit
 
 http://www.AgreeList.com
 
+[![Code Climate](https://codeclimate.com/github/HectorPerez/AgreeList/badges/gpa.svg)](https://codeclimate.com/github/HectorPerez/AgreeList)
+
 Install:
 -------
 ```ruby
