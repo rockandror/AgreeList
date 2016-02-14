@@ -9,7 +9,7 @@ gem "twitter"
 gem "haml-rails"
 gem 'kaminari'
 
-gem 'omniauth-twitter', github: "arunagw/omniauth-twitter", ref: "81bf3ec0f51804d35fbc4d8f8d658e944bff6abd"
+gem "omniauth-twitter", '1.2.1'
 gem 'rack-attack'
 
 group :development, :test do
