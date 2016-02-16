@@ -36,4 +36,4 @@ Feel free to add yourself if you make a pull request
 
 License:
 -------
-Copyright © 2016 AgreeList, released under the MIT license.
+AGPLv3
