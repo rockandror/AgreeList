@@ -6,9 +6,9 @@ addons:
 services:
   - postgresql
 before_script:
-  - psql -c "CREATE USER hector WITH PASSWORD 'hector';" -U postgres
+  - psql -c "CREATE USER hector WITH PASSWORD 'contrh';" -U postgres
   - psql -c "DROP DATABASE IF EXISTS agreelist_test;" -U postgres
   - psql -c "CREATE DATABASE agreelist_test;" -U postgres
   - bundle exec rake db:migrate
 script:
-  -  bundle exec rspec
+  - bundle exec rspec
