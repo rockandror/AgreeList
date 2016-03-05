@@ -8,9 +8,6 @@
       .media-body
         %h4.media-heading
           %span.name= link_to(individual.name || individual.twitter, "/#{individual.to_param}")
-          %span.source
-            - if agreement.url.present? && agreement.url != "http://"
-              = link_to "source", agreement.url
         #br
         = individual.bio.present? ? individual.bio : individual.description
         - if admin?
@@ -27,6 +24,10 @@
             = f.submit "Save", class: "btn"
         - else
           %i= agreement.reason
+          %span.source
+            - if agreement.url.present? && agreement.url != "http://"
+              = link_to "source", agreement.url
+
         - if current_user
           %br
           - if agreement.upvotes.size == 0
