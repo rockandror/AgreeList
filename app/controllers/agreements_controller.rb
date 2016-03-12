@@ -16,7 +16,7 @@ class AgreementsController < ApplicationController
     @agreement.reason_category_id = params[:agreement][:reason_category_id].to_i
     @agreement.save
     respond_to do |format|
-      format.html { redirect_to statement_path(@agreement.statement) }
+      format.html { redirect_to(params[:back_url] || statement_path(@agreement.statement)) }
       format.js { render json: @agreement.to_json, status: :ok }
     end
   end

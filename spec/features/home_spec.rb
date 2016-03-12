@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature 'voting', js: true do
   before do
-    s = Statement.create(content: "Is global warming real?")
-    Agreement.create(individual: create(:individual), statement: s)
+    @statement = Statement.create(content: "Is global warming real?")
+    Agreement.create(individual: create(:individual), statement: @statement)
     visit root_path
   end
 
@@ -13,6 +13,7 @@ feature 'voting', js: true do
     expect(page).to have_content("Why do you agree on brexit?")
     fill_in :agreement_reason, with: "Because it's good for the economy"
     click_button "See results"
+    visit statement_path(@statement)
     expect(page).to have_content("Hector Perez")
     expect(page).to have_content("Because it's good for the economy")
   end
@@ -23,6 +24,7 @@ feature 'voting', js: true do
     expect(page).to have_content("Why do you disagree on brexit?")
     fill_in :agreement_reason, with: "Because it's bad for the economy"
     click_button "See results"
+    visit statement_path(@statement)
     expect(page).to have_content("Hector Perez")
     expect(page).to have_content("Because it's bad for the economy")
   end
@@ -37,6 +39,7 @@ feature 'voting', js: true do
       expect(page).to have_content("Why do you agree on brexit?")
       fill_in :agreement_reason, with: "Because it's bad for the economy"
       click_button "See results"
+      visit statement_path(@statement)
       expect(page).to have_content("Hector Perez")
       expect(page).to have_content("Because it's bad for the economy")
     end
@@ -46,6 +49,7 @@ feature 'voting', js: true do
       expect(page).to have_content("Why do you disagree on brexit?")
       fill_in :agreement_reason, with: "Because it's bad for the economy"
       click_button "See results"
+      visit statement_path(@statement)
       expect(page).to have_content("Hector Perez")
       expect(page).to have_content("Because it's bad for the economy")
     end

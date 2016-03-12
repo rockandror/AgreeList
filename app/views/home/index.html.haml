@@ -9,6 +9,7 @@
               .col-sm-4
               .col-sm-4
                 = text_field :agreement, :reason, class: "form-control", placeholder: "Reason"
+                = hidden_field_tag :back_url, "/brexit"
                 %br
                 = submit_tag "See results", class: "btn-home btn-lg"
         - else
