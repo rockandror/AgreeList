@@ -36,11 +36,11 @@
     - else
       = link_to "Date", statement_path(@statement, order: nil)
   .row
-    .col-xs-6
+    .col-sm-6
       .add_me
         %h4= "Who agrees (#{@agreements_in_favor.size}):"
       = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
-    .col-xs-6
+    .col-sm-6
       .add_me
         %h4= "Who disagrees (#{@agreements_against.size}):"
       = render partial: "whoagree", locals: { agreements: @agreements_against }
@@ -53,11 +53,11 @@
   - unless Rails.env == "test" || @related_statements.size < 6 || @related_statements.first.tag_list == ["Others"]
     %h3 Other questions
     .row
-      .col-xs-6
+      .col-sm-6
         - @related_statements[0..2].each do |related|
           = link_to related.content, related
           %br
-      .col-xs-6
+      .col-sm-6
         - @related_statements[3..5].each do |related|
           = link_to related.content, related
           %br
@@ -72,7 +72,7 @@
       .modal-body.text-center
         = link_to image_tag("twitter-login.png"), "/auth/twitter", id: "vote-twitter-login"
         or
-        = link_to "Back", "#", "data-dixsiss" => "modal"
+        = link_to "Back", "#", "data-dismiss" => "modal"
 
 :javascript
   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');

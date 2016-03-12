@@ -3,13 +3,13 @@
     %h1 Brexit. Do you agree?
     = link_to "See full list", statement_path(@statement)
   .row
-    .col-xs-6
+    .col-sm-6
       %h3
         = "Yes, I agree"
         = link_to "(#{@votes_in_favor}) - #{@percentage_in_favor}%", statement_path(@statement)
       - @categories_in_favor.each do |category|
         = render partial: "category", locals: {category: category, count: category.agreements.size, agreement: category.top_agreement}
-    .col-xs-6
+    .col-sm-6
       %h3
         = "No, I disagree"
         = link_to "(#{@votes_against}) - #{100 - @percentage_in_favor}%", statement_path(@statement)
