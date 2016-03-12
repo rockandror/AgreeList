@@ -1,5 +1,4 @@
 @import "bootstrap";
-@screen-sm-min: 480px;
 
 /* header */
 
@@ -28,3 +27,9 @@ body {
 // .container-fluid {
 //   padding: 0px;
 // }
+@media (min-width: 540px) and (orientation:landscape) {
+  .col-sm-6 {
+    float: left;
+    width: 50%;
+  }
+}
