@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'voting', js: true do
   before do
     s = Statement.create(content: "Is global warming real?")
-    Agreement.create(individual: create(:individual), statement: s)
+    Agreement.create(individual: create(:individual), statement: s, extent: 100)
     visit new_path
   end
 

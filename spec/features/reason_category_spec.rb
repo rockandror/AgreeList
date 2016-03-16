@@ -26,6 +26,7 @@ feature "reason categories", js: true do
 
   def seed_data
     @statement = create(:statement)
+    create(:agreement, statement: @statement, individual: create(:individual), extent: 100)
     ReasonCategory.create(name: "Economy")
     ReasonCategory.create(name: "Science")
   end

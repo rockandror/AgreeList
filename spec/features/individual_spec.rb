@@ -3,7 +3,8 @@ require 'spec_helper'
 feature 'create statement from individual profile' do
   before do
     i = create(:individual, name: "Elon Musk", twitter: "elonmusk")
-    create(:statement, individual: i)
+    s = create(:statement, individual: i)
+    create(:agreement, statement: s, individual: i, extent: 100)
     visit "/auth/twitter"
   end
 

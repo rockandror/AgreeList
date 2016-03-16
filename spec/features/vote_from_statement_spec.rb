@@ -16,7 +16,7 @@ feature 'voting', js: true do
     scenario "agree" do
       click_link "Agree"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who agrees (1)")
+      expect(page).to have_content("Who agrees (2)")
     end
 
     scenario "disagree" do
@@ -48,7 +48,7 @@ feature 'voting', js: true do
       click_link "Agree"
       click_link "vote-twitter-login"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who agrees (1)")
+      expect(page).to have_content("Who agrees (2)")
     end
 
     scenario "disagree" do
@@ -99,7 +99,7 @@ feature 'voting', js: true do
       click_button "Agree"
       fill_in 'name', with: "@arpahector"
       click_button "Agree"
-      expect(Individual.count).to eq 1
+      expect(Individual.all.order(:twitter).map(&:twitter)).to eq %w(arpahector seed)
     end
   end
 
@@ -107,6 +107,7 @@ feature 'voting', js: true do
 
   def seed_data
     @statement = create(:statement)
+    create(:agreement, statement: @statement, individual: create(:individual, twitter: "seed"), extent: 100)
   end
 
   def login
