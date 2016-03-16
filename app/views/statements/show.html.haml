@@ -31,10 +31,14 @@
   %br
   - if [@agreements_in_favor.size, @agreements_against.size].max > 3
     Ordered by
-    - if params[:order] != "date"
-      = link_to "Votes", statement_path(@statement, :order => "date")
+    - if params[:order] == "date"
+      Date
+      |
+      = link_to "Votes", statement_path(@statement, order: nil)
     - else
-      = link_to "Date", statement_path(@statement, order: nil)
+      = link_to "Date", statement_path(@statement, order: "date")
+      |
+      Votes
   .row
     .col-sm-6
       .add_me
