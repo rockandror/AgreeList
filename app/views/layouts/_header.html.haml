@@ -9,10 +9,6 @@
       = link_to "AgreeList", root_path, id: "logo"
       .collapse.navbar-collapse#navbar-collapse
         %ul.nav.navbar-nav.pull-right
-          %li= link_to "Developers", "https://github.com/HectorPerez/AgreeList"
-          %li= link_to "New", new_path
-          %li= link_to "Sign in with Twitter", "/auth/twitter" unless current_user
-          %li= link_to "Profile", profile_path(current_user.twitter) if current_user
           %li= link_to "About", "/about"
           %li= link_to "Sign Out", signout_path if current_user
           %a{href: "#", class: "dropdown-toggle", "data-toggle" => "dropdown", role: "button", "aria-expanded" => "false"}
