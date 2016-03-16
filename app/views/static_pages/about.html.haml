@@ -1,23 +1,19 @@
 #home.container
   %h2.text-center About
-  The AgreeList project traces back to a random encounter of the two founders Hector and Emilie...thanks to Airbnb! Hector was renting a room in Emilie's flatshare in London, and they quickly discovered that they were both passionated by the empowerment technology endows to individuals in changing the world.
-  %br
-  %br
+  %p The AgreeList project traces back to a random encounter of the two founders Hector and Emilie... thanks to Airbnb! Hector was renting a room in Emilie's flatshare in London, and they quickly discovered that they were both passionated by the empowerment technology endows to individuals in changing the world.
   .text-center= image_tag "https://s3-eu-west-1.amazonaws.com/agreelist/team.jpeg"
-  %br
-  %br
-  Idealist enough to believe they could have a meaningful impact, they also realized that they had very complementary skills to embark together in a new venture. Hector, a software engineer by profession, had already founded a startup and was involved in participatory democracy initiatives. Emilie, a former investment banker, had recently reconnected with her political sciences academic background with a second graduate degree in social sciences. 
-  %br
-  %br
-  After endless debates on how to improve the quality of public debate as well as the accountability of opinion leaders, the AgreeList project was born with an ambitious
-  %b mission: promote constructive debates by organizing people's opinions and ideas.
-
-  %br
-  #footer.text-center
-    If you like the project and want to get involved, please send us an email:
-    %br
-    = link_to("feedback@agreelist.com", "mailto:feedback@agreelist.com")
-  .container.text-center
-    = link_to "Privacy", privacy_path
-    |
-    = link_to "Terms", terms_path
+  %p Idealist enough to believe they could have a meaningful impact, they also realized that they had very complementary skills to embark together in a new venture. Hector, a software engineer by profession, had already founded a startup and was involved in participatory democracy initiatives. Emilie, a former investment banker, had recently reconnected with her political sciences academic background with a second graduate degree in social sciences. 
+  %p
+    After endless debates on how to improve the quality of public debate as well as the accountability of opinion leaders, the AgreeList project was born with an ambitious
+    %b mission: promote constructive debates by organizing people's opinions and ideas.
+  %p
+    Would you like to know more?
+    = link_to "Read why AgreeList matters", "https://medium.com/@HectorPerez/agreelist-the-biggest-problem-in-the-world-b58ed6df1e87", class: "btn btn-primary"
+  .text-center
+    #footer
+      %p If you like the project and want to get involved, please send us an email:
+      %p= link_to("feedback@agreelist.com", "mailto:feedback@agreelist.com")
+    .container
+      = link_to "Privacy", privacy_path
+      |
+      = link_to "Terms", terms_path
