@@ -16,13 +16,13 @@ feature 'voting', js: true do
     scenario "agree" do
       click_link "Agree"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who agrees (2)")
+      expect(page).to have_content("Who agrees (2 votes)")
     end
 
     scenario "disagree" do
       click_link "Disagree"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who disagrees (1)")
+      expect(page).to have_content("Who disagrees (1 vote)")
     end
 
     scenario 'adds someone who disagrees' do
@@ -48,14 +48,14 @@ feature 'voting', js: true do
       click_link "Agree"
       click_link "vote-twitter-login"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who agrees (2)")
+      expect(page).to have_content("Who agrees (2 votes)")
     end
 
     scenario "disagree" do
       click_link "Disagree"
       click_link "vote-twitter-login"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who disagrees (1)")
+      expect(page).to have_content("Who disagrees (1 vote)")
     end
 
     scenario 'adds someone who disagrees' do

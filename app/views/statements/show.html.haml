@@ -42,11 +42,11 @@
   .row
     .col-sm-6
       .add_me
-        %h4= "Who agrees (#{@agreements_in_favor.size}):"
+        %h4= "Who agrees (#{pluralize(@agreements_in_favor.size, 'vote')}):"
       = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
     .col-sm-6
       .add_me
-        %h4= "Who disagrees (#{@agreements_against.size}):"
+        %h4= "Who disagrees (#{pluralize(@agreements_against.size, 'vote')}):"
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   #comments
