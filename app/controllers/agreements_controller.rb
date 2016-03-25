@@ -1,6 +1,7 @@
 class AgreementsController < ApplicationController
   before_action :admin_required, only: [:destroy, :touch]
   before_action :find_agreement, only: [:upvote, :update, :touch, :destroy]
+  rescue_from ActionController::RedirectBackError, with: :redirect_to_default
 
   def upvote
     if upvote = Upvote.where(agreement: @agreement, individual: current_user).first
@@ -56,7 +57,7 @@ class AgreementsController < ApplicationController
         reason: params[:comment],
         reason_category_id: params[:reason_category_id],
         extent: params[:commit] == "Disagree" ? 0 : 100)
-      redirect_to statement_path(statement), notice: "Done"
+      redirect_to :back, notice: "Done"
     end
   end
 
@@ -84,5 +85,9 @@ class AgreementsController < ApplicationController
 
   def find_agreement
     @agreement = Agreement.find(params[:id])
+  end
+
+  def redirect_to_default
+    redirect_to root_path
   end
 end

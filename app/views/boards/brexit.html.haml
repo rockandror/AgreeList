@@ -16,3 +16,5 @@
 
       - @categories_against.each do |category|
         = render partial: "category", locals: {category: category, count: category.agreements.size, agreement: category.top_disagreement}
+  #gather.jumbotron.textcenter
+    = render partial: "statements/add_supporter"
