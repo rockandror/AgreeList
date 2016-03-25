@@ -1,7 +1,11 @@
 .container
   .text-center
     %h1 Brexit. Do you agree?
+    %br
+    = render partial: "agreements/voting_buttons", locals: { back_url: brexit_board_path }
     = link_to "See full list", statement_path(@statement)
+    |
+    = link_to "Add an opinion", "#gather"
   .row
     .col-sm-6
       %h3
@@ -18,3 +22,14 @@
         = render partial: "category", locals: {category: category, count: category.agreements.size, agreement: category.top_disagreement}
   #gather.jumbotron.textcenter
     = render partial: "statements/add_supporter"
+#myModal.modal.fade{role: "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header.text-center
+        %h3 Login with Twitter to vote
+      .modal-body.text-center
+        = link_to image_tag("twitter-login.png"), "/auth/twitter?back_to=/brexit", id: "vote-twitter-login"
+        or
+        = link_to "Back", "#", "data-dismiss" => "modal"
+
+

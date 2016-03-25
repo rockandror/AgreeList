@@ -1,0 +1,13 @@
+- if current_user
+  - if current_user.voted?(@statement)
+    - already_voted = true
+  - else
+    = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: "#{back_url}"), method: :post, class: "btn-statement btn-lg vote_link"
+    = link_to "Disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: "#{back_url}"), method: :post, class: "btn-statement btn-lg vote_link"
+    - already_voted = false
+- else
+  = link_to "Agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-statement btn-lg vote", back_url: "#{back_url}"
+  = link_to "Disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-statement btn-lg vote", back_url: "#{back_url}"
+- unless already_voted
+  %br
+  %br

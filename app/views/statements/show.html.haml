@@ -4,23 +4,11 @@
       = @statement.content
       = link_to "", "https://twitter.com/share", "class" => "twitter-share-button", "data-url" => "#{root_url}s/#{@statement.hashed_id}", "data-text" => "#{@statement.content} See who agrees on #AgreeList", "data-size" => "large", "data-count" => "none", id: "twitter-share"
     %br
-    - if current_user
-      - if (@agreements_in_favor + @agreements_against).map(&:individual_id).include?(current_user.id)
-        - already_voted = true
-      - else
-        = link_to "Agree", vote_path(statement_id: @statement.id, vote: "agree", back_url: "#{statement_path(@statement)}?order=date"), method: :post, class: "btn-statement btn-lg vote_link"
-        = link_to "Disagree", vote_path(statement_id: @statement.id, vote: "disagree", back_url: "#{statement_path(@statement)}?order=date"), method: :post, class: "btn-statement btn-lg vote_link"
-        - already_voted = false
-    - else
-      = link_to "Agree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "agree", statement_id: @statement.id, class: "btn-statement btn-lg vote", back_url: "#{statement_path(@statement)}?order=date"
-      = link_to "Disagree", "#", "data-toggle" => "modal", "data-target" => "#myModal", vote: "disagree", statement_id: @statement.id, class: "btn-statement btn-lg vote", back_url: "#{statement_path(@statement)}?order=date"
-    - unless already_voted
-      %br
-      %br
+    = render partial: "agreements/voting_buttons", locals: { back_url: statement_path(@statement, order: params[:order]) }
     - if @statement == main_statement
       = link_to "Back", brexit_board_path
       |
-    = link_to "Add an opinion", "#gather", class: (already_voted ? "btn btn-primary" : "")
+    = link_to "Add an opinion", "#gather"
   %br
   - if params[:c]
     >

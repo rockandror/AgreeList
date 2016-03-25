@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  rescue_from ActionController::RedirectBackError, with: :redirect_to_default
   def create
     auth = request.env["omniauth.auth"]
     user = Individual.find_by_twitter(auth["info"]["nickname"].downcase) || Individual.create_with_omniauth(auth)
@@ -18,12 +19,17 @@ class SessionsController < ApplicationController
         extent: 100
       ).vote!
     end
-    # redirect_to user.email.present? ? "/statement" : "/join", :notice => "Signed in!"
     redirect_to(params[:back_url] || root_path, notice: "Signed in!")
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Signed out!"
+    redirect_to :back, :notice => "Signed out!"
+  end
+
+  private
+
+  def redirect_to_default
+    redirect_to root_path
   end
 end

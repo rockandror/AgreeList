@@ -43,6 +43,10 @@ class Individual < ActiveRecord::Base
     end
   end
 
+  def voted?(statement)
+    Agreement.where(individual: self, statement: statement).any?
+  end
+
   def self.find_or_create(params)
     self.find_by_email(params[:email]) || self.create(params)
   end
