@@ -19,10 +19,11 @@
       - unless already_voted
         %br
         %br
-        or
-      = link_to "Add someone else's opinion", "#gather", class: (already_voted ? "btn btn-primary" : "")
+      - if @statement == main_statement
+        = link_to "Back", brexit_board_path
+        |
+      = link_to "Add an opinion", "#gather", class: (already_voted ? "btn btn-primary" : "")
   %br
-  = link_to "Back to Board", brexit_board_path if @statement == main_statement
   - if params[:c]
     >
     = link_to "All", statement_path(@statement)
