@@ -1,5 +1,6 @@
+%h3 Add an opinion
 = form_tag("/add_supporter", :method => "post") do
-  = text_field_tag(:name,"", class: "form-control", placeholder: "Name or @twitter")
+  = text_field_tag(:name,"", class: "form-control", placeholder: "Name or @twitter. E.g. @barackobama")
   %br
   = hidden_field_tag :agg, 'someone_else'
   #source_box
