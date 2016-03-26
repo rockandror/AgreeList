@@ -6,11 +6,12 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     LogMailer.log_email("#{user.name} (@#{user.twitter}) just signed in!").deliver
     if params["task"] == "voting"
-      Vote.new(
+      vote = Vote.new(
         statement_id: params["statement_id"],
         individual_id: user.id,
         extent: params["vote"] == "agree" ? 100 : 0
       ).vote!
+      redirect_to(edit_reason_path(vote, back_url: params[:back_url]))
     elsif params["task"] == "post"
       s = Statement.create(content: params["content"], individual_id: user.id)
       Vote.new(
@@ -18,8 +19,10 @@ class SessionsController < ApplicationController
         individual_id: user.id,
         extent: 100
       ).vote!
+      redirect_to(params[:back_url] || root_path, notice: "Signed in!")
+    else
+      redirect_to(params[:back_url] || root_path, notice: "Signed in!")
     end
-    redirect_to(params[:back_url] || root_path, notice: "Signed in!")
   end
 
   def destroy

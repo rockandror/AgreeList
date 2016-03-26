@@ -15,7 +15,7 @@ class NewController < ApplicationController
         extent: params[:vote] == "agree" ? 100 : 0)
     end
     agreement.save
-    redirect_to params[:back_url] || new_path
+    redirect_to edit_reason_path(agreement, back_url: params[:back_url]) || new_path
   end
 
   private

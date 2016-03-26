@@ -15,6 +15,7 @@ feature 'upvote', js: true do
     scenario "should change text to Upvote (1)" do
       click_link "Agree"
       click_link "vote-twitter-login"
+      click_button "Save"
       expect(page).not_to have_content("Upvote (1)")
       expect{ click_link "Upvote" }.to change{ Upvote.count }.by(1)
       expect(page).to have_content("Upvote (1)")
@@ -24,6 +25,7 @@ feature 'upvote', js: true do
       scenario "should destroy the upvote" do
         click_link "Agree"
         click_link "vote-twitter-login"
+        click_button "Save"
         click_link "Upvote"
         expect{ click_link "Upvote" }.to change{ Upvote.count }.by(-1)
       end

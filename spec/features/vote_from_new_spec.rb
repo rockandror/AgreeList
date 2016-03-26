@@ -20,6 +20,7 @@ feature 'voting', js: true do
     scenario "should authenticate and vote" do
       first(".vote-icon").click
       click_link "vote-twitter-login"
+      click_button "Save"
       expect(page).to have_content("Hector Perez")
     end
   end
@@ -28,6 +29,7 @@ feature 'voting', js: true do
     scenario "should authenticate and vote" do
       all(".vote-icon")[1].click
       click_link "vote-twitter-login"
+      click_button "Save"
       expect(page).to have_content("Hector Perez")
     end
   end

@@ -15,12 +15,14 @@ feature 'voting', js: true do
 
     scenario "agree" do
       click_link "Agree"
+      click_button "Save"
       expect(page).to have_content("Hector Perez")
       expect(page).to have_content("Who agrees (2 votes)")
     end
 
     scenario "disagree" do
       click_link "Disagree"
+      click_button "Save"
       expect(page).to have_content("Hector Perez")
       expect(page).to have_content("Who disagrees (1 vote)")
     end
@@ -47,6 +49,7 @@ feature 'voting', js: true do
     scenario "agree" do
       click_link "Agree"
       click_link "vote-twitter-login"
+      click_button "Save"
       expect(page).to have_content("Hector Perez")
       expect(page).to have_content("Who agrees (2 votes)")
     end
@@ -54,6 +57,7 @@ feature 'voting', js: true do
     scenario "disagree" do
       click_link "Disagree"
       click_link "vote-twitter-login"
+      click_button "Save"
       expect(page).to have_content("Hector Perez")
       expect(page).to have_content("Who disagrees (1 vote)")
     end

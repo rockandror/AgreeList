@@ -28,6 +28,7 @@ class Vote
       individual_id: individual_id,
       extent: extent
     )
+    @agreement
   end
   
   def create

@@ -10,6 +10,7 @@ feature 'reason', js: true do
     visit statement_path(@statement)
     click_link "Agree"
     click_link "vote-twitter-login"
+    click_button "Save"
     click_link "Why do you agree? Add a reason"
     fill_in :agreement_reason, with: "Because..."
     click_button "Save"
