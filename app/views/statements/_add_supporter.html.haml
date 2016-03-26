@@ -4,7 +4,7 @@
   %br
   = hidden_field_tag :agg, 'someone_else'
   #source_box
-    = text_field_tag(:source, "", class: "form-control", placeholder: "source where the quote comes from (mandatory if you are adding someone else's opinion)")
+    = text_field_tag(:source, "", class: "form-control", placeholder: "Source where the quote comes from (mandatory)")
   = hidden_field_tag(:statement_id, @statement.id)
   %br
   = text_field_tag(:comment, "", class: "form-control", placeholder: "Reason why you or the person you are adding agrees/disagrees (optional)", maxlength: 254)
