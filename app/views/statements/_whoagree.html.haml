@@ -18,15 +18,16 @@
           = link_to("thouch", touch_path(agreement, back_url: statement_path(agreement.statement)), method: :post)
         %br
         %br
+        %i= agreement.reason
         - if individual == current_user
-          = form_for agreement, url: agreement_path(agreement) do |f|
-            = f.text_area :reason, placeholder: "Reason", class: "form-control"
-            = f.submit "Save", class: "btn"
-        - else
-          %i= agreement.reason
-          %span.source
-            - if agreement.url.present? && agreement.url != "http://"
-              = link_to "source", agreement.url
+          - if agreement.reason.present?
+            = link_to "- edit", edit_reason_path(agreement, back_url: url_for(params))
+          - else
+            = link_to "Why do you #{agreement.agree? ? "agree" : "disagree"}? Add a reason", edit_reason_path(agreement, back_url: url_for(params))
+
+        %span.source
+          - if agreement.url.present? && agreement.url != "http://"
+            = link_to "source", agreement.url
 
         - if current_user
           %br

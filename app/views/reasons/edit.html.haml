@@ -1,0 +1,10 @@
+.container
+  %h1= @agreement.statement.content
+  %h3= "Why do you #{(@agreement.agree? ? "agree" : "disagree")}?"
+  = form_for @agreement do |f|
+    .form-group
+      = f.text_area :reason, class: "form-control"
+    = hidden_field_tag :back_url, params[:back_url]
+    = f.submit "Save", class: "btn btn-primary"
+    or
+    = link_to "Cancel", (params[:back_url] || root_path), class: "btn btn-default"
