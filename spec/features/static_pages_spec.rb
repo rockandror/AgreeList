@@ -6,11 +6,15 @@ describe do
   end
 
   feature "about" do
-    before do
-      visit "/about"
-    end
-
     scenario "should have the contact email" do
+      visit "/about"
+      expect(page).to have_text("feedback@agreelist.com")
+    end
+  end
+
+  feature "faq" do
+    scenario "should have the contact email" do
+      visit "/faq"
       expect(page).to have_text("feedback@agreelist.com")
     end
   end

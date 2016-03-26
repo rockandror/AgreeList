@@ -24,6 +24,7 @@ Al::Application.routes.draw do
   get '/join' => 'static_pages#join'
   post '/emails' => 'static_pages#send_email'
   get '/about' => 'static_pages#about'
+  get '/faq' => 'static_pages#faq'
 
   match "/auth/twitter/callback" => 'sessions#create', via: [:get, :post]
   get "/signout" => "sessions#destroy", as: :signout
