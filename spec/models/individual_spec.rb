@@ -25,4 +25,8 @@ describe Individual do
     individual = create(:individual, twitter: "")
     expect(individual.reload.twitter).to eq nil
   end
+
+  it "destroy" do
+    create(:individual).destroy
+  end
 end
