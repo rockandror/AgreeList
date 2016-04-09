@@ -17,14 +17,14 @@ feature 'voting', js: true do
       click_link "Agree"
       click_button "Save"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who agrees (2 votes)")
+      expect(page).to have_content("Who agrees (100% of 2 votes)")
     end
 
     scenario "disagree" do
       click_link "Disagree"
       click_button "Save"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who disagrees (1 vote)")
+      expect(page).to have_content("Who disagrees (50% of 2 votes)")
     end
 
     scenario 'adds someone who disagrees' do
@@ -51,7 +51,7 @@ feature 'voting', js: true do
       click_link "vote-twitter-login"
       click_button "Save"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who agrees (2 votes)")
+      expect(page).to have_content("Who agrees (100% of 2 votes)")
     end
 
     scenario "disagree" do
@@ -59,7 +59,7 @@ feature 'voting', js: true do
       click_link "vote-twitter-login"
       click_button "Save"
       expect(page).to have_content("Hector Perez")
-      expect(page).to have_content("Who disagrees (1 vote)")
+      expect(page).to have_content("Who disagrees (50% of 2 votes)")
     end
 
     scenario 'adds someone who disagrees' do

@@ -11,7 +11,6 @@
     = link_to "Add an opinion", "#gather"
   %br
   - if params[:c]
-    >
     = link_to "All", statement_path(@statement)
     >
     = params[:c]
@@ -29,11 +28,11 @@
   .row
     .col-sm-6
       .add_me
-        %h4= "Who agrees (#{pluralize(@agreements_in_favor.size, 'vote')}):"
+        %h4= @agreements_count > 0 ? "Who agrees (#{@percentage_in_favor}% of #{pluralize(@agreements_count, 'vote')}):" : "None disagrees yet"
       = render partial: "whoagree", locals: { agreements: @agreements_in_favor }
     .col-sm-6
       .add_me
-        %h4= "Who disagrees (#{pluralize(@agreements_against.size, 'vote')}):"
+        %h4= @agreements_count > 0 ? "Who disagrees (#{100 - @percentage_in_favor}% of #{pluralize(@agreements_count, 'vote')}):" : "None disagrees yet"
       = render partial: "whoagree", locals: { agreements: @agreements_against }
 .container
   #comments

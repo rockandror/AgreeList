@@ -10,13 +10,13 @@
     .col-sm-6
       %h3
         = "Yes, I agree"
-        = link_to "(#{pluralize(@votes_in_favor, 'vote')}) - #{@percentage_in_favor}%", statement_path(@statement)
+        = link_to "(#{@percentage_in_favor}% of #{pluralize((@votes_in_favor + @votes_against), 'vote')})", statement_path(@statement)
       - @categories_in_favor.each do |category|
         = render partial: "category", locals: {category: category, count: category.agreements.size, agreement: category.top_agreement}
     .col-sm-6
       %h3
         = "No, I disagree"
-        = link_to "(#{pluralize(@votes_against, 'vote')}) - #{100 - @percentage_in_favor}%", statement_path(@statement)
+        = link_to "(#{100 - @percentage_in_favor}% of #{pluralize((@votes_in_favor + @votes_against), 'vote')})", statement_path(@statement)
 
       - @categories_against.each do |category|
         = render partial: "category", locals: {category: category, count: category.agreements.size, agreement: category.top_disagreement}
